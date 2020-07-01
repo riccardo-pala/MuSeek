@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "46674411413",
+    "firebase_url": "https://museek-e1173.firebaseio.com",
+    "project_id": "museek-e1173",
+    "storage_bucket": "museek-e1173.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46674411413:android:198a6e24b676d8783a809c",
+        "android_client_info": {
+          "package_name": "com.riky.museek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46674411413-o3nrb87nd6aqdqqsseigehpcueg7abrq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhjgApsHRTAz6F99SCYTz1SNhxV2-y7fM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46674411413-o3nrb87nd6aqdqqsseigehpcueg7abrq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

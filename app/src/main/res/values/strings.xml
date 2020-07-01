@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">MuSeek</string>
+
+    <string name="index_header">MuSeek</string>
+
+    <string name="reg_button">Registrati</string>
+    <string name="log_button">Login</string>
+    <string name="logout_button">Logout</string>
+
+    <string name="new_ad_button">Inserisci un Annuncio</string>
+    <string name="home_button">Home</string>
+    <string name="my_ads_button">I Miei Annunci</string>
+    <string name="favs_button">Preferiti</string>
+
+    <string name="instrument_button">Mercatino Musicale</string>
+    <string name="band_button">Band</string>
+
+    <string name="registration_header">Registrazione</string>
+    <string name="login_header">Accedi</string>
+
+    <string name="firstname">Nome</string>
+    <string name="lastname">Cognome</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="password_confirm">Conferma Password</string>
+
+    <string name="search_hint">Cerca uno strumento...</string>
+
+    <string name="winds_button">Strumenti a Fiato</string>
+    <string name="strings_button">Cordofoni</string>
+    <string name="keyboards_button">Tastiere</string>
+    <string name="drums_button">Batterie</string>
+
+    <string name="photo_picker_button">Scegli\nuna\nFoto</string>
+    <string name="brand_edit_text">Marca</string>
+    <string name="model_edit_text">Modello</string>
+    <string name="price_edit_text">Prezzo</string>
+    <string name="hint_spinner">Tipologia di Strumento...</string>
+
+</resources>

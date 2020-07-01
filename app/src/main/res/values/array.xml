@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="instrument_categories">
+        <item>@string/hint_spinner</item>
+        <item>Basso Elettrico</item>
+        <item>Chitarra Acustica</item>
+        <item>Chitarra Classica</item>
+        <item>Chitarra Elettrica</item>
+        <item>Contrabbasso</item>
+        <item>Flauto</item>
+        <item>Oboe</item>
+        <item>Pianoforte</item>
+        <item>Sassofono</item>
+        <item>Synth</item>
+        <item>Tastiera</item>
+        <item>Tromba</item>
+        <item>Ukulele</item>
+        <item>Violino</item>
+        <item>Violoncello</item>
+    </string-array>
+
+</resources>
