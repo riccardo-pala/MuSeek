@@ -7,32 +7,50 @@
     android:layout_height="match_parent"
     android:background="@color/grey_dark"
     android:scrollbars="none"
-    tools:context=".NewAdActivity">
+    tools:context=".NewAdInstrumentFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/photoPickerButtonNewAd"
+            android:id="@+id/photoPickerButtonNewAdInstr"
             style="@android:style/ButtonBar"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="50dp"
             android:background="@drawable/shadow_button"
-            android:fontFamily="@font/belgrano"
+            android:fontFamily="@font/cormorant_upright_bold"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="3"
             android:text="@string/photo_picker_button"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/blue_light"
             android:textSize="70sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageViewNewAdInstr"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="50dp"
+            android:contentDescription="@string/photo_description"
+            android:src="@drawable/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/brandEditTextNewAd"
+            android:id="@+id/brandEditTextNewAdInstr"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -52,11 +70,11 @@
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photoPickerButtonNewAd"
+            app:layout_constraintTop_toBottomOf="@+id/photoPickerButtonNewAdInstr"
             android:autofillHints="" />
 
         <EditText
-            android:id="@+id/modelEditTextNewAd"
+            android:id="@+id/modelEditTextNewAdInstr"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -76,11 +94,11 @@
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/brandEditTextNewAd"
+            app:layout_constraintTop_toBottomOf="@+id/brandEditTextNewAdInstr"
             android:autofillHints="" />
 
         <EditText
-            android:id="@+id/priceEditTextNewAd"
+            android:id="@+id/priceEditTextNewAdInstr"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="2dp"
@@ -102,26 +120,26 @@
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/modelEditTextNewAd"
+            app:layout_constraintTop_toBottomOf="@+id/modelEditTextNewAdInstr"
             android:autofillHints="" />
 
         <TextView
-            android:id="@+id/euroTextView"
+            android:id="@+id/euroTextViewNewAdInstr"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/belgrano"
-            android:text="€"
+            android:text="@string/euro_text_view"
             android:textAlignment="center"
-            android:textColor="@color/grey_light"
+            android:textColor="@color/blue_light"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/priceEditTextNewAd"
-            app:layout_constraintTop_toBottomOf="@+id/modelEditTextNewAd" />
+            app:layout_constraintStart_toEndOf="@+id/priceEditTextNewAdInstr"
+            app:layout_constraintTop_toBottomOf="@+id/modelEditTextNewAdInstr" />
 
         <Spinner
-            android:id="@+id/categorySpinnerNewAd"
+            android:id="@+id/categorySpinnerNewAdInstr"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="18dp"
@@ -135,26 +153,31 @@
             android:theme="@style/AppSpinner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/priceEditTextNewAd" />
+            app:layout_constraintTop_toBottomOf="@+id/priceEditTextNewAdInstr" />
 
         <Button
-            android:id="@+id/submitButtonNewAd"
-            android:layout_width="180dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shadow_button_blue_light"
+            android:id="@+id/submitButtonNewAdInstr"
+            android:layout_width="200dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/shadow_button"
             android:elevation="5dp"
-            android:fontFamily="@font/belgrano"
+            android:fontFamily="@font/cormorant_upright_bold"
             android:hapticFeedbackEnabled="true"
-            android:text="Conferma"
-            android:textColor="#000000"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="@string/submit_button"
+            android:textColor="@color/blue_light"
             android:textSize="25sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categorySpinnerNewAd" />
+            app:layout_constraintTop_toBottomOf="@+id/categorySpinnerNewAdInstr" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -24,17 +24,20 @@
     <string name="password">Password</string>
     <string name="password_confirm">Conferma Password</string>
 
-    <string name="search_hint">Cerca uno strumento...</string>
+    <string name="search_hint">Cerca uno strumento&#8230;</string>
 
-    <string name="winds_button">Strumenti a Fiato</string>
+    <string name="winds_button">Fiati</string>
     <string name="strings_button">Cordofoni</string>
     <string name="keyboards_button">Tastiere</string>
-    <string name="drums_button">Batterie</string>
+    <string name="drums_button">Archi</string>
 
     <string name="photo_picker_button">Scegli\nuna\nFoto</string>
     <string name="brand_edit_text">Marca</string>
     <string name="model_edit_text">Modello</string>
     <string name="price_edit_text">Prezzo</string>
-    <string name="hint_spinner">Tipologia di Strumento...</string>
+    <string name="euro_text_view">€</string>
+    <string name="hint_spinner">Tipologia di Strumento&#8230;</string>
+    <string name="submit_button">Conferma</string>
+    <string name="photo_description">ad_photo</string>
 
 </resources>
