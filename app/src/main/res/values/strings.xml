@@ -19,7 +19,7 @@
     <string name="login_header">Accedi</string>
 
     <string name="firstname">Nome</string>
-    <string name="lastname">Cognome</string>
+    <string name="lastname">Cognomee</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="password_confirm">Conferma Password</string>
