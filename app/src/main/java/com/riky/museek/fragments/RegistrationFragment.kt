@@ -1,6 +1,5 @@
-package com.riky.museek
+package com.riky.museek.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.riky.museek.R
+import com.riky.museek.classes.DBManager
+import com.riky.museek.classes.User
 import kotlinx.android.synthetic.main.fragment_registration.*
 import kotlinx.android.synthetic.main.fragment_registration.view.*
 
@@ -54,28 +56,15 @@ class RegistrationFragment : Fragment() {
             .addOnCompleteListener {
                 if (!it.isSuccessful) return@addOnCompleteListener
                 Toast.makeText(activity, "Registrazione completata con successo!", Toast.LENGTH_LONG).show()
-                saveUserOnDatabase(email, firstname, lastname)
-                fragmentManager!!.beginTransaction().replace(R.id.fragment, LoginFragment()).addToBackStack(null).commit()
+                DBManager.saveUserOnDatabase(email, firstname, lastname)
+                fragmentManager!!.beginTransaction().replace(
+                    R.id.fragment,
+                    LoginFragment()
+                ).addToBackStack(null).commit()
             }
             .addOnFailureListener {
                 Toast.makeText(activity, "Errore in fase di Registrazione: ${it.message}", Toast.LENGTH_LONG).show()
                 Log.d(RegistrationFragment::class.java.name, "Error on Registration: ${it.message}")
-            }
-    }
-
-    private fun saveUserOnDatabase(email: String, firstname: String, lastname: String) {
-
-        val uid = FirebaseAuth.getInstance().uid ?: ""
-
-        val user = User(uid, email, firstname, lastname)
-        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-
-        ref.setValue(user)
-            .addOnSuccessListener {
-                Log.d(RegistrationFragment::class.java.name, "User successfully saved on DB")
-            }
-            .addOnFailureListener{
-                Toast.makeText(activity, "Errore in fase di Registrazione: ${it.message}", Toast.LENGTH_LONG).show()
             }
     }
 }

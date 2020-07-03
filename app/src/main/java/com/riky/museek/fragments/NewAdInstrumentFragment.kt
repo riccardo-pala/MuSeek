@@ -1,4 +1,4 @@
-package com.riky.museek
+package com.riky.museek.fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -13,6 +13,12 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.riky.museek.classes.Ad
+import com.riky.museek.activities.MainActivity
+import com.riky.museek.R
+import com.riky.museek.activities.HomepageActivity
+import com.riky.museek.classes.DBManager
+import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
 import kotlinx.android.synthetic.main.fragment_new_ad_instrument.*
 import kotlinx.android.synthetic.main.fragment_new_ad_instrument.view.*
 import java.time.LocalDateTime
@@ -34,6 +40,12 @@ class NewAdInstrumentFragment : Fragment() {
             val intentMain = Intent(activity, MainActivity::class.java)
             intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intentMain)
+        }
+
+        view.homeButtonNewAdInstr.setOnClickListener {
+            val intentHomepage = Intent(activity, HomepageActivity::class.java)
+            intentHomepage.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intentHomepage)
         }
 
         view.photoPickerButtonNewAdInstr.setOnClickListener {
@@ -61,30 +73,6 @@ class NewAdInstrumentFragment : Fragment() {
         }
     }
 
-    private fun uploadPickedPhotoOnStorage() : Boolean {
-
-        if (pickedPhotoUri == null) {
-            Toast.makeText(activity, "Si prega di caricare una foto.", Toast.LENGTH_LONG).show()
-            return false
-        }
-
-        var isSuccess = true
-        photoId = "photo-" + UUID.randomUUID().toString()
-        val ref = FirebaseStorage.getInstance().getReference("/images/$photoId")
-
-        ref.putFile(pickedPhotoUri!!)
-            .addOnSuccessListener {
-                Log.d(NewAdInstrumentFragment::class.java.name, "Image succesfully loaded on Firebase Storage")
-            }
-            .addOnFailureListener {
-                Log.d(NewAdInstrumentFragment::class.java.name, "Error while uploading file on Firebase: ${it.message}")
-                Toast.makeText(activity, "Errore durante il caricamento dell'immagine. Riprova.", Toast.LENGTH_LONG).show()
-                isSuccess = false
-            }
-
-        return isSuccess
-    }
-
     private fun performNewAd() {
 
         val brand = brandEditTextNewAdInstr.text.toString()
@@ -95,7 +83,6 @@ class NewAdInstrumentFragment : Fragment() {
         Log.d(NewAdInstrumentFragment::class.java.name, "Price: $price")
         val category = categorySpinnerNewAdInstr.selectedItem.toString()
         Log.d(NewAdInstrumentFragment::class.java.name, "Category: $category")
-        Log.d(NewAdInstrumentFragment::class.java.name, "Category index: ${categorySpinnerNewAdInstr.selectedItemPosition}")
 
         if (brand.isEmpty() || model.isEmpty() || price.isEmpty() || categorySpinnerNewAdInstr.selectedItemPosition == 0) {
             Toast.makeText(activity, "Si prega di compilare tutti i campi del form.", Toast.LENGTH_LONG).show()
@@ -123,46 +110,33 @@ class NewAdInstrumentFragment : Fragment() {
         val uid = FirebaseAuth.getInstance().uid
 
         if (uid == null) {
-            Log.d(NewAdInstrumentFragment::class.java.name, "User not logged")
             FirebaseAuth.getInstance().signOut()
             val intentMain = Intent(activity, MainActivity::class.java)
             intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intentMain)
         }
 
-        if(!uploadPickedPhotoOnStorage()) return
+        if (pickedPhotoUri == null)
+            Toast.makeText(activity, "Si prega di caricare una foto.", Toast.LENGTH_LONG).show()
+
+        photoId = "photo-" + UUID.randomUUID().toString()
+
+        if(!DBManager.uploadPickedPhotoOnStorage(pickedPhotoUri!!, photoId!!)) {
+            Toast.makeText(activity, "Errore durante la creazione dell'annuncio. Riprova", Toast.LENGTH_LONG).show()
+            return
+        }
 
         val date = LocalDateTime.now().toString()
 
         val ad = Ad(brand, model, priceFloat, category, photoId!!, uid!!, date)
 
-        saveAdOnDatabase(ad)
+        if(DBManager.saveAdOnDatabase(ad))
+            Toast.makeText(activity, "Annuncio aggiunto con successo!", Toast.LENGTH_LONG).show()
+        else {
+            Toast.makeText(activity, "Errore durante la creazione dell'annuncio. Riprova", Toast.LENGTH_LONG).show()
+            return
+        }
 
         fragmentManager!!.beginTransaction().replace(R.id.fragment, InstrumentFragment()).commit()
-    }
-
-    private fun saveAdOnDatabase(ad: Ad) {
-
-        val aid = "instr-ad-" + UUID.randomUUID()
-
-        val ref = FirebaseDatabase.getInstance().getReference("/instrument_ads/$aid")
-
-        var isSuccess = true
-
-        ref.setValue(ad)
-            .addOnSuccessListener {
-                Log.d(NewAdInstrumentFragment::class.java.name, "Ad successfully saved on DB")
-            }
-            .addOnFailureListener{
-                Log.d(NewAdInstrumentFragment::class.java.name, "Error on Database: ${it.message}")
-                isSuccess = false
-            }
-
-        if (isSuccess)
-            Toast.makeText(activity, "Annuncio aggiunto con successo!", Toast.LENGTH_LONG).show()
-        else
-            Toast.makeText(activity, "Errore durante la creazione dell'annuncio. Riprova", Toast.LENGTH_LONG).show()
-
-        return
     }
 }

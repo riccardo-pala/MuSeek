@@ -1,4 +1,4 @@
-package com.riky.museek
+package com.riky.museek.classes
 
 import java.time.LocalDate
 import java.time.LocalDateTime

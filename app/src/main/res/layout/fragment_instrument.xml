@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/grey_dark"
     android:scrollbars="none"
-    tools:context=".InstrumentFragment">
+    tools:context=".fragments.InstrumentFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,11 +31,11 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:background="@color/grey_dark"
-            android:fontFamily="@font/belgrano"
+            android:fontFamily="@font/cormorant_upright_bold"
             android:text="@string/new_ad_button"
             android:textAllCaps="false"
             android:textColor="@color/blue_light"
-            android:textSize="20sp"
+            android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/navBar"
             app:layout_constraintEnd_toEndOf="@+id/navBar"
             app:layout_constraintTop_toTopOf="@+id/navBar" />
@@ -45,11 +45,11 @@
             android:layout_width="160dp"
             android:layout_height="75dp"
             android:background="@drawable/shadow_button"
-            android:fontFamily="@font/belgrano"
+            android:fontFamily="@font/cormorant_upright_bold"
             android:text="@string/home_button"
             android:textAllCaps="true"
             android:textColor="@color/grey_dark"
-            android:textSize="35sp"
+            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="@+id/navBar"
             app:layout_constraintStart_toStartOf="@+id/navBar"
             app:layout_constraintTop_toTopOf="@+id/navBar" />
@@ -71,7 +71,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_weight="2"
                 android:background="@drawable/shadow_button"
-                android:fontFamily="@font/belgrano"
+                android:fontFamily="@font/cormorant_upright_bold"
                 android:shadowColor="#FFFFFF"
                 android:shadowDx="1"
                 android:shadowDy="2"
@@ -79,7 +79,7 @@
                 android:text="@string/my_ads_button"
                 android:textAllCaps="true"
                 android:textColor="@color/blue_light"
-                android:textSize="20sp" />
+                android:textSize="23sp" />
 
             <Button
                 android:id="@+id/favsButtonInstr"
@@ -89,7 +89,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_weight="2"
                 android:background="@drawable/shadow_button"
-                android:fontFamily="@font/belgrano"
+                android:fontFamily="@font/cormorant_upright_bold"
                 android:shadowColor="#FFFFFF"
                 android:shadowDx="1"
                 android:shadowDy="2"
@@ -97,7 +97,7 @@
                 android:text="@string/favs_button"
                 android:textAllCaps="true"
                 android:textColor="@color/blue_light"
-                android:textSize="20sp" />
+                android:textSize="23sp" />
         </TableRow>
 
         <SearchView
@@ -136,7 +136,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_weight="2"
                     android:background="@drawable/shadow_button_blue_light"
-                    android:fontFamily="@font/belgrano"
+                    android:fontFamily="@font/cormorant_upright_bold"
                     android:shadowColor="#000000"
                     android:shadowDx="2"
                     android:shadowDy="2"
@@ -144,7 +144,7 @@
                     android:text="@string/winds_button"
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/catStringsButtonInstr"
@@ -154,7 +154,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_weight="2"
                     android:background="@drawable/shadow_button_blue_light"
-                    android:fontFamily="@font/belgrano"
+                    android:fontFamily="@font/cormorant_upright_bold"
                     android:shadowColor="#000000"
                     android:shadowDx="2"
                     android:shadowDy="2"
@@ -162,7 +162,7 @@
                     android:text="@string/strings_button"
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textSize="25sp" />
             </TableRow>
 
             <TableRow
@@ -178,7 +178,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_weight="2"
                     android:background="@drawable/shadow_button_blue_light"
-                    android:fontFamily="@font/belgrano"
+                    android:fontFamily="@font/cormorant_upright_bold"
                     android:shadowColor="#000000"
                     android:shadowDx="2"
                     android:shadowDy="2"
@@ -186,25 +186,25 @@
                     android:text="@string/keyboards_button"
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textSize="25sp" />
 
                 <Button
-                    android:id="@+id/catDrumsButtonInstr"
+                    android:id="@+id/catArchesButtonInstr"
                     style="@android:style/ButtonBar"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginTop="0dp"
                     android:layout_weight="2"
                     android:background="@drawable/shadow_button_blue_light"
-                    android:fontFamily="@font/belgrano"
+                    android:fontFamily="@font/cormorant_upright_bold"
                     android:shadowColor="#000000"
                     android:shadowDx="2"
                     android:shadowDy="2"
                     android:shadowRadius="5"
-                    android:text="@string/drums_button"
+                    android:text="@string/arches_button"
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textSize="25sp" />
             </TableRow>
 
         </TableLayout>

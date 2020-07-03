@@ -7,11 +7,48 @@
     android:layout_height="match_parent"
     android:background="@color/grey_dark"
     android:scrollbars="none"
-    tools:context=".NewAdInstrumentFragment">
+    tools:context=".fragments.NewAdInstrumentFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <TableRow
+            android:id="@+id/navBarNewAdInstr"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:background="@color/blue_light"
+            android:weightSum="5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/homeButtonNewAdInstr"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="3"
+                android:background="@drawable/shadow_button"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:text="@string/home_button"
+                android:textAllCaps="true"
+                android:textColor="@color/grey_dark"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/newAdTextViewNewAdInstr"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="2"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:gravity="center"
+                android:text="@string/new_ad_text_view"
+                android:textAlignment="center"
+                android:textColor="@color/grey_dark"
+                android:textSize="35sp" />
+
+        </TableRow>
 
         <Button
             android:id="@+id/photoPickerButtonNewAdInstr"
@@ -19,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="50dp"
             android:background="@drawable/shadow_button"
             android:fontFamily="@font/cormorant_upright_bold"
@@ -34,26 +71,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/navBarNewAdInstr" />
 
         <ImageView
             android:id="@+id/imageViewNewAdInstr"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="50dp"
             android:contentDescription="@string/photo_description"
             android:src="@drawable/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/navBarNewAdInstr" />
 
         <EditText
             android:id="@+id/brandEditTextNewAdInstr"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
             android:background="@drawable/shadow_edit_text"
             android:ems="10"
             android:fontFamily="@font/cormorant_upright_bold"
@@ -70,8 +108,7 @@
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photoPickerButtonNewAdInstr"
-            android:autofillHints="" />
+            app:layout_constraintTop_toBottomOf="@+id/photoPickerButtonNewAdInstr" />
 
         <EditText
             android:id="@+id/modelEditTextNewAdInstr"

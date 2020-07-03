@@ -13,11 +13,11 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">25sp</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:textColorHint">@color/grey</item>
         <item name="android:tint">@color/blue_light</item>
-        <item name="android:fontFamily">@font/belgrano</item>
+        <item name="android:fontFamily">@font/cormorant_upright_bold</item>
     </style>
     <style name="AppSpinner" parent="Widget.AppCompat.TextView" >
         <item name="android:textSize">27sp</item>

@@ -29,7 +29,7 @@
     <string name="winds_button">Fiati</string>
     <string name="strings_button">Cordofoni</string>
     <string name="keyboards_button">Tastiere</string>
-    <string name="drums_button">Archi</string>
+    <string name="arches_button">Archi</string>
 
     <string name="photo_picker_button">Scegli\nuna\nFoto</string>
     <string name="brand_edit_text">Marca</string>
@@ -39,5 +39,7 @@
     <string name="hint_spinner">Tipologia di Strumento&#8230;</string>
     <string name="submit_button">Conferma</string>
     <string name="photo_description">ad_photo</string>
+    <string name="my_ads_text_view">I Miei Annunci</string>
+    <string name="new_ad_text_view">Nuovo Annuncio</string>
 
 </resources>

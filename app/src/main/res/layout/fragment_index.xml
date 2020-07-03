@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:scrollbars="vertical"
-    tools:context=".IndexFragment">
+    tools:context=".fragments.IndexFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
