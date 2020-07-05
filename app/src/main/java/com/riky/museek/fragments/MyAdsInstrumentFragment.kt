@@ -1,6 +1,5 @@
 package com.riky.museek.fragments
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +16,7 @@ import com.riky.museek.classes.Ad
 import com.riky.museek.classes.AdItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.ad_card.view.*
 import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
 
 class MyAdsInstrumentFragment : Fragment() {
@@ -44,7 +44,6 @@ class MyAdsInstrumentFragment : Fragment() {
         }
 
         view.recyclerViewMyAdsInstr.adapter = adapter
-        Log.d(MyAdsInstrumentFragment::class.java.name, "Set adapter to recycler view")
 
         fetchMyAdsFromDatabase()
 
@@ -52,7 +51,6 @@ class MyAdsInstrumentFragment : Fragment() {
     }
 
     private fun refreshRecyclerView(){
-        Log.d(MyAdsInstrumentFragment::class.java.name, "Refreshing RecyclerView...")
         adapter.clear()
         adsMap.values.forEach{
             adapter.add(AdItem(it))
@@ -68,17 +66,18 @@ class MyAdsInstrumentFragment : Fragment() {
 
         var ad: Ad
 
-        Log.d(MyAdsInstrumentFragment::class.java.name, "Fetching ads from database...")
+        //Log.d(MyAdsInstrumentFragment::class.java.name, "Fetching ads from database...")
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    Log.d(MyAdsInstrumentFragment::class.java.name, "DataSnapshot exists...")
+                    //Log.d(MyAdsInstrumentFragment::class.java.name, "DataSnapshot exists...")
                     for (ads in dataSnapshot.children) {
-                        Log.d(MyAdsInstrumentFragment::class.java.name, "Evaluing each ad in DataSnapshot...")
+                        //Log.d(MyAdsInstrumentFragment::class.java.name, "Evaluating each ad in DataSnapshot...")
                         if (ads.child("uid").value == uid) {
-                            Log.d(MyAdsInstrumentFragment::class.java.name, "Fetching ad with uid: ${ads.child("uid").value}")
+                            //Log.d(MyAdsInstrumentFragment::class.java.name, "Fetching ad with uid: ${ads.child("uid").value}")
                             ad = Ad(
+                                ads.key as String,
                                 ads.child("brand").value as String,
                                 ads.child("model").value as String,
                                 ads.child("price").value.toString().toFloat(),
@@ -86,14 +85,13 @@ class MyAdsInstrumentFragment : Fragment() {
                                 ads.child("photoId").value as String,
                                 ads.child("uid").value as String,
                                 ads.child("date").value as String)
-                            Log.d(MyAdsInstrumentFragment::class.java.name, "Adding to adsMap...")
+                            //Log.d(MyAdsInstrumentFragment::class.java.name, "Adding to adsMap...")
                             adsMap[ads.value.toString()] = ad
-                            refreshRecyclerView()
                         }
                     }
+                    refreshRecyclerView()
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.d(MyAdsInstrumentFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
             }

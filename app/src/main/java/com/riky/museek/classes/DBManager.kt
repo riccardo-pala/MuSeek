@@ -17,25 +17,29 @@ class DBManager (){
 
     companion object {
 
-        fun getEmailByUid(uid: String) : String {
+        val storage = FirebaseStorage.getInstance()
+        val database = FirebaseDatabase.getInstance()
 
-            val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        fun getNameByUid(uid: String) : String {
 
-            var email = ""
+            val ref = database.getReference("/users/")
+
+            var name = ""
 
             ref.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        email = dataSnapshot.child("email").value as String
+                        name =
+                            dataSnapshot.child(uid).child("firstname").value.toString() + " " +
+                                    dataSnapshot.child(uid).child("lastname").value.toString()
                     }
                 }
-
                 override fun onCancelled(databaseError: DatabaseError) {
-                    Log.d(MyAdsInstrumentFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
+                    Log.d(DBManager::class.java.name, "ERROR on Database: ${databaseError.message}")
                 }
             })
 
-            return email
+            return name
         }
 
         fun saveUserOnDatabase(email: String, firstname: String, lastname: String): Boolean {
@@ -45,14 +49,14 @@ class DBManager (){
             val uid = FirebaseAuth.getInstance().uid ?: ""
 
             val user = User(uid, email, firstname, lastname)
-            val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+            val ref = database.getReference("/users/$uid")
 
             ref.setValue(user)
                 .addOnSuccessListener {
-                    Log.d(RegistrationFragment::class.java.name, "User successfully saved on DB")
+                    Log.d(DBManager::class.java.name, "User successfully saved on DB")
                 }
                 .addOnFailureListener {
-                    Log.d(RegistrationFragment::class.java.name, "Error on Database: ${it.message}")
+                    Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
                     isSuccess = false
                 }
             return isSuccess
@@ -62,36 +66,75 @@ class DBManager (){
 
             var isSuccess = true
 
-            val aid = "instr-ad-" + UUID.randomUUID()
-
-            val ref = FirebaseDatabase.getInstance().getReference("/instrument_ads/$aid")
+            val ref = database.getReference("/instrument_ads/${ad.aid}")
 
             ref.setValue(ad)
                 .addOnSuccessListener {
-                    Log.d(NewAdInstrumentFragment::class.java.name, "Ad successfully saved on DB")
+                    Log.d(DBManager::class.java.name, "Ad successfully saved on DB")
                 }
                 .addOnFailureListener{
-                    Log.d(NewAdInstrumentFragment::class.java.name, "Error on Database: ${it.message}")
+                    Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
                     isSuccess = false
                 }
 
             return isSuccess
         }
 
+        fun deleteAdOnDatabase(aid: String, photoId: String) {
+
+            database.getReference("/instrument_ads/$aid").removeValue()
+                .addOnSuccessListener {
+                    Log.d(DBManager::class.java.name, "Ad successfully removed from DB")
+                }
+                .addOnFailureListener{
+                    Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
+                }
+
+            Log.d(DBManager::class.java.name, "photoId: $photoId")
+
+            storage.getReference("/images/$photoId").delete()
+                .addOnSuccessListener {
+                    Log.d(DBManager::class.java.name, "Pic successfully removed from Storage")
+                }
+                .addOnFailureListener{
+                    Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
+                }
+        }
+
         fun uploadPickedPhotoOnStorage(pickedPhotoUri: Uri, photoId: String) : Boolean {
 
             var isSuccess = true
 
-            val ref = FirebaseStorage.getInstance().getReference("/images/$photoId")
+            val ref = storage.getReference("/images/$photoId")
 
             ref.putFile(pickedPhotoUri)
                 .addOnSuccessListener {
-                    Log.d(NewAdInstrumentFragment::class.java.name, "Image succesfully loaded on Firebase Storage")
+                    Log.d(DBManager::class.java.name, "Image succesfully loaded on Firebase Storage")
                 }
                 .addOnFailureListener {
-                    Log.d(NewAdInstrumentFragment::class.java.name, "Error while uploading file on Firebase: ${it.message}")
+                    Log.d(DBManager::class.java.name, "Error while uploading file on Firebase: ${it.message}")
                     isSuccess = false
                 }
+
+            return isSuccess
+        }
+
+        fun verifyAdUser(aid: String, uid: String) : Boolean {
+
+            var isSuccess = true
+
+            val ref = database.getReference("/instrument_ads/$aid")
+
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (!dataSnapshot.exists() || dataSnapshot.child("uid").value.toString() != uid)
+                        isSuccess = false
+                }
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.d(DBManager::class.java.name, "ERROR on Database: ${databaseError.message}")
+                    isSuccess = false
+                }
+            })
 
             return isSuccess
         }

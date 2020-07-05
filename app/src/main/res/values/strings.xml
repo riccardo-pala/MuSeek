@@ -36,10 +36,15 @@
     <string name="model_edit_text">Modello</string>
     <string name="price_edit_text">Prezzo</string>
     <string name="euro_text_view">€</string>
+    <string name="category_edit_text">Tipologia</string>
+    <string name="date_edit_text">Data</string>
     <string name="hint_spinner">Tipologia di Strumento&#8230;</string>
     <string name="submit_button">Conferma</string>
+    <string name="update_button">Aggiorna</string>
     <string name="photo_description">ad_photo</string>
     <string name="my_ads_text_view">I Miei Annunci</string>
     <string name="new_ad_text_view">Nuovo Annuncio</string>
+    <string name="edit_button">Modifica</string>
+    <string name="delete_button">Elimina</string>
 
 </resources>

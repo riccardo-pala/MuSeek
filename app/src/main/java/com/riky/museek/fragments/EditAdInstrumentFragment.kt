@@ -1,0 +1,199 @@
+package com.riky.museek.fragments
+
+import android.app.Activity
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.riky.museek.R
+import com.riky.museek.activities.HomepageActivity
+import com.riky.museek.activities.MainActivity
+import com.riky.museek.classes.Ad
+import com.riky.museek.classes.DBManager
+import kotlinx.android.synthetic.main.fragment_edit_ad_instrument.*
+import kotlinx.android.synthetic.main.fragment_edit_ad_instrument.view.*
+import java.time.LocalDateTime
+import java.util.*
+
+class EditAdInstrumentFragment : Fragment() {
+
+    var pickedPhotoUri : Uri? = null
+    var photoId : String? = null
+    var aid : String? = null
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val view = inflater.inflate(R.layout.fragment_edit_ad_instrument, container, false)
+
+        val uid = FirebaseAuth.getInstance().uid
+
+        if (uid == null) {
+            FirebaseAuth.getInstance().signOut()
+            val intentMain = Intent(activity, MainActivity::class.java)
+            intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intentMain)
+        }
+
+        try {
+            requireArguments()
+        }
+        catch (e : IllegalStateException) {
+            Toast.makeText(activity, "Errore durante il caricamento dell'annuncio. Riprova.", Toast.LENGTH_LONG).show()
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).commit()
+        }
+
+        view.homeButtonEditAdInstr.setOnClickListener {
+            val intentHomepage = Intent(activity, HomepageActivity::class.java)
+            intentHomepage.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intentHomepage)
+        }
+
+        view.photoPickerButtonEditAdInstr.setOnClickListener {
+            val intentPicker = Intent(Intent.ACTION_PICK)
+            intentPicker.type = "image/*"
+            startActivityForResult(intentPicker, 0)
+        }
+
+        aid = arguments!!.getString("aid", "")
+
+        if (!DBManager.verifyAdUser(aid!!, uid!!)) {
+            Toast.makeText(activity, "Errore durante il caricamento dell'annuncio. Riprova.", Toast.LENGTH_LONG).show()
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).commit()
+        }
+
+        view.brandEditTextEditAdInstr.setText(arguments!!.getString("brand", "Marca"))
+        view.modelEditTextEditAdInstr.setText(arguments!!.getString("model", "Modello"))
+        view.priceEditTextEditAdInstr.setText(arguments!!.getFloat("price", 0f).toString())
+        view.categorySpinnerEditAdInstr.setSelection(getSpinnerElement(arguments!!.getString("category", "Modello")))
+        photoId = arguments!!.getString("photoId", null)
+        val ref = FirebaseStorage.getInstance().getReference("/images/")
+/*
+        ref.child(arguments!!.getString("photoId", "Modello")).downloadUrl.addOnSuccessListener {
+            Picasso.get().load(it).into(imageViewEditAdInstr)
+        }.addOnFailureListener {
+            Log.d(EditAdInstrumentFragment::class.java.name, "ERROR while loading image from Storage")
+        }
+*/
+        if (photoId != null)
+            ref.child(photoId!!).getBytes(1024*1024)
+                .addOnSuccessListener { bytes ->
+                    val bitmap = BitmapFactory.decodeByteArray(bytes, 0 ,bytes.size)
+                    view.imageViewEditAdInstr.setImageBitmap(bitmap)
+                }
+
+        view.updateButtonEditAdInstr.setOnClickListener {
+            performUpdateAd()
+        }
+
+        return view
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
+            Log.d(EditAdInstrumentFragment::class.java.name, "Photo was picked")
+            pickedPhotoUri = data.data
+            photoPickerButtonEditAdInstr.alpha = 0f
+            imageViewEditAdInstr.setImageURI(pickedPhotoUri)
+        }
+    }
+
+    fun getSpinnerElement(s: String) : Int {
+
+        when(s) {
+            "Basso Elettrico" -> return 1
+            "Chitarra Acustica" -> return 2
+            "Chitarra Classica" -> return 3
+            "Chitarra Elettrica" -> return 4
+            "Contrabbasso" -> return 5
+            "Flauto" -> return 6
+            "Oboe" -> return 7
+            "Pianoforte" -> return 8
+            "Sassofono" -> return 9
+            "Synth" -> return 10
+            "Tastiera" -> return 11
+            "Tromba" -> return 12
+            "Ukulele" -> return 13
+            "Violino" -> return 14
+            "Violoncello" -> return 15
+        }
+
+        return 0
+    }
+
+    private fun performUpdateAd() {
+
+        val uid = FirebaseAuth.getInstance().uid
+
+        if (uid == null) {
+            FirebaseAuth.getInstance().signOut()
+            val intentMain = Intent(activity, MainActivity::class.java)
+            intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intentMain)
+        }
+
+        val brand = brandEditTextEditAdInstr.text.toString()
+        //Log.d(EditAdInstrumentFragment::class.java.name, "Brand: $brand")
+        val model = modelEditTextEditAdInstr.text.toString()
+        //Log.d(EditAdInstrumentFragment::class.java.name, "Model: $model")
+        val price = priceEditTextEditAdInstr.text.toString()
+        //Log.d(EditAdInstrumentFragment::class.java.name, "Price: $price")
+        val category = categorySpinnerEditAdInstr.selectedItem.toString()
+        //Log.d(EditAdInstrumentFragment::class.java.name, "Category: $category")
+
+        if (brand.isEmpty() || model.isEmpty() || price.isEmpty() || categorySpinnerEditAdInstr.selectedItemPosition == 0) {
+            Toast.makeText(activity, "Si prega di compilare tutti i campi del form.", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val priceFloat = price.toFloatOrNull()
+
+        if (priceFloat == null) {
+            Log.d(EditAdInstrumentFragment::class.java.name, "Price not valid - ERR:1")
+            Toast.makeText(activity, "Il prezzo inserito è in un formato non valido.", Toast.LENGTH_LONG).show()
+            return
+        }
+        if (((priceFloat*100.0f)%1.0f) != 0.0f) {
+            Log.d(EditAdInstrumentFragment::class.java.name, "Price not valid - ERR:2 - ${(priceFloat*100f)%1f}")
+            Toast.makeText(activity, "Si prega di inserire un prezzo con massimo 2 cifre decimali.", Toast.LENGTH_LONG).show()
+            return
+        }
+        if (priceFloat > 100000) {
+            Log.d(EditAdInstrumentFragment::class.java.name, "Price not valid - ERR:3")
+            Toast.makeText(activity, "Il prezzo massimo è di 100.000€", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        if (photoId == null) photoId = "photo-" + UUID.randomUUID().toString()
+
+        if (pickedPhotoUri != null) {
+            if(!DBManager.uploadPickedPhotoOnStorage(pickedPhotoUri!!, photoId!!)) {
+                Toast.makeText(activity, "Errore durante l'aggiornamento dell'annuncio. Riprova", Toast.LENGTH_LONG).show()
+                return
+            }
+        }
+
+        val date = arguments!!.getString("date", LocalDateTime.now().toString())
+
+        val ad = Ad(aid!!, brand, model, priceFloat, category, photoId!!, uid!!, date)
+
+        if(DBManager.saveAdOnDatabase(ad))
+            Toast.makeText(activity, "Annuncio aggiornato con successo!", Toast.LENGTH_LONG).show()
+        else {
+            Toast.makeText(activity, "Errore durante l'aggiornamento dell'annuncio. Riprova", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        fragmentManager!!.beginTransaction().replace(R.id.fragment, InstrumentFragment()).commit()
+    }
+}

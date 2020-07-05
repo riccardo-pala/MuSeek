@@ -1,8 +1,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    android:background="@drawable/shadow_button">
+    android:layout_height="500dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/shadow_button"
+    tools:context=".activities.InstrumentActivity">
 
     <TableRow
         android:layout_width="match_parent"
@@ -17,141 +19,280 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/adPhotoMyAdsInstr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
             android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:contentDescription="@string/photo_description"
-            app:srcCompat="@drawable/transparent" />
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/adPhotoMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/photo_description"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/transparent" />
+
+            <ImageView
+                android:id="@+id/adPhotoFrameMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:alpha="0"
+                android:contentDescription="@string/photo_description"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/frame_blue_light" />
+
+            <Button
+                android:id="@+id/editButtonMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shadow_button_blue_light"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:text="@string/edit_button"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/adPhotoMyAdsInstr"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adPhotoMyAdsInstr" />
+
+            <Button
+                android:id="@+id/deleteButtonMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/shadow_button_red_light"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:text="@string/delete_button"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editButtonMyAdsInstr" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/brandTagTextViewMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:shadowColor="@android:color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:text="@string/brand_edit_text"
+                android:textAllCaps="true"
+                android:textColor="@color/blue_light"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/brandTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:shadowColor="@android:color/white"
+                android:text="Brand"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/brandTagTextViewMyAdsInstr" />
+
+            <TextView
+                android:id="@+id/modelTagTextViewMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:shadowColor="@android:color/white"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                android:text="Brand"
+                android:text="@string/model_edit_text"
+                android:textAllCaps="true"
                 android:textColor="@color/blue_light"
                 android:textSize="25sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/brandTextViewMyAdsInstr" />
 
             <TextView
                 android:id="@+id/modelTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:shadowColor="@android:color/white"
+                android:text="Model"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/modelTagTextViewMyAdsInstr" />
+
+            <TextView
+                android:id="@+id/categoryTagTextViewMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:shadowColor="@android:color/white"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                android:text="Model"
+                android:text="@string/category_edit_text"
+                android:textAllCaps="true"
                 android:textColor="@color/blue_light"
                 android:textSize="25sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/brandTextViewMyAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/modelTextViewMyAdsInstr" />
 
             <TextView
                 android:id="@+id/categoryTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:shadowColor="@android:color/white"
+                android:text="Category"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categoryTagTextViewMyAdsInstr" />
+
+            <TextView
+                android:id="@+id/priceTagTextViewMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:shadowColor="@android:color/white"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                android:text="Category"
+                android:text="@string/price_edit_text"
+                android:textAllCaps="true"
                 android:textColor="@color/blue_light"
                 android:textSize="25sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/modelTextViewMyAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/categoryTextViewMyAdsInstr" />
 
             <TextView
                 android:id="@+id/priceTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:shadowColor="@android:color/white"
+                android:text="Price"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/priceTagTextViewMyAdsInstr" />
+
+            <TextView
+                android:id="@+id/dateTagTextViewMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:shadowColor="@android:color/white"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                android:text="Price"
+                android:text="@string/date_edit_text"
+                android:textAllCaps="true"
                 android:textColor="@color/blue_light"
                 android:textSize="25sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoryTextViewMyAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/priceTextViewMyAdsInstr" />
 
             <TextView
                 android:id="@+id/dateTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:shadowColor="@android:color/white"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:text="Date"
-                android:textColor="@color/blue_light"
+                android:textColor="@android:color/white"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/priceTextViewMyAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/dateTagTextViewMyAdsInstr" />
 
-            <TextView
-                android:id="@+id/userTextViewMyAdsInstr"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
-                android:fontFamily="@font/cormorant_upright_bold"
-                android:shadowColor="@android:color/white"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
-                android:text="User"
-                android:textColor="@color/blue_light"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dateTextViewMyAdsInstr" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </TableRow>

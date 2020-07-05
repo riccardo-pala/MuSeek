@@ -85,6 +85,7 @@ class NewAdInstrumentFragment : Fragment() {
         Log.d(NewAdInstrumentFragment::class.java.name, "Category: $category")
 
         if (brand.isEmpty() || model.isEmpty() || price.isEmpty() || categorySpinnerNewAdInstr.selectedItemPosition == 0) {
+            Log.d(NewAdInstrumentFragment::class.java.name, "Some empty fields.")
             Toast.makeText(activity, "Si prega di compilare tutti i campi del form.", Toast.LENGTH_LONG).show()
             return
         }
@@ -128,7 +129,9 @@ class NewAdInstrumentFragment : Fragment() {
 
         val date = LocalDateTime.now().toString()
 
-        val ad = Ad(brand, model, priceFloat, category, photoId!!, uid!!, date)
+        val aid = "instr-ad-" + UUID.randomUUID()
+
+        val ad = Ad(aid, brand, model, priceFloat, category, photoId!!, uid!!, date)
 
         if(DBManager.saveAdOnDatabase(ad))
             Toast.makeText(activity, "Annuncio aggiunto con successo!", Toast.LENGTH_LONG).show()
