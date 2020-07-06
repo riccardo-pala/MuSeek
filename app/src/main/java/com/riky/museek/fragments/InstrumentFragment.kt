@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.R
@@ -28,6 +29,39 @@ class InstrumentFragment : Fragment() {
 
         view.myAdsButtonInstr.setOnClickListener {
             fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).addToBackStack(null).commit()
+        }
+
+        view.catWindsButtonInstr.setOnClickListener {
+            val fragment = ShowAdsInstrumentFragment()
+            val args = Bundle()
+            args.putInt("searchType", 1)
+            args.putString("searchValue", "F")
+            fragment.arguments = args
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, fragment).addToBackStack(null).commit()
+        }
+        view.catStringsButtonInstr.setOnClickListener {
+            val fragment = ShowAdsInstrumentFragment()
+            val args = Bundle()
+            args.putInt("searchType", 1)
+            args.putString("searchValue", "C")
+            fragment.arguments = args
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, fragment).addToBackStack(null).commit()
+        }
+        view.catKeyboardsButtonInstr.setOnClickListener {
+            val fragment = ShowAdsInstrumentFragment()
+            val args = Bundle()
+            args.putInt("searchType", 1)
+            args.putString("searchValue", "T")
+            fragment.arguments = args
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, fragment).addToBackStack(null).commit()
+        }
+        view.catArchesButtonInstr.setOnClickListener {
+            val fragment = ShowAdsInstrumentFragment()
+            val args = Bundle()
+            args.putInt("searchType", 1)
+            args.putString("searchValue", "A")
+            fragment.arguments = args
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, fragment).addToBackStack(null).commit()
         }
 
         return view

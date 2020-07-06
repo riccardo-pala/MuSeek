@@ -83,7 +83,7 @@ class EditAdInstrumentFragment : Fragment() {
         }
 */
         if (photoId != null)
-            ref.child(photoId!!).getBytes(1024*1024)
+            ref.child(photoId!!).getBytes(4*1024*1024)
                 .addOnSuccessListener { bytes ->
                     val bitmap = BitmapFactory.decodeByteArray(bytes, 0 ,bytes.size)
                     view.imageViewEditAdInstr.setImageBitmap(bitmap)

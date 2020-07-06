@@ -13,10 +13,9 @@ import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.activities.MainActivity
 import com.riky.museek.classes.Ad
-import com.riky.museek.classes.AdItem
+import com.riky.museek.classes.AdItemMyAds
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.ad_card.view.*
 import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
 
 class MyAdsInstrumentFragment : Fragment() {
@@ -53,7 +52,7 @@ class MyAdsInstrumentFragment : Fragment() {
     private fun refreshRecyclerView(){
         adapter.clear()
         adsMap.values.forEach{
-            adapter.add(AdItem(it))
+            adapter.add(AdItemMyAds(it))
         }
     }
 

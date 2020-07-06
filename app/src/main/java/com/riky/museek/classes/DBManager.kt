@@ -138,5 +138,15 @@ class DBManager (){
 
             return isSuccess
         }
+
+        fun getCategoryStringByType(type: String) : String {
+            when (type) {
+                "F" -> return "FlautoOboeSassofonoTromba"
+                "C" -> return "Basso ElettricoChitarra AcusticaChitarra ClassicaChitarra ElettricaUkulele"
+                "T" -> return "PianoforteSynthTastiera"
+                "A" -> return "ContrabbassoViolinoVioloncello"
+            }
+            return ""
+        }
     }
 }

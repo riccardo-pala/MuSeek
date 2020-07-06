@@ -7,13 +7,14 @@
     tools:context=".activities.InstrumentActivity">
 
     <TableRow
-        android:id="@+id/tableRow2"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="match_parent"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
         android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +27,7 @@
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/adPhotoShowAdsInstr"
+                android:id="@+id/adPhotoMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="320dp"
                 android:layout_marginStart="10dp"
@@ -42,7 +43,7 @@
                 app:srcCompat="@drawable/transparent" />
 
             <ImageView
-                android:id="@+id/adPhotoFrameShowAdsInstr"
+                android:id="@+id/adPhotoFrameMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="320dp"
                 android:layout_marginStart="10dp"
@@ -58,6 +59,30 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/frame_blue_light" />
 
+            <Button
+                android:id="@+id/editButtonMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shadow_button_blue_light"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:text="@string/edit_button"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/adPhotoMyAdsInstr"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adPhotoMyAdsInstr" />
+
+            <Button
+                android:id="@+id/deleteButtonMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/shadow_button_red_light"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:text="@string/delete_button"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editButtonMyAdsInstr" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -69,7 +94,7 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/brandTagTextViewShowAdsInstr"
+                android:id="@+id/brandTagTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -92,7 +117,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/brandTextViewShowAdsInstr"
+                android:id="@+id/brandTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -106,10 +131,10 @@
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/brandTagTextViewShowAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/brandTagTextViewMyAdsInstr" />
 
             <TextView
-                android:id="@+id/modelTagTextViewShowAdsInstr"
+                android:id="@+id/modelTagTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -129,10 +154,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/brandTextViewShowAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/brandTextViewMyAdsInstr" />
 
             <TextView
-                android:id="@+id/modelTextViewShowAdsInstr"
+                android:id="@+id/modelTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -146,10 +171,10 @@
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/modelTagTextViewShowAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/modelTagTextViewMyAdsInstr" />
 
             <TextView
-                android:id="@+id/categoryTagTextViewShowAdsInstr"
+                android:id="@+id/categoryTagTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -169,10 +194,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/modelTextViewShowAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/modelTextViewMyAdsInstr" />
 
             <TextView
-                android:id="@+id/categoryTextViewShowAdsInstr"
+                android:id="@+id/categoryTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -186,10 +211,10 @@
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoryTagTextViewShowAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/categoryTagTextViewMyAdsInstr" />
 
             <TextView
-                android:id="@+id/priceTagTextViewShowAdsInstr"
+                android:id="@+id/priceTagTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -209,10 +234,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoryTextViewShowAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/categoryTextViewMyAdsInstr" />
 
             <TextView
-                android:id="@+id/priceTextViewShowAdsInstr"
+                android:id="@+id/priceTextViewMyAdsInstr"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -226,24 +251,49 @@
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/priceTagTextViewShowAdsInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/priceTagTextViewMyAdsInstr" />
+
+            <TextView
+                android:id="@+id/dateTagTextViewMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:shadowColor="@android:color/white"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:text="@string/date_edit_text"
+                android:textAllCaps="true"
+                android:textColor="@color/blue_light"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/priceTextViewMyAdsInstr" />
+
+            <TextView
+                android:id="@+id/dateTextViewMyAdsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:shadowColor="@android:color/white"
+                android:text="Date"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dateTagTextViewMyAdsInstr" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </TableRow>
-
-    <Button
-        android:id="@+id/detailsButtonShowAdsInstr"
-        android:layout_width="match_parent"
-        android:layout_height="106dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/shadow_button_blue_light"
-        android:fontFamily="@font/cormorant_upright_bold"
-        android:text="@string/details_button"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow2" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

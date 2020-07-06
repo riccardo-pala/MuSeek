@@ -46,5 +46,7 @@
     <string name="new_ad_text_view">Nuovo Annuncio</string>
     <string name="edit_button">Modifica</string>
     <string name="delete_button">Elimina</string>
+    <string name="details_button">Visualizza</string>
+    <string name="show_ads_text_view">Risultati Ricerca</string>
 
 </resources>
