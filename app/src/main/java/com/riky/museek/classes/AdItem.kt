@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.R
+import com.riky.museek.fragments.AdDetailsInstrumentFragment
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.ad_card.view.*
@@ -24,17 +25,9 @@ class AdItem (val ad: Ad): Item<ViewHolder>(){
 
         viewHolder.itemView.brandTextViewShowAdsInstr.text = ad.brand
         viewHolder.itemView.modelTextViewShowAdsInstr.text = ad.model
-        viewHolder.itemView.categoryTextViewShowAdsInstr.text = ad.category
+        viewHolder.itemView.categoryTextViewShowAdsInstr.text = DBManager.getCategoryById(ad.category)
         viewHolder.itemView.priceTextViewShowAdsInstr.text = formatter.format(ad.price)
-/*
-        val ref = FirebaseStorage.getInstance().getReference("/images/")
-        ref.child(ad.photoId).downloadUrl.addOnSuccessListener {
-            Picasso.get().load(it).into(viewHolder.itemView.adPhotoShowAdsInstr)
-            viewHolder.itemView.adPhotoFrameShowAdsInstr.alpha = 1f
-        }.addOnFailureListener {
-            Log.d(ShowAdsInstrumentFragment::class.java.name, "ERROR while loading image from Storage")
-        }
-*/
+
         val ref = FirebaseStorage.getInstance().getReference("/images/")
         ref.child(ad.photoId).getBytes(4*1024*1024)
             .addOnSuccessListener { bytes ->
@@ -44,15 +37,14 @@ class AdItem (val ad: Ad): Item<ViewHolder>(){
             }
 
         viewHolder.itemView.detailsButtonShowAdsInstr.setOnClickListener {
-            /*
-            val adFragment = AdDetailsFragment()
+
+            val adFragment = AdDetailsInstrumentFragment()
             val args = Bundle()
             args.putString("aid", ad.aid)
             adFragment.arguments = args
 
             val context = viewHolder.itemView.context as AppCompatActivity
             context.supportFragmentManager.beginTransaction().replace(R.id.fragment, adFragment).addToBackStack(null).commit()
-             */
         }
     }
 }

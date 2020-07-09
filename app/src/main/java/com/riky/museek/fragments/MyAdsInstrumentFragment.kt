@@ -14,6 +14,7 @@ import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.activities.MainActivity
 import com.riky.museek.classes.Ad
 import com.riky.museek.classes.AdItemMyAds
+import com.riky.museek.classes.DBManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
@@ -27,14 +28,7 @@ class MyAdsInstrumentFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_my_ads_instrument, container, false)
 
-        val uid = FirebaseAuth.getInstance().uid
-
-        if (uid == null) {
-            FirebaseAuth.getInstance().signOut()
-            val intentMain = Intent(activity, MainActivity::class.java)
-            intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intentMain)
-        }
+        if (context != null) DBManager.verifyLoggedUser(context!!)
 
         view.homeButtonMyAdsInstr.setOnClickListener {
             val intentHomepage = Intent(activity, HomepageActivity::class.java)
@@ -65,26 +59,20 @@ class MyAdsInstrumentFragment : Fragment() {
 
         var ad: Ad
 
-        //Log.d(MyAdsInstrumentFragment::class.java.name, "Fetching ads from database...")
-
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    //Log.d(MyAdsInstrumentFragment::class.java.name, "DataSnapshot exists...")
                     for (ads in dataSnapshot.children) {
-                        //Log.d(MyAdsInstrumentFragment::class.java.name, "Evaluating each ad in DataSnapshot...")
                         if (ads.child("uid").value == uid) {
-                            //Log.d(MyAdsInstrumentFragment::class.java.name, "Fetching ad with uid: ${ads.child("uid").value}")
                             ad = Ad(
                                 ads.key as String,
                                 ads.child("brand").value as String,
                                 ads.child("model").value as String,
                                 ads.child("price").value.toString().toFloat(),
-                                ads.child("category").value as String,
+                                ads.child("category").value.toString().toInt(),
                                 ads.child("photoId").value as String,
                                 ads.child("uid").value as String,
                                 ads.child("date").value as String)
-                            //Log.d(MyAdsInstrumentFragment::class.java.name, "Adding to adsMap...")
                             adsMap[ads.value.toString()] = ad
                         }
                     }

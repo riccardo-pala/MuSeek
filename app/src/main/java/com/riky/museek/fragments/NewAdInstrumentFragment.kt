@@ -81,10 +81,10 @@ class NewAdInstrumentFragment : Fragment() {
         Log.d(NewAdInstrumentFragment::class.java.name, "Model: $model")
         val price = priceEditTextNewAdInstr.text.toString()
         Log.d(NewAdInstrumentFragment::class.java.name, "Price: $price")
-        val category = categorySpinnerNewAdInstr.selectedItem.toString()
+        val category = categorySpinnerNewAdInstr.selectedItemPosition
         Log.d(NewAdInstrumentFragment::class.java.name, "Category: $category")
 
-        if (brand.isEmpty() || model.isEmpty() || price.isEmpty() || categorySpinnerNewAdInstr.selectedItemPosition == 0) {
+        if (brand.isEmpty() || model.isEmpty() || price.isEmpty() || category == 0) {
             Log.d(NewAdInstrumentFragment::class.java.name, "Some empty fields.")
             Toast.makeText(activity, "Si prega di compilare tutti i campi del form.", Toast.LENGTH_LONG).show()
             return
@@ -108,14 +108,9 @@ class NewAdInstrumentFragment : Fragment() {
             return
         }
 
-        val uid = FirebaseAuth.getInstance().uid
+        if (context != null) DBManager.verifyLoggedUser(context!!)
 
-        if (uid == null) {
-            FirebaseAuth.getInstance().signOut()
-            val intentMain = Intent(activity, MainActivity::class.java)
-            intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intentMain)
-        }
+        val uid = FirebaseAuth.getInstance().uid
 
         if (pickedPhotoUri == null)
             Toast.makeText(activity, "Si prega di caricare una foto.", Toast.LENGTH_LONG).show()

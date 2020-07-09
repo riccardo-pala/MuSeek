@@ -27,18 +27,10 @@ class AdItemMyAds(val ad: Ad): Item<ViewHolder>() {
 
         viewHolder.itemView.brandTextViewMyAdsInstr.text = ad.brand
         viewHolder.itemView.modelTextViewMyAdsInstr.text = ad.model
-        viewHolder.itemView.categoryTextViewMyAdsInstr.text = ad.category
+        viewHolder.itemView.categoryTextViewMyAdsInstr.text = DBManager.getCategoryById(ad.category)
         viewHolder.itemView.priceTextViewMyAdsInstr.text = formatter.format(ad.price)
         viewHolder.itemView.dateTextViewMyAdsInstr.text = ad.date.substring(0, 10)
-/*
-        val ref = FirebaseStorage.getInstance().getReference("/images/")
-        ref.child(ad.photoId).downloadUrl.addOnSuccessListener {
-            Picasso.get().load(it).into(viewHolder.itemView.adPhotoMyAdsInstr)
-            viewHolder.itemView.adPhotoFrameMyAdsInstr.alpha = 1f
-        }.addOnFailureListener {
-            Log.d(MyAdsInstrumentFragment::class.java.name, "ERROR while loading image from Storage")
-        }
-*/
+
         val ref = FirebaseStorage.getInstance().getReference("/images/")
         ref.child(ad.photoId).getBytes(4*1024*1024)
             .addOnSuccessListener { bytes ->
@@ -54,7 +46,7 @@ class AdItemMyAds(val ad: Ad): Item<ViewHolder>() {
             args.putString("brand", ad.brand)
             args.putString("model", ad.model)
             args.putFloat("price", ad.price)
-            args.putString("category", ad.category)
+            args.putInt("category", ad.category)
             args.putString("photoId", ad.photoId)
             args.putString("date", ad.date)
             fragment.arguments = args

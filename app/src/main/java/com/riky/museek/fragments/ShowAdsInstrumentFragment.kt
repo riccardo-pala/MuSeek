@@ -32,14 +32,7 @@ class ShowAdsInstrumentFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_show_ads_instrument, container, false)
 
-        val uid = FirebaseAuth.getInstance().uid
-
-        if (uid == null) {
-            FirebaseAuth.getInstance().signOut()
-            val intentMain = Intent(activity, MainActivity::class.java)
-            intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intentMain)
-        }
+        if (context != null) DBManager.verifyLoggedUser(context!!)
 
         try {
             requireArguments()
@@ -71,27 +64,28 @@ class ShowAdsInstrumentFragment : Fragment() {
 
     fun fetchAdsFromDatabase(searchType: Int, searchValue: String) {
 
+        if (context != null) DBManager.verifyLoggedUser(context!!)
+
+        val uid = FirebaseAuth.getInstance().uid
+
         val ref = FirebaseDatabase.getInstance().getReference("/instrument_ads/")
 
         var ad: Ad
 
-        //Log.d(ShowAdsInstrumentFragment::class.java.name, "Fetching ads from database...")
-
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    //Log.d(ShowAdsInstrumentFragment::class.java.name, "DataSnapshot exists...")
                     when (searchType) {
                         0 -> {
                             for (ads in dataSnapshot.children) {
-                                //Log.d(ShowAdsInstrumentFragment::class.java.name, "Evaluating each ad in DataSnapshot...")
                                 val model = ads.child("model").value as String
                                 val brand = ads.child("brand").value as String
-                                val category = ads.child("category").value as String
-                                if (model.contains(searchValue) ||
+                                val category = ads.child("category").value.toString().toInt()
+                                val aduid = ads.child("uid").value as String
+                                if ((model.contains(searchValue) ||
                                     brand.contains(searchValue) ||
-                                    category.contains(searchValue)) {
-                                    //Log.d(ShowAdsInstrumentFragment::class.java.name, "Fetching ad with uid: ${ads.child("uid").value}")
+                                    DBManager.getCategoryById(category).contains(searchValue)) &&
+                                    aduid != uid) {
                                     ad = Ad(
                                         ads.key as String,
                                         brand,
@@ -101,17 +95,15 @@ class ShowAdsInstrumentFragment : Fragment() {
                                         ads.child("photoId").value as String,
                                         ads.child("uid").value as String,
                                         ads.child("date").value as String)
-                                    //Log.d(ShowAdsInstrumentFragment::class.java.name, "Adding to adsMap...")
                                     adsMap[ads.value.toString()] = ad
                                 }
                             }
                         }
                         1 -> {
+                            val categories = DBManager.getCategoryStringByType(searchValue)
                             for (ads in dataSnapshot.children) {
-                                //Log.d(ShowAdsInstrumentFragment::class.java.name, "Evaluating each ad in DataSnapshot...")
-                                val category = ads.child("category").value as String
-                                if (DBManager.getCategoryStringByType(searchValue).contains(category)) {
-                                    //Log.d(ShowAdsInstrumentFragment::class.java.name, "Fetching ad with uid: ${ads.child("uid").value}")
+                                val category = ads.child("category").value.toString().toInt()
+                                if (categories.contains(category)) {
                                     ad = Ad(
                                         ads.key as String,
                                         ads.child("brand").value as String,
@@ -121,7 +113,6 @@ class ShowAdsInstrumentFragment : Fragment() {
                                         ads.child("photoId").value as String,
                                         ads.child("uid").value as String,
                                         ads.child("date").value as String)
-                                    //Log.d(ShowAdsInstrumentFragment::class.java.name, "Adding to adsMap...")
                                     adsMap[ads.value.toString()] = ad
                                 }
                             }

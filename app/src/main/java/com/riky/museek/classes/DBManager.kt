@@ -1,26 +1,39 @@
 package com.riky.museek.classes
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
-import com.riky.museek.fragments.MyAdsInstrumentFragment
-import com.riky.museek.fragments.NewAdInstrumentFragment
-import com.riky.museek.fragments.RegistrationFragment
-import java.util.*
+import com.riky.museek.activities.MainActivity
 
-class DBManager (){
+class DBManager {
 
     companion object {
 
         val storage = FirebaseStorage.getInstance()
         val database = FirebaseDatabase.getInstance()
 
-        fun getNameByUid(uid: String) : String {
+        fun verifyLoggedUser(context: Context) {
+            val uid = FirebaseAuth.getInstance().uid
+
+            if (uid == null) {
+                FirebaseAuth.getInstance().signOut()
+                val intentMain = Intent(context, MainActivity::class.java)
+                intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(context, intentMain, null)
+            }
+        }
+
+        fun getNameByUid(uid: String) : String { //TODO: NON FUNZIONA
 
             val ref = database.getReference("/users/")
 
@@ -139,12 +152,65 @@ class DBManager (){
             return isSuccess
         }
 
-        fun getCategoryStringByType(type: String) : String {
+        fun getCategoryStringByType(type: String) : Array<Int> {
+
             when (type) {
-                "F" -> return "FlautoOboeSassofonoTromba"
-                "C" -> return "Basso ElettricoChitarra AcusticaChitarra ClassicaChitarra ElettricaUkulele"
-                "T" -> return "PianoforteSynthTastiera"
-                "A" -> return "ContrabbassoViolinoVioloncello"
+                "F" -> {
+                    return arrayOf(6, 7, 9, 12)
+                }
+                "C" -> {
+                    return arrayOf(1, 2, 3, 4, 13)
+                }
+                "T" -> {
+                    return arrayOf(8, 10, 11)
+                }
+                "A" -> {
+                    return arrayOf(5, 14, 15)
+                }
+            }
+            return arrayOf(0)
+        }
+
+        fun getSpinnerElement(s: String) : Int {
+
+            when(s) {
+                "Basso Elettrico" -> return 1
+                "Chitarra Acustica" -> return 2
+                "Chitarra Classica" -> return 3
+                "Chitarra Elettrica" -> return 4
+                "Contrabbasso" -> return 5
+                "Flauto" -> return 6
+                "Oboe" -> return 7
+                "Pianoforte" -> return 8
+                "Sassofono" -> return 9
+                "Synth" -> return 10
+                "Tastiera" -> return 11
+                "Tromba" -> return 12
+                "Ukulele" -> return 13
+                "Violino" -> return 14
+                "Violoncello" -> return 15
+            }
+            return 0
+        }
+
+        fun getCategoryById(id: Int) : String {
+
+            when(id) {
+                1 -> return "Basso Elettrico"
+                2 -> return "Chitarra Acustica"
+                3 -> return "Chitarra Classica"
+                4 -> return "Chitarra Elettrica"
+                5 -> return "Contrabbasso"
+                6 -> return "Flauto"
+                7 -> return "Oboe"
+                8 -> return "Pianoforte"
+                9 -> return "Sassofono"
+                10 -> return "Synth"
+                11 -> return "Tastiera"
+                12 -> return "Tromba"
+                13 -> return "Ukulele"
+                14 -> return "Violino"
+                15 -> return "Violoncello"
             }
             return ""
         }

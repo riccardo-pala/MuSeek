@@ -48,5 +48,7 @@
     <string name="delete_button">Elimina</string>
     <string name="details_button">Visualizza</string>
     <string name="show_ads_text_view">Risultati Ricerca</string>
+    <string name="ad_details_text_view">Dettagli Annuncio</string>
+    <string name="user_ad_text_view">Inserito da</string>
 
 </resources>

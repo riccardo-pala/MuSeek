@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.R
+import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.fragment_instrument.view.*
 
 class InstrumentFragment : Fragment() {

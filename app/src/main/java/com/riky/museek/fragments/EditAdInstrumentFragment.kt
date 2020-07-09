@@ -33,14 +33,7 @@ class EditAdInstrumentFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_edit_ad_instrument, container, false)
 
-        val uid = FirebaseAuth.getInstance().uid
-
-        if (uid == null) {
-            FirebaseAuth.getInstance().signOut()
-            val intentMain = Intent(activity, MainActivity::class.java)
-            intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intentMain)
-        }
+        if (context != null) DBManager.verifyLoggedUser(context!!)
 
         try {
             requireArguments()
@@ -64,7 +57,7 @@ class EditAdInstrumentFragment : Fragment() {
 
         aid = arguments!!.getString("aid", "")
 
-        if (!DBManager.verifyAdUser(aid!!, uid!!)) {
+        if (!DBManager.verifyAdUser(aid!!, FirebaseAuth.getInstance().uid!!)) {
             Toast.makeText(activity, "Errore durante il caricamento dell'annuncio. Riprova.", Toast.LENGTH_LONG).show()
             fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).commit()
         }
@@ -72,16 +65,10 @@ class EditAdInstrumentFragment : Fragment() {
         view.brandEditTextEditAdInstr.setText(arguments!!.getString("brand", "Marca"))
         view.modelEditTextEditAdInstr.setText(arguments!!.getString("model", "Modello"))
         view.priceEditTextEditAdInstr.setText(arguments!!.getFloat("price", 0f).toString())
-        view.categorySpinnerEditAdInstr.setSelection(getSpinnerElement(arguments!!.getString("category", "Modello")))
+        view.categorySpinnerEditAdInstr.setSelection(arguments!!.getInt("category", 0))
         photoId = arguments!!.getString("photoId", null)
         val ref = FirebaseStorage.getInstance().getReference("/images/")
-/*
-        ref.child(arguments!!.getString("photoId", "Modello")).downloadUrl.addOnSuccessListener {
-            Picasso.get().load(it).into(imageViewEditAdInstr)
-        }.addOnFailureListener {
-            Log.d(EditAdInstrumentFragment::class.java.name, "ERROR while loading image from Storage")
-        }
-*/
+
         if (photoId != null)
             ref.child(photoId!!).getBytes(4*1024*1024)
                 .addOnSuccessListener { bytes ->
@@ -108,39 +95,11 @@ class EditAdInstrumentFragment : Fragment() {
         }
     }
 
-    fun getSpinnerElement(s: String) : Int {
-
-        when(s) {
-            "Basso Elettrico" -> return 1
-            "Chitarra Acustica" -> return 2
-            "Chitarra Classica" -> return 3
-            "Chitarra Elettrica" -> return 4
-            "Contrabbasso" -> return 5
-            "Flauto" -> return 6
-            "Oboe" -> return 7
-            "Pianoforte" -> return 8
-            "Sassofono" -> return 9
-            "Synth" -> return 10
-            "Tastiera" -> return 11
-            "Tromba" -> return 12
-            "Ukulele" -> return 13
-            "Violino" -> return 14
-            "Violoncello" -> return 15
-        }
-
-        return 0
-    }
-
     private fun performUpdateAd() {
 
         val uid = FirebaseAuth.getInstance().uid
 
-        if (uid == null) {
-            FirebaseAuth.getInstance().signOut()
-            val intentMain = Intent(activity, MainActivity::class.java)
-            intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intentMain)
-        }
+        if (context != null) DBManager.verifyLoggedUser(context!!)
 
         val brand = brandEditTextEditAdInstr.text.toString()
         //Log.d(EditAdInstrumentFragment::class.java.name, "Brand: $brand")
@@ -148,7 +107,7 @@ class EditAdInstrumentFragment : Fragment() {
         //Log.d(EditAdInstrumentFragment::class.java.name, "Model: $model")
         val price = priceEditTextEditAdInstr.text.toString()
         //Log.d(EditAdInstrumentFragment::class.java.name, "Price: $price")
-        val category = categorySpinnerEditAdInstr.selectedItem.toString()
+        val category = categorySpinnerEditAdInstr.selectedItemPosition
         //Log.d(EditAdInstrumentFragment::class.java.name, "Category: $category")
 
         if (brand.isEmpty() || model.isEmpty() || price.isEmpty() || categorySpinnerEditAdInstr.selectedItemPosition == 0) {
