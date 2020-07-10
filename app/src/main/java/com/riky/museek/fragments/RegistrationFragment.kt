@@ -57,10 +57,7 @@ class RegistrationFragment : Fragment() {
                 if (!it.isSuccessful) return@addOnCompleteListener
                 Toast.makeText(activity, "Registrazione completata con successo!", Toast.LENGTH_LONG).show()
                 DBManager.saveUserOnDatabase(email, firstname, lastname)
-                fragmentManager!!.beginTransaction().replace(
-                    R.id.fragment,
-                    LoginFragment()
-                ).addToBackStack(null).commit()
+                fragmentManager!!.beginTransaction().replace(R.id.fragment, LoginFragment()).commit()
             }
             .addOnFailureListener {
                 Toast.makeText(activity, "Errore in fase di Registrazione: ${it.message}", Toast.LENGTH_LONG).show()

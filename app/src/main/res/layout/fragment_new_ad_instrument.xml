@@ -7,12 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".fragments.NewAdInstrumentFragment">
 
-    <TableRow
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/navBarNewAdInstr"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/blue_light"
-        android:weightSum="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,29 +19,38 @@
 
         <Button
             android:id="@+id/homeButtonNewAdInstr"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="3"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
             android:background="@drawable/shadow_button"
+            android:drawableTop="@drawable/home_logo"
+            android:drawableTint="@color/grey_dark"
             android:fontFamily="@font/cormorant_upright_bold"
-            android:text="@string/home_button"
+            android:padding="8dp"
             android:textAllCaps="true"
             android:textColor="@color/grey_dark"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/newAdTextViewNewAdInstr"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="2"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="80dp"
             android:fontFamily="@font/cormorant_upright_bold"
             android:gravity="center"
             android:text="@string/new_ad_text_view"
             android:textAlignment="center"
             android:textColor="@color/grey_dark"
-            android:textSize="35sp" />
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:layout_width="match_parent"

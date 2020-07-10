@@ -28,11 +28,11 @@ class InstrumentFragment : Fragment() {
         }
 
         view.newAdButtonInstr.setOnClickListener {
-            fragmentManager!!.beginTransaction().replace(R.id.fragment, NewAdInstrumentFragment()).addToBackStack(null).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, NewAdInstrumentFragment()).addToBackStack(this.javaClass.name).commit()
         }
 
         view.myAdsButtonInstr.setOnClickListener {
-            fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).addToBackStack(null).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).addToBackStack(this.javaClass.name).commit()
         }
 
         var searchValue = ""
@@ -77,6 +77,6 @@ class InstrumentFragment : Fragment() {
         args.putInt("searchType", searchType)
         args.putString("searchValue", searchValue)
         fragment.arguments = args
-        fragmentManager!!.beginTransaction().replace(R.id.fragment, fragment).addToBackStack(null).commit()
+        fragmentManager!!.beginTransaction().replace(R.id.fragment, fragment).addToBackStack(this.javaClass.name).commit()
     }
 }

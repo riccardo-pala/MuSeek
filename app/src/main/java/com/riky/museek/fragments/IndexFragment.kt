@@ -17,12 +17,12 @@ class IndexFragment : Fragment() {
 
         view.regButtonIndex.setOnClickListener {
             Log.d(IndexFragment::class.java.name, "Start Registration Fragment")
-            fragmentManager!!.beginTransaction().replace(R.id.fragment, RegistrationFragment()).addToBackStack(null).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, RegistrationFragment()).addToBackStack(this.javaClass.name).commit()
         }
 
         view.logButtonIndex.setOnClickListener {
             Log.d(IndexFragment::class.java.name, "Start Login Fragment")
-            fragmentManager!!.beginTransaction().replace(R.id.fragment, LoginFragment()).addToBackStack(null).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, LoginFragment()).addToBackStack(this.javaClass.name).commit()
         }
 
         return view

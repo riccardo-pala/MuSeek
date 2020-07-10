@@ -42,17 +42,19 @@
 
         <Button
             android:id="@+id/homeButtonInstr"
-            android:layout_width="160dp"
-            android:layout_height="75dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="5"
             android:background="@drawable/shadow_button"
+            android:drawableTop="@drawable/home_logo"
+            android:drawableTint="@color/grey_dark"
             android:fontFamily="@font/cormorant_upright_bold"
-            android:text="@string/home_button"
+            android:padding="8dp"
             android:textAllCaps="true"
             android:textColor="@color/grey_dark"
             android:textSize="40sp"
-            app:layout_constraintBottom_toBottomOf="@+id/navBar"
-            app:layout_constraintStart_toStartOf="@+id/navBar"
-            app:layout_constraintTop_toTopOf="@+id/navBar" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TableRow

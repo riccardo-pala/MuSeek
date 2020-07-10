@@ -52,13 +52,13 @@ class AdItemMyAds(val ad: Ad): Item<ViewHolder>() {
             fragment.arguments = args
 
             val context = viewHolder.itemView.context as AppCompatActivity
-            context.supportFragmentManager.beginTransaction().replace(R.id.fragment, fragment).addToBackStack(null).commit()
+            context.supportFragmentManager.beginTransaction().replace(R.id.fragment, fragment).addToBackStack(MyAdsInstrumentFragment::javaClass.name).commit()
         }
 
         viewHolder.itemView.deleteButtonMyAdsInstr.setOnClickListener {
             DBManager.deleteAdOnDatabase(ad.aid, ad.photoId)
             val context = viewHolder.itemView.context as AppCompatActivity
-            context.supportFragmentManager.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).addToBackStack(null).commit()
+            context.supportFragmentManager.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).addToBackStack(MyAdsInstrumentFragment::javaClass.name).commit()
         }
 
     }

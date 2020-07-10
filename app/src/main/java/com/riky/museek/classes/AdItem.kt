@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.R
 import com.riky.museek.fragments.AdDetailsInstrumentFragment
+import com.riky.museek.fragments.ShowAdsInstrumentFragment
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.ad_card.view.*
@@ -44,7 +45,7 @@ class AdItem (val ad: Ad): Item<ViewHolder>(){
             adFragment.arguments = args
 
             val context = viewHolder.itemView.context as AppCompatActivity
-            context.supportFragmentManager.beginTransaction().replace(R.id.fragment, adFragment).addToBackStack(null).commit()
+            context.supportFragmentManager.beginTransaction().replace(R.id.fragment, adFragment).addToBackStack(ShowAdsInstrumentFragment::javaClass.name).commit()
         }
     }
 }

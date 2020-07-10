@@ -49,7 +49,7 @@ class NewAdInstrumentFragment : Fragment() {
         }
 
         view.photoPickerButtonNewAdInstr.setOnClickListener {
-            val intentPicker = Intent(Intent.ACTION_PICK)
+            val intentPicker = Intent(Intent.ACTION_PICK) //TODO: AGGIUNGERE PICK CON CAMERA
             intentPicker.type = "image/*"
             startActivityForResult(intentPicker, 0)
         }
@@ -135,6 +135,7 @@ class NewAdInstrumentFragment : Fragment() {
             return
         }
 
+        fragmentManager!!.popBackStack()
         fragmentManager!!.beginTransaction().replace(R.id.fragment, InstrumentFragment()).commit()
     }
 }

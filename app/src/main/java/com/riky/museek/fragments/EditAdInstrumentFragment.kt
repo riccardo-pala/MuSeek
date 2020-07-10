@@ -40,6 +40,7 @@ class EditAdInstrumentFragment : Fragment() {
         }
         catch (e : IllegalStateException) {
             Toast.makeText(activity, "Errore durante il caricamento dell'annuncio. Riprova.", Toast.LENGTH_LONG).show()
+            fragmentManager!!.popBackStack()
             fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).commit()
         }
 
@@ -59,6 +60,7 @@ class EditAdInstrumentFragment : Fragment() {
 
         if (!DBManager.verifyAdUser(aid!!, FirebaseAuth.getInstance().uid!!)) {
             Toast.makeText(activity, "Errore durante il caricamento dell'annuncio. Riprova.", Toast.LENGTH_LONG).show()
+            fragmentManager!!.popBackStack()
             fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).commit()
         }
 
@@ -72,6 +74,7 @@ class EditAdInstrumentFragment : Fragment() {
         if (photoId != null)
             ref.child(photoId!!).getBytes(4*1024*1024)
                 .addOnSuccessListener { bytes ->
+                    view.photoPickerButtonEditAdInstr.alpha = 0f
                     val bitmap = BitmapFactory.decodeByteArray(bytes, 0 ,bytes.size)
                     view.imageViewEditAdInstr.setImageBitmap(bitmap)
                 }
@@ -153,6 +156,7 @@ class EditAdInstrumentFragment : Fragment() {
             return
         }
 
-        fragmentManager!!.beginTransaction().replace(R.id.fragment, InstrumentFragment()).commit()
+        fragmentManager!!.popBackStack()
+        fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).commit()
     }
 }
