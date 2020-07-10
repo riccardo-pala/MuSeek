@@ -102,26 +102,43 @@
 
         <SearchView
             android:id="@+id/searchViewInstr"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="50dp"
             android:iconifiedByDefault="false"
             android:queryHint="@string/search_hint"
             android:theme="@style/AppSearchView"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:weightSum="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableRow"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/tableRow">
+
+        </SearchView>
+
+        <Button
+            android:id="@+id/searchButtonInstr"
+            style="@android:style/ButtonBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/shadow_button"
+            android:fontFamily="@font/cormorant_upright_bold"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:text="@string/search_button"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            app:layout_constraintTop_toBottomOf="@+id/searchViewInstr"
+            tools:layout_editor_absoluteX="411dp" />
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="380dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchViewInstr">
+            app:layout_constraintTop_toBottomOf="@+id/searchButtonInstr">
 
             <TableRow
                 android:layout_width="match_parent"

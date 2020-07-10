@@ -21,6 +21,7 @@ import com.riky.museek.classes.AdItem
 import com.riky.museek.classes.DBManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.fragment_show_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_show_ads_instrument.view.*
 
 class ShowAdsInstrumentFragment : Fragment() {
@@ -57,9 +58,11 @@ class ShowAdsInstrumentFragment : Fragment() {
 
     private fun refreshRecyclerView(){
         adapter.clear()
-        adsMap.values.forEach{
+        adsMap.values.forEach {
             adapter.add(AdItem(it))
         }
+        if (adsMap.isEmpty())
+            noResultsTextViewShowAdsInstr.visibility = View.VISIBLE
     }
 
     fun fetchAdsFromDatabase(searchType: Int, searchValue: String) {
@@ -82,10 +85,10 @@ class ShowAdsInstrumentFragment : Fragment() {
                                 val brand = ads.child("brand").value as String
                                 val category = ads.child("category").value.toString().toInt()
                                 val aduid = ads.child("uid").value as String
-                                if ((model.contains(searchValue) ||
-                                    brand.contains(searchValue) ||
-                                    DBManager.getCategoryById(category).contains(searchValue)) &&
-                                    aduid != uid) {
+                                if (uid != aduid &&
+                                    (model.contains(searchValue, true) ||
+                                    brand.contains(searchValue, true) ||
+                                    DBManager.getCategoryById(category).contains(searchValue, true))) {
                                     ad = Ad(
                                         ads.key as String,
                                         brand,
@@ -103,7 +106,8 @@ class ShowAdsInstrumentFragment : Fragment() {
                             val categories = DBManager.getCategoryStringByType(searchValue)
                             for (ads in dataSnapshot.children) {
                                 val category = ads.child("category").value.toString().toInt()
-                                if (categories.contains(category)) {
+                                val aduid = ads.child("uid").value as String
+                                if (uid != aduid && categories.contains(category)) {
                                     ad = Ad(
                                         ads.key as String,
                                         ads.child("brand").value as String,

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_dark"
-    android:scrollbars="vertical"
+    android:scrollbarSize="0dp"
     tools:context=".activities.HomepageActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,16 +51,20 @@
             app:layout_constraintTop_toBottomOf="@id/instrumentButton" />
 
         <Button
-            android:id="@+id/logoutButtonHome"
-            android:layout_width="180dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="40dp"
+            android:id="@+id/myProfileButtonHome"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="50dp"
-            android:background="@color/grey_light"
+            android:background="@drawable/shadow_button_grey_light_wider"
+            android:drawableTop="@drawable/profile_logo"
+            android:drawablePadding="10dp"
+            android:drawableTint="#000000"
             android:elevation="5dp"
-            android:fontFamily="@font/belgrano"
+            android:fontFamily="@font/cormorant_upright_bold"
             android:hapticFeedbackEnabled="true"
-            android:text="@string/logout_button"
+            android:paddingTop="20dp"
+            android:text="@string/my_profile_text_view"
             android:textColor="#000000"
             android:textSize="25sp"
             android:textStyle="normal"

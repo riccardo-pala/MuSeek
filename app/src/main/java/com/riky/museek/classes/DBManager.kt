@@ -3,6 +3,7 @@ package com.riky.museek.classes
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
@@ -14,6 +15,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.activities.MainActivity
+import com.riky.museek.fragments.ShowAdsInstrumentFragment
+import kotlinx.android.synthetic.main.fragment_ad_details_instrument.*
+import java.time.LocalDateTime
 
 class DBManager {
 
@@ -61,7 +65,7 @@ class DBManager {
 
             val uid = FirebaseAuth.getInstance().uid ?: ""
 
-            val user = User(uid, email, firstname, lastname)
+            val user = User(uid, email, firstname, lastname, "", "")
             val ref = database.getReference("/users/$uid")
 
             ref.setValue(user)
@@ -150,6 +154,60 @@ class DBManager {
             })
 
             return isSuccess
+        }
+
+        fun performTransaction(aid: String, context: Context) {
+
+            val buyeruid = FirebaseAuth.getInstance().uid
+
+            val aidRef = database.getReference("/instrument_ads/$aid")
+
+            aidRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        val selleruid = dataSnapshot.child("uid").value as String
+                        if (selleruid != buyeruid) {
+                            val ad = Ad(
+                                aid,
+                                dataSnapshot.child("brand").value as String,
+                                dataSnapshot.child("model").value as String,
+                                dataSnapshot.child("price").value.toString().toFloat(),
+                                dataSnapshot.child("category").value.toString().toInt(),
+                                dataSnapshot.child("photoId").value as String,
+                                dataSnapshot.child("uid").value as String,
+                                LocalDateTime.now().toString())
+                            val ref = database.getReference("/instrument_purchased_ads/$buyeruid")
+                            ref.setValue(ad)
+                                .addOnSuccessListener {
+                                    Log.d(DBManager::class.java.name, "Ad successfully saved on DB")
+                                }
+                                .addOnFailureListener{
+                                    Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
+                                }
+                            aidRef.removeValue()
+                                .addOnSuccessListener {
+                                    Log.d(DBManager::class.java.name, "Ad successfully removed from DB")
+                                }
+                                .addOnFailureListener{
+                                    Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
+                                }
+                            Toast.makeText(context, "Acquisto Completato!", Toast.LENGTH_LONG).show()
+                        }
+                        else {
+                            Toast.makeText(context, "Qualcosa è andato storto, riprova!", Toast.LENGTH_LONG).show()
+                            Log.d(DBManager::class.java.name, "Annuncio di proprietà dell'acquirente!")
+                        }
+                    }
+                    else {
+                        Toast.makeText(context, "Qualcosa è andato storto, riprova!", Toast.LENGTH_LONG).show()
+                        Log.d(DBManager::class.java.name, "Annuncio non esistente!")
+                    }
+                }
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.d(ShowAdsInstrumentFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
+                }
+            })
+
         }
 
         fun getCategoryStringByType(type: String) : Array<Int> {

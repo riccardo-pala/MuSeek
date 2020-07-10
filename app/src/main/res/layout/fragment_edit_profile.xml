@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grey_dark"
+    android:scrollbars="none"
+    tools:context=".fragments.EditProfileFragment">
+
+    <TableRow
+        android:id="@+id/navBarEditProfile"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:background="@color/blue_light"
+        android:weightSum="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/homeButtonEditProfile"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="3"
+            android:background="@drawable/shadow_button"
+            android:fontFamily="@font/cormorant_upright_bold"
+            android:text="@string/home_button"
+            android:textAllCaps="true"
+            android:textColor="@color/grey_dark"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/editProfileTextViewEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:fontFamily="@font/cormorant_upright_bold"
+            android:gravity="center"
+            android:text="@string/edit_profile_text_view"
+            android:textAlignment="center"
+            android:textColor="@color/grey_dark"
+            android:textSize="35sp" />
+
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="80dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navBarEditProfile">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/photoPickerButtonEditProfile"
+                style="@android:style/ButtonBar"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shadow_button"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:shadowColor="#FFFFFF"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="3"
+                android:text="@string/photo_picker_button"
+                android:textAllCaps="false"
+                android:textColor="@color/blue_light"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageViewEditProfile"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/photo_description"
+                android:scaleType="centerCrop"
+                android:src="@drawable/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageViewFrameEditProfile"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/photo_description"
+                android:scaleType="fitXY"
+                android:src="@drawable/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/frame_blue_light" />
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:weightSum="7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/photoPickerButtonEditProfile">
+
+                <TextView
+                    android:id="@+id/firstnameTagTextViewEditProfileInstr"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:gravity="center|start"
+                    android:paddingLeft="10dp"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
+                    android:text="@string/firstname"
+                    android:textColor="@color/blue_light"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/firstnameEditTextEditProfileInstr"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:autofillHints=""
+                    android:background="@drawable/shadow_edit_text"
+                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:hint="@string/firstname"
+                    android:inputType="textPersonName"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:textColor="@color/grey_dark"
+                    android:textColorHint="#8F000000"
+                    android:textSize="30sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow1">
+
+                <TextView
+                    android:id="@+id/lastnameTagTextViewEditProfileInstr"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:gravity="center|start"
+                    android:paddingLeft="10dp"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
+                    android:text="@string/lastname"
+                    android:textColor="@color/blue_light"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/lastnameEditTextEditProfileInstr"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:autofillHints=""
+                    android:background="@drawable/shadow_edit_text"
+                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:hint="@string/lastname"
+                    android:inputType="textPersonName"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:textColor="@color/grey_dark"
+                    android:textColorHint="#8F000000"
+                    android:textSize="30sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:weightSum="7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tableRow2">
+
+                <TextView
+                    android:id="@+id/phoneTagTextViewEditProfileInstr"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:gravity="center|start"
+                    android:paddingLeft="10dp"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
+                    android:text="@string/phone"
+                    android:textColor="@color/blue_light"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/phoneEditTextEditProfileInstr"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:autofillHints=""
+                    android:background="@drawable/shadow_edit_text"
+                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:hint="@string/phone"
+                    android:inputType="phone"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="1"
+                    android:textColor="@color/grey_dark"
+                    android:textColorHint="#8F000000"
+                    android:textSize="30sp" />
+
+            </TableRow>
+
+            <Button
+                android:id="@+id/updateButtonMyProfile"
+                style="@android:style/ButtonBar"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/shadow_button_blue_light"
+                android:fontFamily="@font/cormorant_upright_bold"
+                android:shadowColor="#FFFFFF"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="3"
+                android:text="@string/update_profile_button"
+                android:textAllCaps="false"
+                android:textColor="@color/grey_dark"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

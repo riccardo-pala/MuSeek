@@ -6,6 +6,8 @@ import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import com.riky.museek.R
 import com.riky.museek.classes.DBManager
+import com.riky.museek.fragments.InstrumentFragment
+import com.riky.museek.fragments.MyProfileFragment
 import kotlinx.android.synthetic.main.activity_homepage.*
 
 class HomepageActivity : AppCompatActivity() {
@@ -27,11 +29,8 @@ class HomepageActivity : AppCompatActivity() {
             startActivity(intentBand)
         }
 
-        logoutButtonHome.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            val intentMain = Intent(this, MainActivity::class.java)
-            intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intentMain)
+        myProfileButtonHome.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment, MyProfileFragment()).commit()
         }
     }
 }

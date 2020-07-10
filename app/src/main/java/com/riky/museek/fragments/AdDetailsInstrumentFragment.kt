@@ -1,5 +1,6 @@
 package com.riky.museek.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.activities.MainActivity
+import com.riky.museek.classes.Ad
 import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.ad_card.view.*
 import kotlinx.android.synthetic.main.ad_card_my_ads.view.*
@@ -43,16 +45,22 @@ class AdDetailsInstrumentFragment : Fragment() {
             return view
         }
 
-        view.homeButtonShowAdsInstr.setOnClickListener {
+        view.homeButtonAdDetailsInstr.setOnClickListener {
             val intentHomepage = Intent(activity, HomepageActivity::class.java)
             intentHomepage.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intentHomepage)
         }
 
-        fetchSingleAdFromDatabase(arguments!!.getString("aid", ""))
+        val aid = arguments!!.getString("aid", "")
+
+        fetchSingleAdFromDatabase(aid)
 
         view.purchaseButtonAdDetailsInstr.setOnClickListener {
-            //TODO
+            if (context != null) {
+                DBManager.verifyLoggedUser(context!!)
+                DBManager.performTransaction(aid, context!!)
+            }
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, InstrumentFragment()).commit()
         }
 
         return view

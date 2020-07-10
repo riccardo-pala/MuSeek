@@ -50,5 +50,12 @@
     <string name="show_ads_text_view">Risultati Ricerca</string>
     <string name="ad_details_text_view">Dettagli Annuncio</string>
     <string name="user_ad_text_view">Inserito da</string>
+    <string name="no_results_text_view">Siamo spiacenti, la ricerca non ha prodotto alcun risultato.</string>
+    <string name="no_my_ads_text_view">Non hai annunci in vendita.</string>
+    <string name="search_button">Cerca</string>
+    <string name="my_profile_text_view">Il Mio Profilo</string>
+    <string name="edit_profile_text_view">Modifica Profilo</string>
+    <string name="phone">Telefono</string>
+    <string name="update_profile_button">Aggiorna Profilo</string>
 
 </resources>

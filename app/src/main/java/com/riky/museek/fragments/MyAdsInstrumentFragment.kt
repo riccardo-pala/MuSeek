@@ -17,7 +17,9 @@ import com.riky.museek.classes.AdItemMyAds
 import com.riky.museek.classes.DBManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.fragment_my_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
+import kotlinx.android.synthetic.main.fragment_show_ads_instrument.*
 
 class MyAdsInstrumentFragment : Fragment() {
 
@@ -48,6 +50,8 @@ class MyAdsInstrumentFragment : Fragment() {
         adsMap.values.forEach{
             adapter.add(AdItemMyAds(it))
         }
+        if (adsMap.isEmpty())
+            noResultsTextViewMyAdsInstr.visibility = View.VISIBLE
     }
 
     fun fetchMyAdsFromDatabase() {
