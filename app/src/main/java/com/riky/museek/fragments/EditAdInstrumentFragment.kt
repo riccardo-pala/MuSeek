@@ -9,6 +9,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
+import android.view.animation.RotateAnimation
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +23,8 @@ import com.riky.museek.classes.Ad
 import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.fragment_edit_ad_instrument.*
 import kotlinx.android.synthetic.main.fragment_edit_ad_instrument.view.*
+import kotlinx.android.synthetic.main.fragment_edit_profile.*
+import kotlinx.android.synthetic.main.fragment_edit_profile.view.*
 import java.time.LocalDateTime
 import java.util.*
 
@@ -43,6 +48,13 @@ class EditAdInstrumentFragment : Fragment() {
             fragmentManager!!.popBackStack()
             fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).commit()
         }
+
+        val animation = RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        animation.interpolator = LinearInterpolator()
+        animation.repeatCount = Animation.INFINITE
+        animation.duration = 700
+
+        view.loadingImageViewEditAdInstr.startAnimation(animation);
 
         view.homeButtonEditAdInstr.setOnClickListener {
             val intentHomepage = Intent(activity, HomepageActivity::class.java)
@@ -69,7 +81,7 @@ class EditAdInstrumentFragment : Fragment() {
         view.priceEditTextEditAdInstr.setText(arguments!!.getFloat("price", 0f).toString())
         view.categorySpinnerEditAdInstr.setSelection(arguments!!.getInt("category", 0))
         photoId = arguments!!.getString("photoId", null)
-        val ref = FirebaseStorage.getInstance().getReference("/images/")
+        val ref = FirebaseStorage.getInstance().getReference("/images/instrument_ads/")
 
         if (photoId != null)
             ref.child(photoId!!).getBytes(4*1024*1024)
@@ -77,6 +89,8 @@ class EditAdInstrumentFragment : Fragment() {
                     view.photoPickerButtonEditAdInstr.alpha = 0f
                     val bitmap = BitmapFactory.decodeByteArray(bytes, 0 ,bytes.size)
                     view.imageViewEditAdInstr.setImageBitmap(bitmap)
+                    view.loadingImageViewEditAdInstr.clearAnimation()
+                    view.loadingLayoutEditAdInstr.visibility = View.GONE
                 }
 
         view.updateButtonEditAdInstr.setOnClickListener {
@@ -139,7 +153,7 @@ class EditAdInstrumentFragment : Fragment() {
         if (photoId == null) photoId = "photo-" + UUID.randomUUID().toString()
 
         if (pickedPhotoUri != null) {
-            if(!DBManager.uploadPickedPhotoOnStorage(pickedPhotoUri!!, photoId!!)) {
+            if(!DBManager.uploadPickedPhotoOnStorage(pickedPhotoUri!!, "instrument_ads/$photoId")) {
                 Toast.makeText(activity, "Errore durante l'aggiornamento dell'annuncio. Riprova", Toast.LENGTH_LONG).show()
                 return
             }

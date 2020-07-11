@@ -17,6 +17,13 @@ class MyProfileFragment : Fragment()  {
 
         val view = inflater.inflate(R.layout.fragment_my_profile, container, false)
 
+        view.editProfileButtonMyProfile.setOnClickListener {
+            fragmentManager!!.beginTransaction()
+                .replace(R.id.fragment, EditProfileFragment())
+                .addToBackStack(this.javaClass.name)
+                .commit()
+        }
+
         view.logoutButtonMyProfile.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intentMain = Intent(activity, MainActivity::class.java)

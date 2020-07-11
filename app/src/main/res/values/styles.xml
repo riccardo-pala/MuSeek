@@ -17,12 +17,12 @@
         <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:textColorHint">@color/grey</item>
         <item name="android:tint">@color/blue_light</item>
-        <item name="android:fontFamily">@font/cormorant_upright_bold</item>
+        <item name="android:fontFamily">@font/boogaloo</item>
     </style>
     <style name="AppSpinner" parent="Widget.AppCompat.TextView" >
         <item name="android:textSize">27sp</item>
         <item name="android:textColorPrimary">@color/grey_light</item>
-        <item name="android:fontFamily">@font/cormorant_upright_bold</item>
+        <item name="android:fontFamily">@font/boogaloo</item>
     </style>
 
 </resources>

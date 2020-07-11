@@ -118,11 +118,11 @@ class DBManager {
                 }
         }
 
-        fun uploadPickedPhotoOnStorage(pickedPhotoUri: Uri, photoId: String) : Boolean {
+        fun uploadPickedPhotoOnStorage(pickedPhotoUri: Uri, photoPath: String) : Boolean {
 
             var isSuccess = true
 
-            val ref = storage.getReference("/images/$photoId")
+            val ref = storage.getReference("/images/$photoPath")
 
             ref.putFile(pickedPhotoUri)
                 .addOnSuccessListener {

@@ -6,30 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:scrollbars="vertical"
-    tools:context=".fragments.IndexFragment">
+    android:scrollbars="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/headerTextViewIndex"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
-            android:fontFamily="@font/boogaloo"
-            android:shadowColor="#000000"
-            android:shadowDx="5"
-            android:shadowDy="5"
-            android:shadowRadius="2"
-            android:text="@string/index_header"
-            android:textAlignment="center"
-            android:textColor="@color/red_light"
-            android:textScaleX="1.15"
-            android:textSize="70sp"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="140dp"
+            android:contentDescription="@string/museek_logo_description"
+            android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,18 +28,18 @@
             android:id="@+id/regButtonIndex"
             android:layout_width="150dp"
             android:layout_height="70dp"
-            android:layout_marginTop="210dp"
+            android:layout_marginTop="130dp"
             android:background="@drawable/border_button_blue_light"
-            android:fontFamily="@font/belgrano"
+            android:fontFamily="@font/boogaloo"
             android:hapticFeedbackEnabled="true"
             android:text="@string/reg_button"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="25sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.50"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/headerTextViewIndex" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <Button
             android:id="@+id/logButtonIndex"
@@ -57,11 +48,11 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/border_button_red_light"
-            android:fontFamily="@font/belgrano"
+            android:fontFamily="@font/boogaloo"
             android:hapticFeedbackEnabled="true"
             android:text="@string/log_button"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="25sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

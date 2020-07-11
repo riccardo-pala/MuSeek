@@ -117,7 +117,7 @@ class NewAdInstrumentFragment : Fragment() {
 
         photoId = "photo-" + UUID.randomUUID().toString()
 
-        if(!DBManager.uploadPickedPhotoOnStorage(pickedPhotoUri!!, photoId!!)) {
+        if(!DBManager.uploadPickedPhotoOnStorage(pickedPhotoUri!!, "instrument_ads/$photoId")) {
             Toast.makeText(activity, "Errore durante la creazione dell'annuncio. Riprova", Toast.LENGTH_LONG).show()
             return
         }

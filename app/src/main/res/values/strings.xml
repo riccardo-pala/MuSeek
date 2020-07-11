@@ -58,5 +58,7 @@
     <string name="phone">Telefono</string>
     <string name="update_profile_button">Aggiorna Profilo</string>
     <string name="edit_ad_text_view">Modifica Annuncio</string>
+    <string name="loading_text_view">Solo un momento...</string>
+    <string name="museek_logo_description">Museek Logo</string>
 
 </resources>

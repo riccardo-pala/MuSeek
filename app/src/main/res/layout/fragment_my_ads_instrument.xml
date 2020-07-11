@@ -26,7 +26,7 @@
             android:background="@drawable/shadow_button"
             android:drawableTop="@drawable/home_logo"
             android:drawableTint="@color/grey_dark"
-            android:fontFamily="@font/cormorant_upright_bold"
+            android:fontFamily="@font/boogaloo"
             android:padding="8dp"
             android:textAllCaps="true"
             android:textColor="@color/grey_dark"
@@ -40,7 +40,7 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="80dp"
-            android:fontFamily="@font/cormorant_upright_bold"
+            android:fontFamily="@font/boogaloo"
             android:gravity="center"
             android:text="@string/my_ads_text_view"
             android:textAlignment="center"
@@ -73,7 +73,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="60dp"
                 android:layout_marginEnd="10dp"
-                android:fontFamily="@font/cormorant_upright_bold"
+                android:fontFamily="@font/boogaloo"
                 android:shadowColor="@android:color/black"
                 android:shadowDx="2"
                 android:shadowDy="2"
@@ -100,5 +100,51 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingLayoutMyAdsInstr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#BB000000"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/shadow_button_grey_dark_round"
+            android:fontFamily="@font/boogaloo"
+            android:gravity="center_horizontal"
+            android:paddingTop="30dp"
+            android:shadowColor="@color/blue_light"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="4"
+            android:text="@string/loading_text_view"
+            android:textColor="@color/grey_light"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/loadingImageViewMyAdsInstr"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="170dp"
+            android:contentDescription="@string/photo_description"
+            android:src="@drawable/loading_logo"
+            android:tint="@color/blue_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

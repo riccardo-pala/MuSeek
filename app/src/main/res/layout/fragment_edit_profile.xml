@@ -27,7 +27,7 @@
             android:background="@drawable/shadow_button"
             android:drawableTop="@drawable/home_logo"
             android:drawableTint="@color/grey_dark"
-            android:fontFamily="@font/cormorant_upright_bold"
+            android:fontFamily="@font/boogaloo"
             android:padding="8dp"
             android:textAllCaps="true"
             android:textColor="@color/grey_dark"
@@ -41,7 +41,7 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="80dp"
-            android:fontFamily="@font/cormorant_upright_bold"
+            android:fontFamily="@font/boogaloo"
             android:gravity="center"
             android:text="@string/edit_profile_text_view"
             android:textAlignment="center"
@@ -55,6 +55,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="80dp"
@@ -74,7 +75,7 @@
                 android:layout_height="250dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/shadow_button"
-                android:fontFamily="@font/cormorant_upright_bold"
+                android:fontFamily="@font/boogaloo"
                 android:shadowColor="#FFFFFF"
                 android:shadowDx="2"
                 android:shadowDy="2"
@@ -105,14 +106,12 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_marginTop="20dp"
-                android:adjustViewBounds="true"
                 android:contentDescription="@string/photo_description"
                 android:scaleType="fitXY"
-                android:src="@drawable/transparent"
+                android:src="@drawable/frame_blue_light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/frame_blue_light" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TableRow
                 android:id="@+id/tableRow1"
@@ -125,11 +124,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/photoPickerButtonEditProfile">
 
                 <TextView
-                    android:id="@+id/firstnameTagTextViewEditProfileInstr"
+                    android:id="@+id/firstnameTagTextViewEditProfile"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:fontFamily="@font/boogaloo"
                     android:gravity="center|start"
                     android:paddingLeft="10dp"
                     android:shadowColor="@android:color/black"
@@ -141,13 +140,13 @@
                     android:textSize="25sp" />
 
                 <EditText
-                    android:id="@+id/firstnameEditTextEditProfileInstr"
+                    android:id="@+id/firstnameEditTextEditProfile"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:autofillHints=""
                     android:background="@drawable/shadow_edit_text"
-                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:fontFamily="@font/boogaloo"
                     android:hint="@string/firstname"
                     android:inputType="textPersonName"
                     android:paddingStart="30dp"
@@ -173,11 +172,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/tableRow1">
 
                 <TextView
-                    android:id="@+id/lastnameTagTextViewEditProfileInstr"
+                    android:id="@+id/lastnameTagTextViewEditProfile"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:fontFamily="@font/boogaloo"
                     android:gravity="center|start"
                     android:paddingLeft="10dp"
                     android:shadowColor="@android:color/black"
@@ -189,13 +188,13 @@
                     android:textSize="25sp" />
 
                 <EditText
-                    android:id="@+id/lastnameEditTextEditProfileInstr"
+                    android:id="@+id/lastnameEditTextEditProfile"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:autofillHints=""
                     android:background="@drawable/shadow_edit_text"
-                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:fontFamily="@font/boogaloo"
                     android:hint="@string/lastname"
                     android:inputType="textPersonName"
                     android:paddingStart="30dp"
@@ -221,11 +220,11 @@
                 app:layout_constraintTop_toBottomOf="@id/tableRow2">
 
                 <TextView
-                    android:id="@+id/phoneTagTextViewEditProfileInstr"
+                    android:id="@+id/phoneTagTextViewEditProfile"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:fontFamily="@font/boogaloo"
                     android:gravity="center|start"
                     android:paddingLeft="10dp"
                     android:shadowColor="@android:color/black"
@@ -237,13 +236,13 @@
                     android:textSize="25sp" />
 
                 <EditText
-                    android:id="@+id/phoneEditTextEditProfileInstr"
+                    android:id="@+id/phoneEditTextEditProfile"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:autofillHints=""
                     android:background="@drawable/shadow_edit_text"
-                    android:fontFamily="@font/cormorant_upright_bold"
+                    android:fontFamily="@font/boogaloo"
                     android:hint="@string/phone"
                     android:inputType="phone"
                     android:paddingStart="30dp"
@@ -268,7 +267,7 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/shadow_button_blue_light"
-                android:fontFamily="@font/cormorant_upright_bold"
+                android:fontFamily="@font/boogaloo"
                 android:shadowColor="#FFFFFF"
                 android:shadowDx="2"
                 android:shadowDy="2"
@@ -284,5 +283,51 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingLayoutEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#BB000000"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/shadow_button_grey_dark_round"
+            android:fontFamily="@font/boogaloo"
+            android:gravity="center_horizontal"
+            android:paddingTop="30dp"
+            android:shadowColor="@color/blue_light"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="4"
+            android:text="@string/loading_text_view"
+            android:textColor="@color/grey_light"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/loadingImageViewEditProfile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="170dp"
+            android:contentDescription="@string/photo_description"
+            android:src="@drawable/loading_logo"
+            android:tint="@color/blue_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
