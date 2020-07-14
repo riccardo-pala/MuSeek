@@ -58,7 +58,16 @@
     <string name="phone">Telefono</string>
     <string name="update_profile_button">Aggiorna Profilo</string>
     <string name="edit_ad_text_view">Modifica Annuncio</string>
-    <string name="loading_text_view">Solo un momento...</string>
+    <string name="loading_text_view">Solo un\nmomento...</string>
     <string name="museek_logo_description">Museek Logo</string>
+    <string name="insert_password">Inserisci la password:</string>
+    <string name="new_email">Nuova Email</string>
+    <string name="edit_password_text_view">Modifica Password</string>
+    <string name="edit_email_text_view">Modifica Email</string>
+    <string name="condition_text_view">Condizioni Strumento</string>
+    <string name="used_as_new">Usato - Come Nuovo</string>
+    <string name="used_good">Usato - Buone Condizioni</string>
+    <string name="used_discreet">Usato - Discrete Condizioni</string>
+    <string name="new_condition">Nuovo</string>
 
 </resources>

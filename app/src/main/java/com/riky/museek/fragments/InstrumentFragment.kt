@@ -1,19 +1,24 @@
 package com.riky.museek.fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
+import android.view.animation.RotateAnimation
 import android.widget.SearchView
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.R
+import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
-import kotlinx.android.synthetic.main.fragment_instrument.*
 import kotlinx.android.synthetic.main.fragment_instrument.view.*
+import kotlinx.android.synthetic.main.loading_popup_blue.*
+import kotlinx.android.synthetic.main.loading_popup_blue.view.*
 
 class InstrumentFragment : Fragment() {
 
@@ -28,11 +33,13 @@ class InstrumentFragment : Fragment() {
         }
 
         view.newAdButtonInstr.setOnClickListener {
-            fragmentManager!!.beginTransaction().replace(R.id.fragment, NewAdInstrumentFragment()).addToBackStack(this.javaClass.name).commit()
+            val alertDialog = AlertDialogInflater.inflateLoadingDialog(context!!, AlertDialogInflater.BLUE)
+
+            DBManager.verifyInstrumentUser(context!!, alertDialog!!, null)
         }
 
-        view.myAdsButtonInstr.setOnClickListener {
-            fragmentManager!!.beginTransaction().replace(R.id.fragment, MyAdsInstrumentFragment()).addToBackStack(this.javaClass.name).commit()
+        view.myProfileButtonInstr.setOnClickListener {
+            fragmentManager!!.beginTransaction().replace(R.id.fragment, MyProfileInstrumentFragment()).addToBackStack(this.javaClass.name).commit()
         }
 
         var searchValue = ""
@@ -72,6 +79,10 @@ class InstrumentFragment : Fragment() {
 
     fun search(searchType: Int, searchValue: String) {
 
+        if (searchValue == "" || searchValue == null) {
+            Toast.makeText(context, "Si prega di inserire almeno un carattere nel campo!", Toast.LENGTH_LONG).show()
+            return
+        }
         val fragment = ShowAdsInstrumentFragment()
         val args = Bundle()
         args.putInt("searchType", searchType)

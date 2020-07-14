@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="510dp"
     android:background="@drawable/shadow_button"
-    tools:context=".activities.InstrumentActivity">
+    tools:context=".fragments.ShowAdsInstrumentFragment">
 
     <TableRow
         android:id="@+id/tableRow2"

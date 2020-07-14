@@ -127,13 +127,13 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:autofillHints=""
-                android:background="@drawable/shadow_edit_text"
+                android:background="@drawable/shadow_edit_text_grey_light"
                 android:ems="10"
                 android:fontFamily="@font/boogaloo"
                 android:hint="@string/brand_edit_text"
                 android:inputType="textPersonName"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:shadowColor="#FFFFFF"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -151,13 +151,13 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:autofillHints=""
-                android:background="@drawable/shadow_edit_text"
+                android:background="@drawable/shadow_edit_text_grey_light"
                 android:ems="10"
                 android:fontFamily="@font/boogaloo"
                 android:hint="@string/model_edit_text"
                 android:inputType="textPersonName"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:shadowColor="#FFFFFF"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -177,13 +177,13 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="50dp"
                 android:autofillHints=""
-                android:background="@drawable/shadow_edit_text"
+                android:background="@drawable/shadow_edit_text_grey_light"
                 android:ems="10"
                 android:fontFamily="@font/boogaloo"
                 android:hint="@string/price_edit_text"
                 android:inputType="number|numberDecimal"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:shadowColor="#FFFFFF"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -214,9 +214,9 @@
                 android:id="@+id/categorySpinnerEditAdInstr"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="19dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/shadow_spinner"
                 android:entries="@array/instrument_categories"
                 android:paddingStart="5dp"
@@ -226,6 +226,104 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/priceEditTextEditAdInstr" />
+
+            <TextView
+                android:id="@+id/conditionTextViewEditAdInstr"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="18dp"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center_vertical"
+                android:shadowColor="@android:color/white"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="3"
+                android:text="@string/condition_text_view"
+                android:textColor="@color/blue_light"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categorySpinnerEditAdInstr" />
+
+            <RadioGroup
+                android:id="@+id/conditionRadioGroupEditAdInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:weightSum="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conditionTextViewEditAdInstr">
+
+                <RadioButton
+                    android:id="@+id/newRadioButtonEditAdInstr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@android:color/white"
+                    android:fontFamily="@font/boogaloo"
+                    android:maxLines="2"
+                    android:shadowColor="@color/blue_light"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="2"
+                    android:text="@string/new_condition"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp" />
+
+                <RadioButton
+                    android:id="@+id/usedAsNewRadioButtonEditAdInstr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@android:color/white"
+                    android:fontFamily="@font/boogaloo"
+                    android:maxLines="2"
+                    android:shadowColor="@color/blue_light"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="2"
+                    android:text="@string/used_as_new"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp" />
+
+                <RadioButton
+                    android:id="@+id/usedGoodRadioButtonEditAdInstr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@android:color/white"
+                    android:fontFamily="@font/boogaloo"
+                    android:maxLines="2"
+                    android:shadowColor="@color/blue_light"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="2"
+                    android:text="@string/used_good"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp" />
+
+                <RadioButton
+                    android:id="@+id/usedDiscreetRadioButtonEditAdInstr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@android:color/white"
+                    android:fontFamily="@font/boogaloo"
+                    android:maxLines="2"
+                    android:shadowColor="@color/blue_light"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="2"
+                    android:text="@string/used_discreet"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp" />
+
+            </RadioGroup>
 
             <Button
                 android:id="@+id/updateButtonEditAdInstr"
@@ -249,56 +347,10 @@
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categorySpinnerEditAdInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/conditionRadioGroupEditAdInstr" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/loadingLayoutEditAdInstr"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#BB000000"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/shadow_button_grey_dark_round"
-            android:fontFamily="@font/boogaloo"
-            android:gravity="center_horizontal"
-            android:paddingTop="30dp"
-            android:shadowColor="@color/blue_light"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="4"
-            android:text="@string/loading_text_view"
-            android:textColor="@color/grey_light"
-            android:textSize="50sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/loadingImageViewEditAdInstr"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="170dp"
-            android:contentDescription="@string/photo_description"
-            android:src="@drawable/loading_logo"
-            android:tint="@color/blue_light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.riky.museek.fragments
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -12,6 +14,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -22,19 +25,18 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
-import com.riky.museek.classes.Ad
+import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
-import kotlinx.android.synthetic.main.fragment_edit_ad_instrument.*
-import kotlinx.android.synthetic.main.fragment_edit_ad_instrument.view.*
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_edit_profile.view.*
-import java.time.LocalDateTime
+import kotlinx.android.synthetic.main.loading_popup_blue.view.*
 import java.util.*
 
 class EditProfileFragment : Fragment() {
 
-    var pickedPhotoUri : Uri? = null
+    private var pickedPhotoUri : Uri? = null
     var photoId : String? = ""
+    private var alertDialog : AlertDialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -42,30 +44,11 @@ class EditProfileFragment : Fragment() {
 
         if (context != null) DBManager.verifyLoggedUser(context!!)
 
-        val animation = RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
-        animation.interpolator = LinearInterpolator()
-        animation.repeatCount = Animation.INFINITE
-        animation.duration = 700
+        setListeners(view)
 
-        view.loadingImageViewEditProfile.startAnimation(animation);
+        alertDialog = AlertDialogInflater.inflateLoadingDialog(context!!, AlertDialogInflater.GREY)
 
         fetchMyProfileFromDatabase(view)
-
-        view.homeButtonEditProfile.setOnClickListener {
-            val intentHomepage = Intent(activity, HomepageActivity::class.java)
-            intentHomepage.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intentHomepage)
-        }
-
-        view.photoPickerButtonEditProfile.setOnClickListener {
-            val intentPicker = Intent(Intent.ACTION_PICK)
-            intentPicker.type = "image/*"
-            startActivityForResult(intentPicker, 0)
-        }
-
-        view.updateButtonMyProfile.setOnClickListener {
-            performUpdateProfile()
-        }
 
         return view
     }
@@ -83,7 +66,7 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    fun fetchMyProfileFromDatabase(view: View) {
+    private fun fetchMyProfileFromDatabase(view: View) {
 
         val uid = FirebaseAuth.getInstance().uid
 
@@ -103,16 +86,14 @@ class EditProfileFragment : Fragment() {
                         val ref2 = FirebaseStorage.getInstance().getReference("/images/users/")
                         ref2.child(photoId!!).getBytes(4 * 1024 * 1024)
                             .addOnSuccessListener { bytes ->
-                                photoPickerButtonEditProfile.alpha = 0f
+                                view.photoPickerButtonEditProfile.alpha = 0f
                                 val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                                 view.imageViewEditProfile.setImageBitmap(bitmap)
-                                view.loadingImageViewEditProfile.clearAnimation()
-                                view.loadingLayoutEditProfile.visibility = View.GONE
+                                alertDialog!!.dismiss()
                             }
                     }
                     else {
-                        view.loadingImageViewEditProfile.clearAnimation()
-                        view.loadingLayoutEditProfile.visibility = View.GONE
+                        alertDialog!!.dismiss()
                     }
                 }
             }
@@ -130,9 +111,9 @@ class EditProfileFragment : Fragment() {
 
         if (context != null) DBManager.verifyLoggedUser(context!!)
 
-        val firstname = firstnameEditTextEditProfile.text.toString()
-        val lastname = lastnameEditTextEditProfile.text.toString()
-        val phone = phoneEditTextEditProfile.text.toString()
+        val firstname = firstnameEditTextEditProfile.text.toString().trim()
+        val lastname = lastnameEditTextEditProfile.text.toString().trim()
+        val phone = phoneEditTextEditProfile.text.toString().trim()
 
         if (firstname.isEmpty() || lastname.isEmpty()) {
             Toast.makeText(activity, "I campi 'Nome' e 'Cognome' sono obbligatori!.", Toast.LENGTH_LONG).show()
@@ -159,10 +140,7 @@ class EditProfileFragment : Fragment() {
 
         if (pickedPhotoUri != null) {
             if (photoId == "") photoId = "photo-" + UUID.randomUUID().toString()
-            if(!DBManager.uploadPickedPhotoOnStorage(pickedPhotoUri!!, "users/$photoId")) {
-                Toast.makeText(activity, "Errore durante l'aggiornamento del profilo. Riprova", Toast.LENGTH_LONG).show()
-                return
-            }
+            DBManager.uploadPickedPhotoOnStorage(pickedPhotoUri!!, "users/$photoId", context!!)
             user.child("photoId").setValue(photoId)
                 .addOnFailureListener {
                     isSuccess = false
@@ -180,4 +158,34 @@ class EditProfileFragment : Fragment() {
         fragmentManager!!.beginTransaction().replace(R.id.fragment, MyProfileFragment()).commit()
     }
 
+    private fun setListeners(view: View) {
+
+        view.homeButtonEditProfile.setOnClickListener {
+            hideKeyboard(view)
+            val intentHomepage = Intent(activity, HomepageActivity::class.java)
+            intentHomepage.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intentHomepage)
+        }
+
+        view.photoPickerButtonEditProfile.setOnClickListener {
+            hideKeyboard(view)
+            val intentPicker = Intent(Intent.ACTION_PICK) //TODO: AGGIUNGERE PICK CON CAMERA
+            intentPicker.type = "image/*"
+            startActivityForResult(intentPicker, 0)
+        }
+
+        view.updateButtonMyProfile.setOnClickListener {
+            hideKeyboard(view)
+            performUpdateProfile()
+        }
+    }
+
+    private fun hideKeyboard(view: View) {
+        try {
+            val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }

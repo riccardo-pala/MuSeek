@@ -1,11 +1,13 @@
 package com.riky.museek.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +23,7 @@ class LoginFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
 
         view.logButtonLog.setOnClickListener {
+            hideKeyboard(view)
             performLogin()
         }
 
@@ -29,8 +32,8 @@ class LoginFragment : Fragment() {
 
     private fun performLogin() {
 
-        val email = emailEditTextLog.text.toString()
-        val password = passwordEditTextLog.text.toString()
+        val email = emailEditTextLog.text.toString().trim()
+        val password = passwordEditTextLog.text.toString().trim()
 
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(activity, "Per favore, compila tutti i campi del form!", Toast.LENGTH_LONG).show()
@@ -52,5 +55,14 @@ class LoginFragment : Fragment() {
                 Toast.makeText(activity, "Errore in fase di Login: ${it.message}", Toast.LENGTH_LONG).show()
                 Log.d(LoginFragment::class.java.name, "Error on Login: ${it.message}")
             }
+    }
+
+    private fun hideKeyboard(view: View) {
+        try {
+            val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
