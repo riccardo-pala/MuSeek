@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/boogaloo"
         android:gravity="center_horizontal"
         android:paddingTop="20dp"
@@ -19,7 +19,6 @@
         android:text="@string/loading_text_view"
         android:textColor="@color/grey_light"
         android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,11 +27,13 @@
         android:id="@+id/loadingImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
         android:contentDescription="@string/photo_description"
         android:src="@drawable/loading_logo"
         android:tint="@color/grey_light"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

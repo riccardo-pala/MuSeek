@@ -69,5 +69,13 @@
     <string name="used_good">Usato - Buone Condizioni</string>
     <string name="used_discreet">Usato - Discrete Condizioni</string>
     <string name="new_condition">Nuovo</string>
+    <string name="no_purchased_ads_text_view">Non hai ancora effettuato acquisti.</string>
+    <string name="purchased_ads_text_view">Acquisti Passati</string>
+    <string name="purchase_date_edit_text">Data Acquisto</string>
+    <string name="seller_edit_text">Venditore</string>
+    <string name="sold_ads_text_view">Le Mie Vendite</string>
+    <string name="user_sold_ad_text_view">Acquistato da</string>
+    <string name="address_sold_ad_text_view">Indirizzo Spedizione</string>
+    <string name="notify_spedition_button">Notifica Spedizione</string>
 
 </resources>

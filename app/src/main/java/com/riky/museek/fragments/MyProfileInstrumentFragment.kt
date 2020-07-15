@@ -37,6 +37,21 @@ class MyProfileInstrumentFragment : Fragment() {
             fragmentManager!!.beginTransaction().replace(R.id.fragment, fragment).addToBackStack(this.javaClass.name).commit()
         }
 
+        view.purchasedAdsButtonMyProfileInstr.setOnClickListener {
+            fragmentManager!!.beginTransaction()
+                .replace(R.id.fragment, PurchasedAdsInstrumentFragment())
+                .addToBackStack(this.javaClass.name)
+                .commit()
+        }
+
+        view.soldAdsButtonMyProfileInstr.setOnClickListener {
+            fragmentManager!!.beginTransaction()
+                .replace(R.id.fragment, SoldAdsInstrumentFragment())
+                .addToBackStack(this.javaClass.name)
+                .commit()
+        }
+
+
         return view
     }
 }

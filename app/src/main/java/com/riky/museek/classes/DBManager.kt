@@ -25,6 +25,8 @@ import com.riky.museek.R
 import com.riky.museek.activities.MainActivity
 import com.riky.museek.fragments.*
 import kotlinx.android.synthetic.main.fragment_edit_password.view.*
+import kotlinx.android.synthetic.main.fragment_sold_ad_details_instrument.*
+import kotlinx.android.synthetic.main.fragment_sold_ad_details_instrument.view.*
 import kotlinx.android.synthetic.main.loading_popup_blue.*
 import kotlinx.android.synthetic.main.password_popup_blue.*
 import java.time.LocalDateTime
@@ -88,6 +90,8 @@ class DBManager {
                         val activity = context as AppCompatActivity
                         if (aid != null) {
                             performTransaction(aid, context)
+                            activity.supportFragmentManager.popBackStack()
+                            activity.supportFragmentManager.popBackStack()
                             activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, InstrumentFragment()).addToBackStack(null).commit()
                         }
                         else {
@@ -226,8 +230,8 @@ class DBManager {
 
             ref.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(userSnapshot: DataSnapshot) {
-                    if (!userSnapshot.hasChild("adsNo")) {
-                        ref.child("adsNo").setValue(0)
+                    if (!userSnapshot.hasChild("soldAdsNo")) {
+                        ref.child("soldAdsNo").setValue(0)
                     }
                     if (!userSnapshot.hasChild("reviewNo")) {
                         ref.child("reviewNo").setValue(0)
@@ -349,14 +353,32 @@ class DBManager {
                                 selleruid,
                                 buyeruid!!,
                                 LocalDateTime.now().toString())
-                            val ref = database.getReference("/instrument_purchased_ads/$aid")
-                            ref.setValue(ad)
+                            val ref1 = database.getReference("/instrument_purchased_ads/$aid")
+                            ref1.setValue(ad)
                                 .addOnSuccessListener {
                                     Log.d(DBManager::class.java.name, "Ad successfully saved on DB")
                                 }
                                 .addOnFailureListener{
                                     Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
                                 }
+                            ref1.child("send").setValue(false)
+
+                            val ref2 = database.getReference("/instrument_users/$selleruid")
+
+                            ref2.addValueEventListener(object : ValueEventListener {
+                                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                    if (dataSnapshot.exists()) {
+                                        val soldAdsNo = dataSnapshot.child("soldAdsNo").value.toString().toInt() + 1
+                                        ref2.child("soldAdsNo").setValue(soldAdsNo)
+                                        ref2.removeEventListener(this)
+                                    }
+                                }
+                                override fun onCancelled(databaseError: DatabaseError) {
+                                    Log.d(ShowAdsInstrumentFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
+                                    ref2.removeEventListener(this)
+                                }
+                            })
+
                             aidRef.removeValue()
                                 .addOnSuccessListener {
                                     Log.d(DBManager::class.java.name, "Ad successfully removed from DB")
@@ -383,6 +405,32 @@ class DBManager {
                 }
             })
 
+        }
+
+        fun performNotify(context: Context, alertDialog: AlertDialog, aid: String?, view: View) {
+
+            val selleruid = FirebaseAuth.getInstance().uid
+
+            if (selleruid == null) {
+                FirebaseAuth.getInstance().signOut()
+                val intentMain = Intent(context, MainActivity::class.java)
+                intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(context, intentMain, null)
+            }
+
+            val aidRef = database.getReference("/instrument_purchased_ads/$aid")
+
+            aidRef.child("send").setValue(true)
+                .addOnCompleteListener {
+                    view.sendButtonSoldAdDetailsInstr.setBackgroundResource(R.drawable.shadow_button_grey_light)
+                    view.sendButtonSoldAdDetailsInstr.text = "Già Inviato"
+                    Toast.makeText(context, "Acquirente Notificato!", Toast.LENGTH_LONG).show()
+                    alertDialog.dismiss()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(context, "Qualcosa è andato storto, riprova!", Toast.LENGTH_LONG).show()
+                    alertDialog.dismiss()
+                }
         }
 
         /*----------------------- VARIE -----------------------------*/

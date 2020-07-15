@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_dark"
+    tools:context=".fragments.SoldAdDetailsInstrumentFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navBarSoldAdDetailsInstr"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/blue_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/homeButtonSoldAdDetailsInstr"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:background="@drawable/shadow_button"
+            android:drawableTop="@drawable/home_logo"
+            android:drawableTint="@color/grey_dark"
+            android:fontFamily="@font/boogaloo"
+            android:padding="8dp"
+            android:textAllCaps="true"
+            android:textColor="@color/grey_dark"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/soldAdDetailsTextViewSoldAdDetailsInstr"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="80dp"
+            android:fontFamily="@font/boogaloo"
+            android:gravity="center"
+            android:text="@string/ad_details_text_view"
+            android:textAlignment="center"
+            android:textColor="@color/grey_dark"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="80dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navBarSoldAdDetailsInstr">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/adPhotoSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="80dp"
+                android:contentDescription="@string/photo_description"
+                android:elevation="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/adPhotoFrameSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="80dp"
+                android:contentDescription="@string/photo_description"
+                android:elevation="0dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/frame_blue_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/brandTagTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="@string/brand_edit_text"
+                android:textColor="@color/blue_light"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adPhotoSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/brandTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="Brand"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/brandTagTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/modelTagTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="@string/model_edit_text"
+                android:textColor="@color/blue_light"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/brandTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/modelTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="Model"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/modelTagTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/categoryTagTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="@string/category_edit_text"
+                android:textColor="@color/blue_light"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/modelTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/categoryTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="Category"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoryTagTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/dateTagTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="@string/purchase_date_edit_text"
+                android:textColor="@color/blue_light"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoryTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/dateTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="Purchase Date"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dateTagTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/priceTagTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="@string/price_edit_text"
+                android:textColor="@color/blue_light"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dateTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/priceTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="€0.00"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/priceTagTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/userTagTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="@string/user_sold_ad_text_view"
+                android:textColor="@color/blue_light"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/priceTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/userTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/boogaloo"
+                android:maxLines="1"
+                android:text="User"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userTagTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/addressTagTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="@string/address_sold_ad_text_view"
+                android:textColor="@color/blue_light"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userTextViewSoldAdDetailsInstr" />
+
+            <TextView
+                android:id="@+id/addressTextViewSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/boogaloo"
+                android:maxLines="4"
+                android:text="Address"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/addressTagTextViewSoldAdDetailsInstr" />
+
+            <Button
+                android:id="@+id/sendButtonSoldAdDetailsInstr"
+                android:layout_width="match_parent"
+                android:layout_height="106dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/shadow_button_blue_light"
+                android:fontFamily="@font/boogaloo"
+                android:text="@string/notify_spedition_button"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/addressTextViewSoldAdDetailsInstr" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

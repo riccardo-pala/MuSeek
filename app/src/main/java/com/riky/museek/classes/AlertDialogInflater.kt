@@ -44,6 +44,7 @@ class AlertDialogInflater {
             val alertDialog = mBuilder.show()
 
             alertDialog.setCanceledOnTouchOutside(false)
+            alertDialog.setCancelable(false)
             alertDialog.loadingImageView.startAnimation(animation)
 
             return alertDialog
@@ -85,6 +86,19 @@ class AlertDialogInflater {
                     //GREY -> LayoutInflater.from(context).inflate(R.layout.confirm_purchase_popup_grey, null)
                     //RED -> LayoutInflater.from(context).inflate(R.layout.confirm_purchase_popup_red, null)
                     else -> LayoutInflater.from(context).inflate(R.layout.confirm_purchase_popup_blue, null)
+                }
+            val mBuilder = AlertDialog.Builder(context).setView(dialogView)
+            return mBuilder.show()
+        }
+
+        fun inflateConfirmNotifyDialog (context: Context, color: Int) : AlertDialog {
+
+            val dialogView =
+                when (color) {
+                    BLUE -> LayoutInflater.from(context).inflate(R.layout.confirm_notify_popup_blue, null)
+                    //GREY -> LayoutInflater.from(context).inflate(R.layout.confirm_notify_popup_grey, null)
+                    //RED -> LayoutInflater.from(context).inflate(R.layout.confirm_notify_popup_red, null)
+                    else -> LayoutInflater.from(context).inflate(R.layout.confirm_notify_popup_blue, null)
                 }
             val mBuilder = AlertDialog.Builder(context).setView(dialogView)
             return mBuilder.show()

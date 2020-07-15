@@ -107,9 +107,11 @@ class AdDetailsInstrumentFragment : Fragment() {
                                     val name = "${dataSnapshot.child("firstname").value.toString()} ${dataSnapshot.child("lastname").value.toString()}"
                                     userTextViewAdDetailsInstr.text = name
                                 }
+                                ref2.removeEventListener(this)
                             }
                             override fun onCancelled(databaseError: DatabaseError) {
                                 Log.d(DBManager::class.java.name, "ERROR on Database: ${databaseError.message}")
+                                ref2.removeEventListener(this)
                             }
                         })
                     }
@@ -153,7 +155,7 @@ class AdDetailsInstrumentFragment : Fragment() {
                     alertDialog = AlertDialogInflater.inflateLoadingDialog(context!!, AlertDialogInflater.BLUE)
                     DBManager.verifyInstrumentUser(context!!, alertDialog, aid)
                 }
-                alertDialog.cancelButtonConfirmDeletePopup.setOnClickListener {
+                alertDialog.cancelButtonConfirmPurchasePopup.setOnClickListener {
                     alertDialog.dismiss()
                 }
             }

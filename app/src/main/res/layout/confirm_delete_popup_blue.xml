@@ -14,7 +14,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/boogaloo"
         android:gravity="center_horizontal"
         android:paddingStart="20dp"
@@ -27,7 +27,6 @@
         android:text="Sei sicuro di voler eliminare l'annuncio?"
         android:textColor="@color/grey_light"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="80dp"
         android:background="@drawable/shadow_button_blue_light"
         android:fontFamily="@font/boogaloo"
@@ -52,7 +51,7 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/cancelButtonConfirmDeletePopup"
@@ -62,6 +61,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="80dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/shadow_button_grey_light"
         android:fontFamily="@font/boogaloo"
         android:shadowColor="#FFFFFF"
@@ -72,6 +72,7 @@
         android:textAllCaps="false"
         android:textColor="@color/grey_dark"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmButtonConfirmDeletePopup" />

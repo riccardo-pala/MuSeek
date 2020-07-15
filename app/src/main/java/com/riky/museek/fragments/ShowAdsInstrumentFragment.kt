@@ -6,9 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -18,14 +15,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.riky.museek.R
 import com.riky.museek.classes.Ad
-import com.riky.museek.classes.AdItem
+import com.riky.museek.classes.AdItemShowAds
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_show_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_show_ads_instrument.view.*
-import kotlinx.android.synthetic.main.loading_popup_blue.view.*
 
 class ShowAdsInstrumentFragment : Fragment() {
 
@@ -46,7 +42,9 @@ class ShowAdsInstrumentFragment : Fragment() {
         }
         catch (e : IllegalStateException) {
             Toast.makeText(activity, "Errore durante il caricamento degli annunci. Riprova.", Toast.LENGTH_LONG).show()
+            fragmentManager!!.popBackStack()
             fragmentManager!!.beginTransaction().replace(R.id.fragment, InstrumentFragment()).commit()
+            return viewer!!
         }
 
         alertDialog = AlertDialogInflater.inflateLoadingDialog(context!!, AlertDialogInflater.BLUE)
@@ -68,7 +66,7 @@ class ShowAdsInstrumentFragment : Fragment() {
         val stop = if (adsMap.size>=STOP_LOADING) STOP_LOADING else adsMap.size
         var i = 1
         adsMap.values.forEach {
-            adapter.add(AdItem(it, viewer!!, alertDialog!!, i == stop))
+            adapter.add(AdItemShowAds(it, viewer!!, alertDialog!!, i == stop))
             i++
         }
     }
