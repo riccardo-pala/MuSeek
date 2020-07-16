@@ -84,6 +84,7 @@ class SoldAdDetailsInstrumentFragment : Fragment() {
                     if (ad.child("send").value.toString().toBoolean()) {
                         sendButtonSoldAdDetailsInstr.setBackgroundResource(R.drawable.shadow_button_grey_light)
                         sendButtonSoldAdDetailsInstr.text = "Già Inviato"
+                        sendButtonSoldAdDetailsInstr.setOnClickListener(null)
                     }
 
                     val photoId = ad.child("photoId").value as String

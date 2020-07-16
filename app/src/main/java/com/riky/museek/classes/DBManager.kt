@@ -424,6 +424,7 @@ class DBManager {
                 .addOnCompleteListener {
                     view.sendButtonSoldAdDetailsInstr.setBackgroundResource(R.drawable.shadow_button_grey_light)
                     view.sendButtonSoldAdDetailsInstr.text = "Già Inviato"
+                    view.sendButtonSoldAdDetailsInstr.setOnClickListener(null)
                     Toast.makeText(context, "Acquirente Notificato!", Toast.LENGTH_LONG).show()
                     alertDialog.dismiss()
                 }
