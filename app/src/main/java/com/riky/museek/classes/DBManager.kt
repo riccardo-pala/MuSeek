@@ -42,7 +42,7 @@ class DBManager {
         /*----------------------- VERIFY -----------------------------*/
 
         fun verifyLoggedUser(context: Context) {
-            val uid = FirebaseAuth.getInstance().uid ?: ""
+            val uid = FirebaseAuth.getInstance().uid
 
             if (uid == null) {
                 FirebaseAuth.getInstance().signOut()
@@ -89,7 +89,7 @@ class DBManager {
                         alertDialog.dismiss()
                         val activity = context as AppCompatActivity
                         if (aid != null) {
-                            performTransaction(aid, context)
+                            performInstrumentTransaction(aid, context)
                             activity.supportFragmentManager.popBackStack()
                             activity.supportFragmentManager.popBackStack()
                             activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, InstrumentFragment()).addToBackStack(null).commit()
@@ -103,6 +103,35 @@ class DBManager {
                         Toast.makeText(context, "E' necessario completare il profilo.", Toast.LENGTH_LONG).show()
                         val activity = context as AppCompatActivity
                         activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, EditAddressInstrumentFragment()).addToBackStack(null).commit()
+                    }
+                    ref.removeEventListener(this)
+                }
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.d(DBManager::class.java.name, "ERROR on Database: ${databaseError.message}")
+                    alertDialog.dismiss()
+                    Toast.makeText(context, "Si è verificato un errore durante l'autenticazione. Riprova.", Toast.LENGTH_LONG).show()
+                    ref.removeEventListener(this)
+                }
+            })
+        }
+
+        fun verifyBandUser(context: Context, alertDialog: AlertDialog, aid: String?) {
+
+            val uid = FirebaseAuth.getInstance().uid ?: ""
+
+            val ref = database.getReference("/band_users/$uid")
+
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        alertDialog.dismiss()
+                        //TODO: SE L'UTENTE HA MESSO I DATI NECESSARI
+                    }
+                    else {
+                        alertDialog.dismiss()
+                        Toast.makeText(context, "E' necessario completare il profilo.", Toast.LENGTH_LONG).show()
+                        val activity = context as AppCompatActivity
+                        activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, EditPreferencesBandFragment()).addToBackStack(null).commit()
                     }
                     ref.removeEventListener(this)
                 }
@@ -252,6 +281,28 @@ class DBManager {
             })
         }
 
+        fun updateUserPreferencesBand(user: UserBand, context: Context, alertDialog: AlertDialog) {
+
+            val uid = FirebaseAuth.getInstance().uid
+
+            if (uid == null) {
+                Toast.makeText(context, "Si è verificato un errore durant l'aggiornamento del profilo.", Toast.LENGTH_LONG).show()
+                return
+            }
+
+            val ref = database.getReference("/band_users/$uid")
+
+            ref.setValue(user)
+                .addOnSuccessListener {
+                    alertDialog.dismiss()
+                    Toast.makeText(context, "Profilo modificato con successo!.", Toast.LENGTH_LONG).show()
+                }
+                .addOnFailureListener {
+                    alertDialog.dismiss()
+                    Toast.makeText(context, "Si è verificato un errore: ${it.message}", Toast.LENGTH_LONG).show()
+                }
+        }
+
         /*----------------------- SAVE/DELETE -----------------------------*/
 
         fun saveUserOnDatabase(email: String, firstname: String, lastname: String) {
@@ -324,7 +375,7 @@ class DBManager {
 
         /*----------------------- PERFORM -----------------------------*/
 
-        fun performTransaction(aid: String, context: Context) {
+        fun performInstrumentTransaction(aid: String, context: Context) {
 
             val buyeruid = FirebaseAuth.getInstance().uid
 
@@ -362,6 +413,9 @@ class DBManager {
                                     Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
                                 }
                             ref1.child("send").setValue(false)
+                            ref1.child("sendNotified").setValue(false)
+                            ref1.child("soldNotified").setValue(false)
+                            ref1.child("isReviewed").setValue(false)
 
                             val ref2 = database.getReference("/instrument_users/$selleruid")
 
@@ -473,6 +527,33 @@ class DBManager {
                 13 -> return "Ukulele"
                 14 -> return "Violino"
                 15 -> return "Violoncello"
+            }
+            return ""
+        }
+
+        fun getRegionById(id: Int) : String {
+
+            when(id) {
+                1 -> return "Abruzzo"
+                2 -> return "Basilicata"
+                3 -> return "Calabria"
+                4 -> return "Campania"
+                5 -> return "Emilia-Romagna"
+                6 -> return "Friuli-Venezia Giulia"
+                7 -> return "Lazio"
+                8 -> return "Liguria"
+                9 -> return "Lombardia"
+                10 -> return "Marche"
+                11 -> return "Molise"
+                12 -> return "Piemonte"
+                13 -> return "Puglia"
+                14 -> return "Sardegna"
+                15 -> return "Sicilia"
+                16 -> return "Toscana"
+                17 -> return "Trentino-Alto Adige"
+                18 -> return "Umbria"
+                19 -> return "Valle d\'Aosta"
+                20 -> return "Veneto"
             }
             return ""
         }

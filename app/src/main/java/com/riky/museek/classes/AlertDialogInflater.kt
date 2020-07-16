@@ -36,7 +36,7 @@ class AlertDialogInflater {
                 when (color) {
                     BLUE -> LayoutInflater.from(context).inflate(R.layout.loading_popup_blue, null)
                     GREY -> LayoutInflater.from(context).inflate(R.layout.loading_popup_grey, null)
-                    //RED -> LayoutInflater.from(context).inflate(R.layout.loading_popup_red, null)
+                    RED -> LayoutInflater.from(context).inflate(R.layout.loading_popup_red, null)
                     else -> LayoutInflater.from(context).inflate(R.layout.loading_popup_blue, null)
                 }
 
@@ -101,6 +101,21 @@ class AlertDialogInflater {
                     else -> LayoutInflater.from(context).inflate(R.layout.confirm_notify_popup_blue, null)
                 }
             val mBuilder = AlertDialog.Builder(context).setView(dialogView)
+            return mBuilder.show()
+        }
+
+        fun inflateReviewDialog (context: Context, color: Int) : AlertDialog {
+
+            val dialogView =
+                when (color) {
+                    BLUE -> LayoutInflater.from(context!!).inflate(R.layout.review_popup_blue, null)
+                    //GREY -> LayoutInflater.from(context!!).inflate(R.layout.review_popup_grey, null)
+                    //RED -> LayoutInflater.from(context!!).inflate(R.layout.review_popup_red, null)
+                    else -> LayoutInflater.from(context!!).inflate(R.layout.review_popup_blue, null)
+                }
+
+            val mBuilder = AlertDialog.Builder(context).setView(dialogView)
+
             return mBuilder.show()
         }
     }

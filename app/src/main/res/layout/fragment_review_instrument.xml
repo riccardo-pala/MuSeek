@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_dark"
+    tools:context=".fragments.ReviewInstrumentFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navBarReviewInstr"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/blue_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/homeButtonReviewInstr"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:background="@drawable/shadow_button"
+            android:drawableTop="@drawable/home_logo"
+            android:drawableTint="@color/grey_dark"
+            android:fontFamily="@font/boogaloo"
+            android:padding="8dp"
+            android:textAllCaps="true"
+            android:textColor="@color/grey_dark"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/reviewTextViewReviewInstr"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="80dp"
+            android:fontFamily="@font/boogaloo"
+            android:gravity="center"
+            android:text="Recensioni"
+            android:textAlignment="center"
+            android:textColor="@color/grey_dark"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="80dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navBarReviewInstr">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/adsNoTagTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="Strumenti Venduti"
+                android:textColor="@color/blue_light"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/soldAdsNoTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="soldAdsNo"
+                android:textColor="@android:color/white"
+                android:textSize="45sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adsNoTagTextViewReviewInstr" />
+
+            <TextView
+                android:id="@+id/reviewNoTagTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="Recensioni Ricevute"
+                android:textColor="@color/blue_light"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/soldAdsNoTextViewReviewInstr" />
+
+            <TextView
+                android:id="@+id/reviewNoTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="reviewNo"
+                android:textColor="@android:color/white"
+                android:textSize="45sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reviewNoTagTextViewReviewInstr" />
+
+            <TextView
+                android:id="@+id/reviewAverageTagTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="Media Recensioni"
+                android:textColor="@color/blue_light"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reviewNoTextViewReviewInstr" />
+
+            <TextView
+                android:id="@+id/reviewAverageTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="reviewAverage"
+                android:textColor="@android:color/white"
+                android:textSize="45sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reviewAverageTagTextViewReviewInstr" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

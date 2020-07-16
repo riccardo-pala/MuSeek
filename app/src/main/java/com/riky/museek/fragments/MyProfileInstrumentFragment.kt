@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
+import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.fragment_my_profile_instrument.view.*
 
 class MyProfileInstrumentFragment : Fragment() {
@@ -16,11 +18,7 @@ class MyProfileInstrumentFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_my_profile_instrument, container, false)
 
-        view.homeButtonMyProfileInstr.setOnClickListener {
-            val intentHomepage = Intent(activity, HomepageActivity::class.java)
-            intentHomepage.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intentHomepage)
-        }
+        DBManager.verifyLoggedUser(context!!)
 
         view.editAddressButtonMyProfileInstr.setOnClickListener {
             fragmentManager!!.beginTransaction()
@@ -34,7 +32,10 @@ class MyProfileInstrumentFragment : Fragment() {
             val args = Bundle()
             args.putBoolean("imageLoaded", false)
             fragment.arguments = args
-            fragmentManager!!.beginTransaction().replace(R.id.fragment, fragment).addToBackStack(this.javaClass.name).commit()
+            fragmentManager!!.beginTransaction()
+                .replace(R.id.fragment, fragment)
+                .addToBackStack(this.javaClass.name)
+                .commit()
         }
 
         view.purchasedAdsButtonMyProfileInstr.setOnClickListener {
@@ -51,6 +52,16 @@ class MyProfileInstrumentFragment : Fragment() {
                 .commit()
         }
 
+        view.reviewButtonMyProfileInstr.setOnClickListener {
+            val fragment = ReviewInstrumentFragment()
+            val args = Bundle()
+            args.putString("uid", FirebaseAuth.getInstance().uid)
+            fragment.arguments = args
+            fragmentManager!!.beginTransaction()
+                .replace(R.id.fragment, fragment)
+                .addToBackStack(this.javaClass.name)
+                .commit()
+        }
 
         return view
     }

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_dark"
+    android:scrollbars="none"
+    tools:context=".fragments.BandFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/navBar"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:background="@color/red_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/newAdButtonBand"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/grey_dark"
+            android:fontFamily="@font/boogaloo"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/new_ad_button"
+            android:textAllCaps="false"
+            android:textColor="@color/red_light"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/navBar"
+            app:layout_constraintEnd_toEndOf="@+id/navBar"
+            app:layout_constraintTop_toTopOf="@+id/navBar" />
+
+        <Button
+            android:id="@+id/homeButtonBand"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="5"
+            android:background="@drawable/shadow_button"
+            android:drawableTop="@drawable/home_logo"
+            android:drawableTint="@color/grey_dark"
+            android:fontFamily="@font/boogaloo"
+            android:padding="8dp"
+            android:textAllCaps="true"
+            android:textColor="@color/grey_dark"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/myProfileButtonBand"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="2"
+            android:background="@drawable/shadow_button_grey_light"
+            android:drawableEnd="@drawable/my_profile_band_logo"
+            android:drawableTint="@color/grey_dark"
+            android:fontFamily="@font/boogaloo"
+            android:paddingStart="35dp"
+            android:paddingEnd="45dp"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="1"
+            android:shadowDy="2"
+            android:shadowRadius="1"
+            android:text="@string/my_profile_band_text_view"
+            android:textAllCaps="true"
+            android:textColor="@color/grey_dark"
+            android:textSize="35sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/navBar" />
+
+        <Button
+            android:id="@+id/bandSearchButtonInstr"
+            style="@android:style/ButtonBar"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shadow_button_red_light"
+            android:drawableTop="@drawable/band_search_logo"
+            android:drawableTint="@color/grey_dark"
+            android:fontFamily="@font/boogaloo"
+            android:paddingTop="30dp"
+            android:paddingBottom="15dp"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:text="Trova una Band"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/myProfileButtonBand" />
+
+        <Button
+            android:id="@+id/memberSearchButtonInstr"
+            style="@android:style/ButtonBar"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/shadow_button_red_light"
+            android:drawableTop="@drawable/member_search_logo"
+            android:drawableTint="@color/grey_dark"
+            android:fontFamily="@font/boogaloo"
+            android:paddingTop="30dp"
+            android:paddingBottom="15dp"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:text="Trova un Musicista"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bandSearchButtonInstr" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

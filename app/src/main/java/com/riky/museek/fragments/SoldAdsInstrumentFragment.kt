@@ -19,6 +19,9 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_sold_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_sold_ads_instrument.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SoldAdsInstrumentFragment : Fragment() {
 
@@ -39,6 +42,11 @@ class SoldAdsInstrumentFragment : Fragment() {
         viewer!!.recyclerViewSoldAdsInstr.adapter = adapter
 
         fetchSoldAdsFromDatabase()
+
+        GlobalScope.launch {
+            delay(3000L)
+            alertDialog!!.dismiss()
+        }
 
         return viewer!!
     }
@@ -70,6 +78,7 @@ class SoldAdsInstrumentFragment : Fragment() {
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                adapter.clear()
                 if (dataSnapshot.exists()) {
                     for (ads in dataSnapshot.children) {
                         if (ads.child("selleruid").value == uid) {

@@ -13,7 +13,7 @@
     <string name="favs_button">Preferiti</string>
 
     <string name="instrument_button">Mercatino Musicale</string>
-    <string name="band_button">Band</string>
+    <string name="band_button">Villaggio Band</string>
 
     <string name="registration_header">Registrazione</string>
     <string name="login_header">Accedi</string>
@@ -77,5 +77,9 @@
     <string name="user_sold_ad_text_view">Acquistato da</string>
     <string name="address_sold_ad_text_view">Indirizzo Spedizione</string>
     <string name="notify_spedition_button">Notifica Spedizione</string>
+    <string name="my_profile_instrument_text_view">Il Mio Mercatino</string>
+    <string name="review_edit_text">Numero da 0 a 5</string>
+    <string name="submit_review_button">Invia Recensione</string>
+    <string name="my_profile_band_text_view">Il Mio Villaggio</string>
 
 </resources>

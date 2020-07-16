@@ -20,4 +20,41 @@
         <item>Violoncello</item>
     </string-array>
 
+    <string-array name="band_regions">
+        <item>Seleziona una regione...</item>
+        <item>Abruzzo</item>
+        <item>Basilicata</item>
+        <item>Calabria</item>
+        <item>Campania</item>
+        <item>Emilia-Romagna</item>
+        <item>Friuli-Venezia Giulia</item>
+        <item>Lazio</item>
+        <item>Liguria</item>
+        <item>Lombardia</item>
+        <item>Marche</item>
+        <item>Molise</item>
+        <item>Piemonte</item>
+        <item>Puglia</item>
+        <item>Sardegna</item>
+        <item>Sicilia</item>
+        <item>Toscana</item>
+        <item>Trentino-Alto Adige</item>
+        <item>Umbria</item>
+        <item>Valle d\'Aosta</item>
+        <item>Veneto</item>
+    </string-array>
+
+    <string-array name="band_musicians">
+        <item>Seleziona strumento...</item>
+        <item>Bassista</item>
+        <item>Batterista</item>
+        <item>Cantante</item>
+        <item>Chitarrista</item>
+        <item>Flautista</item>
+        <item>Sassofonista</item>
+        <item>Tastierista</item>
+        <item>Trombettista</item>
+        <item>Violinista</item>
+    </string-array>
+
 </resources>

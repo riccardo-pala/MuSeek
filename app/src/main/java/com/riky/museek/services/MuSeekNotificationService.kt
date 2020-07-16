@@ -51,21 +51,28 @@ class MuSeekNotificationService : Service() {
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                if (uid == snapshot.child("buyeruid").value.toString() && snapshot.child("send").value.toString().toBoolean()) {
+                if (uid == snapshot.child("buyeruid").value.toString() &&
+                    snapshot.child("send").value.toString().toBoolean() &&
+                    !snapshot.child("sendNotified").value.toString().toBoolean()) {
+
+                    ref.child(snapshot.child("aid").value.toString()).child("sendNotified").setValue(true)
                     promptNotify(
                         "TICKER", "Strumento Spedito!", "Il tuo pacco contenente " +
                             "${snapshot.child("brand").value.toString()} ${snapshot.child("model").value.toString()} è stato spedito.")
                 }
+                if (uid == snapshot.child("selleruid").value.toString() &&
+                    !snapshot.child("soldNotified").value.toString().toBoolean()) {
 
-            }
-
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                if (uid == snapshot.child("selleruid").value.toString()) {
+                    ref.child(snapshot.child("aid").value.toString()).child("soldNotified").setValue(true)
                     promptNotify(
                         "TICKER", "Strumento Venduto!", "Il tuo annuncio contenente " +
                                 "${snapshot.child("brand").value.toString()} ${snapshot.child("model").value.toString()} è stato acquistato."
                     )
                 }
+            }
+
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                //do nothing
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
@@ -82,7 +89,7 @@ class MuSeekNotificationService : Service() {
 
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
-        var notification : Notification
+        val notification : Notification
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_DESCRIPTION, NotificationManager.IMPORTANCE_HIGH)
@@ -92,7 +99,7 @@ class MuSeekNotificationService : Service() {
             manager.createNotificationChannel(notificationChannel)
             notification = NotificationCompat
                 .Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.logo2)
+                .setSmallIcon(R.drawable.notification_logo)
                 .setTicker(ticker)
                 .setContentTitle(title)
                 .setContentText(text)
@@ -104,10 +111,10 @@ class MuSeekNotificationService : Service() {
         else {
             notification = NotificationCompat
                 .Builder(this)
-                .setSmallIcon(R.drawable.logo2)
-                .setTicker("Ticker")
-                .setContentTitle("Title")
-                .setContentText("Textttttttttttttttttttt")
+                .setSmallIcon(R.drawable.notification_logo)
+                .setTicker(ticker)
+                .setContentTitle(title)
+                .setContentText(text)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .build()
