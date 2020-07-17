@@ -6,11 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_dark"
-    android:scrollbars="none"
-    tools:context=".fragments.MyProfileBandFragment">
+    tools:context=".fragments.MyBandAdsBandFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/navBarMyProfileBand"
+        android:id="@+id/navBarMyBandAdsBand"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/red_light"
@@ -20,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/homeButtonMyProfileBand"
+            android:id="@+id/homeButtonMyBandAdsBand"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -37,16 +36,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/newAdTextViewMyProfileBand"
+            android:id="@+id/myAdsTextViewMyAds"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="80dp"
             android:fontFamily="@font/boogaloo"
             android:gravity="center"
-            android:text="@string/my_profile_band_text_view"
+            android:text="@string/my_ads_text_view"
             android:textAlignment="center"
             android:textColor="@color/grey_dark"
-            android:textSize="40sp"
+            android:textSize="35sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,65 +60,43 @@
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navBarMyProfileBand">
+        app:layout_constraintTop_toBottomOf="@+id/navBarMyBandAdsBand">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/myBandAdsButtonMyProfileBand"
-                style="@android:style/ButtonBar"
+            <TextView
+                android:id="@+id/noResultsTextViewMyBandAdsBand"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/shadow_button"
-                android:drawableEnd="@drawable/my_ads_logo"
-                android:drawableTint="@color/red_light"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/boogaloo"
-                android:paddingStart="45dp"
-                android:paddingEnd="45dp"
                 android:shadowColor="@android:color/black"
                 android:shadowDx="2"
                 android:shadowDy="2"
-                android:shadowRadius="3"
-                android:text="I Miei Annunci\nRicerca Band"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textColor="@color/red_light"
-                android:textSize="25sp"
+                android:shadowRadius="10"
+                android:text="@string/no_my_ads_text_view"
+                android:textAlignment="center"
+                android:textColor="@color/grey_light"
+                android:textSize="40sp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/myMemberAdsButtonMyProfileBand"
-                style="@android:style/ButtonBar"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMyBandAdsBand"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/shadow_button"
-                android:drawableEnd="@drawable/my_ads_logo"
-                android:drawableTint="@color/red_light"
-                android:fontFamily="@font/boogaloo"
-                android:paddingStart="45dp"
-                android:paddingEnd="45dp"
-                android:shadowColor="@android:color/black"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="3"
-                android:text="I Miei Annunci\nRicerca Musicista"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textColor="@color/red_light"
-                android:textSize="25sp"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/myBandAdsButtonMyProfileBand" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

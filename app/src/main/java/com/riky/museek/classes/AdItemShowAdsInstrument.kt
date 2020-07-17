@@ -14,14 +14,14 @@ import com.riky.museek.fragments.AdDetailsInstrumentFragment
 import com.riky.museek.fragments.ShowAdsInstrumentFragment
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.ad_card_show_ads.view.*
+import kotlinx.android.synthetic.main.ad_card_show_ads_instrument.view.*
 import kotlinx.android.synthetic.main.fragment_show_ads_instrument.view.*
 import java.text.NumberFormat
 import java.util.*
 
-class AdItemShowAds (private val ad: Ad, val view: View, val alertDialog: AlertDialog, private val stopLoading: Boolean): Item<ViewHolder>(){
+class AdItemShowAdsInstrument (private val ad: AdInstrument, val view: View, val alertDialog: AlertDialog, private val stopLoading: Boolean): Item<ViewHolder>(){
     override fun getLayout(): Int {
-        return R.layout.ad_card_show_ads
+        return R.layout.ad_card_show_ads_instrument
     }
 
     override fun bind(viewHolder: ViewHolder, position: Int) {

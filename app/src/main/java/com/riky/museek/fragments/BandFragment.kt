@@ -11,6 +11,7 @@ import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
+import kotlinx.android.synthetic.main.choose_band_ad_notify_red.*
 import kotlinx.android.synthetic.main.fragment_band.view.*
 
 class BandFragment : Fragment() {
@@ -26,9 +27,26 @@ class BandFragment : Fragment() {
         }
 
         view.newAdButtonBand.setOnClickListener {
-            val alertDialog = AlertDialogInflater.inflateLoadingDialog(context!!, AlertDialogInflater.RED)
+            var alertDialog = AlertDialogInflater.inflateLoadingDialog(context!!, AlertDialogInflater.RED)
 
-            DBManager.verifyBandUser(context!!, alertDialog!!, null)
+            alertDialog.dismiss()
+
+            alertDialog = AlertDialogInflater.inflateChooseBandAdDialog(context!!, AlertDialogInflater.RED)
+
+            alertDialog.bandButtonChooseBandAdPopup.setOnClickListener {
+                alertDialog.dismiss()
+                fragmentManager!!.beginTransaction()
+                    .replace(R.id.fragment, NewBandAdBandFragment())
+                    .addToBackStack(null).commit()
+            }
+
+            alertDialog.memberButtonChooseBandAdPopup.setOnClickListener {
+                alertDialog.dismiss()
+                fragmentManager!!.beginTransaction()
+                    .replace(R.id.fragment, NewMemberAdBandFragment())
+                    .addToBackStack(null).commit()
+            }
+
         }
 
         view.myProfileButtonBand.setOnClickListener {

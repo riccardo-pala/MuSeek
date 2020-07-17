@@ -71,7 +71,7 @@ class AlertDialogInflater {
                 when (color) {
                     BLUE -> LayoutInflater.from(context).inflate(R.layout.confirm_delete_popup_blue, null)
                     //GREY -> LayoutInflater.from(context).inflate(R.layout.confirm_delete_popup_grey, null)
-                    //RED -> LayoutInflater.from(context).inflate(R.layout.confirm_delete_popup_red, null)
+                    RED -> LayoutInflater.from(context).inflate(R.layout.confirm_delete_popup_red, null)
                     else -> LayoutInflater.from(context).inflate(R.layout.confirm_delete_popup_blue, null)
                 }
             val mBuilder = AlertDialog.Builder(context).setView(dialogView)
@@ -116,6 +116,19 @@ class AlertDialogInflater {
 
             val mBuilder = AlertDialog.Builder(context).setView(dialogView)
 
+            return mBuilder.show()
+        }
+
+        fun inflateChooseBandAdDialog (context: Context, color: Int) : AlertDialog {
+
+            val dialogView =
+                when (color) {
+                    //BLUE -> LayoutInflater.from(context).inflate(R.layout.choose_band_ad_notify_blue, null)
+                    //GREY -> LayoutInflater.from(context).inflate(R.layout.choose_band_ad_notify_grey, null)
+                    RED -> LayoutInflater.from(context).inflate(R.layout.choose_band_ad_notify_red, null)
+                    else -> LayoutInflater.from(context).inflate(R.layout.choose_band_ad_notify_red, null)
+                }
+            val mBuilder = AlertDialog.Builder(context).setView(dialogView)
             return mBuilder.show()
         }
     }

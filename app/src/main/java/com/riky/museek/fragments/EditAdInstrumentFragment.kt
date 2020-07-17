@@ -12,9 +12,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -22,14 +19,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
-import com.riky.museek.classes.Ad
+import com.riky.museek.classes.AdInstrument
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.fragment_edit_ad_instrument.*
 import kotlinx.android.synthetic.main.fragment_edit_ad_instrument.view.*
-import kotlinx.android.synthetic.main.fragment_new_ad_instrument.*
-import kotlinx.android.synthetic.main.loading_popup_blue.view.*
-import java.text.DecimalFormat
 import java.time.LocalDateTime
 import java.util.*
 import kotlin.math.roundToInt
@@ -199,7 +193,7 @@ class EditAdInstrumentFragment : Fragment() {
 
         val date = arguments!!.getString("date", LocalDateTime.now().toString())
 
-        val ad = Ad(aid!!, brand, model, priceDouble, category, condition, photoId!!, uid!!, date)
+        val ad = AdInstrument(aid!!, brand, model, priceDouble, category, condition, photoId!!, uid!!, date)
 
         DBManager.saveAdOnDatabase(ad, context!!)
 

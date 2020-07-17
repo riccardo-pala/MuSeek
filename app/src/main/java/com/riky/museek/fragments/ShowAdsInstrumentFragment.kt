@@ -14,8 +14,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.riky.museek.R
-import com.riky.museek.classes.Ad
-import com.riky.museek.classes.AdItemShowAds
+import com.riky.museek.classes.AdInstrument
+import com.riky.museek.classes.AdItemShowAdsInstrument
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
 import com.xwray.groupie.GroupAdapter
@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_show_ads_instrument.view.*
 class ShowAdsInstrumentFragment : Fragment() {
 
     private val adapter = GroupAdapter<ViewHolder>()
-    private val adsMap = HashMap<String, Ad>()
+    private val adsMap = HashMap<String, AdInstrument>()
     private var viewer: View? = null
     private val STOP_LOADING = 3
     private var alertDialog : AlertDialog? = null
@@ -66,7 +66,7 @@ class ShowAdsInstrumentFragment : Fragment() {
         val stop = if (adsMap.size>=STOP_LOADING) STOP_LOADING else adsMap.size
         var i = 1
         adsMap.values.forEach {
-            adapter.add(AdItemShowAds(it, viewer!!, alertDialog!!, i == stop))
+            adapter.add(AdItemShowAdsInstrument(it, viewer!!, alertDialog!!, i == stop))
             i++
         }
     }
@@ -79,7 +79,7 @@ class ShowAdsInstrumentFragment : Fragment() {
 
         val ref = FirebaseDatabase.getInstance().getReference("/instrument_ads/")
 
-        var ad: Ad
+        var ad: AdInstrument
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -95,7 +95,7 @@ class ShowAdsInstrumentFragment : Fragment() {
                                     (model.contains(searchValue, true) ||
                                     brand.contains(searchValue, true) ||
                                     DBManager.getCategoryById(category).contains(searchValue, true))) {
-                                    ad = Ad(
+                                    ad = AdInstrument(
                                         ads.key as String,
                                         brand,
                                         model,
@@ -115,7 +115,7 @@ class ShowAdsInstrumentFragment : Fragment() {
                                 val category = ads.child("category").value.toString().toInt()
                                 val aduid = ads.child("uid").value as String
                                 if (uid != aduid && categories.contains(category)) {
-                                    ad = Ad(
+                                    ad = AdInstrument(
                                         ads.key as String,
                                         ads.child("brand").value as String,
                                         ads.child("model").value as String,

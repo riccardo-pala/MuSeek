@@ -7,10 +7,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey_dark"
     android:scrollbars="none"
-    tools:context=".fragments.EditPreferencesBandFragment">
+    tools:context=".fragments.EditBandAdBandFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/navBarEditPreferencesBand"
+        android:id="@+id/navBarEditBandAdBand"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/red_light"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/homeButtonEditPreferencesBand"
+            android:id="@+id/homeButtonEditBandAdBand"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -37,13 +37,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/editPreferencesTextViewEditPreferencesBand"
+            android:id="@+id/editBandAdTextViewEditBandAdBand"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="80dp"
             android:fontFamily="@font/boogaloo"
             android:gravity="center"
-            android:text="Modifica Informazioni"
+            android:text="@string/edit_ad_text_view"
             android:textAlignment="center"
             android:textColor="@color/grey_dark"
             android:textSize="40sp"
@@ -62,104 +62,90 @@
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navBarEditPreferencesBand">
+        app:layout_constraintTop_toBottomOf="@+id/navBarEditBandAdBand">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TableRow
-                android:id="@+id/tableRow"
+            <TextView
+                android:id="@+id/regionTagTextViewEditBandAdBand"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
-                android:weightSum="5"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center|start"
+                android:paddingStart="10dp"
+                android:shadowColor="@android:color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:text="Regione"
+                android:textColor="@color/red_light"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/regionTagTextViewEditPreferencesBand"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:fontFamily="@font/boogaloo"
-                    android:gravity="center|start"
-                    android:paddingStart="10dp"
-                    android:shadowColor="@android:color/black"
-                    android:shadowDx="2"
-                    android:shadowDy="2"
-                    android:shadowRadius="5"
-                    android:text="Regione"
-                    android:textColor="@color/red_light"
-                    android:textSize="20sp" />
+            <Spinner
+                android:id="@+id/regionSpinnerEditBandAdBand"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:autofillHints=""
+                android:background="@drawable/shadow_spinner"
+                android:entries="@array/band_regions"
+                android:fontFamily="@font/boogaloo"
+                android:inputType="text"
+                android:paddingStart="5dp"
+                android:paddingEnd="15dp"
+                android:spinnerMode="dialog"
+                android:theme="@style/AppSpinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/regionTagTextViewEditBandAdBand" />
 
-                <Spinner
-                    android:id="@+id/regionSpinnerEditPreferencesBand"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginEnd="17dp"
-                    android:layout_weight="1"
-                    android:autofillHints=""
-                    android:background="@drawable/shadow_spinner"
-                    android:entries="@array/band_regions"
-                    android:fontFamily="@font/boogaloo"
-                    android:inputType="text"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="15dp"
-                    android:spinnerMode="dialog"
-                    android:theme="@style/AppSpinner" />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow2"
+            <TextView
+                android:id="@+id/musicianTagTextViewEditBandAdBand"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:weightSum="5"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center|start"
+                android:paddingStart="10dp"
+                android:shadowColor="@android:color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                android:text="Cerchiamo"
+                android:textColor="@color/red_light"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow">
+                app:layout_constraintTop_toBottomOf="@id/regionSpinnerEditBandAdBand" />
 
-                <TextView
-                    android:id="@+id/musicianTagTextViewEditPreferencesBand"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:fontFamily="@font/boogaloo"
-                    android:gravity="center|start"
-                    android:paddingStart="10dp"
-                    android:shadowColor="@android:color/black"
-                    android:shadowDx="2"
-                    android:shadowDy="2"
-                    android:shadowRadius="5"
-                    android:text="Sono"
-                    android:textColor="@color/red_light"
-                    android:textSize="25sp" />
-
-                <Spinner
-                    android:id="@+id/musicianSpinnerEditPreferencesBand"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginEnd="17dp"
-                    android:layout_weight="1"
-                    android:autofillHints=""
-                    android:background="@drawable/shadow_spinner"
-                    android:entries="@array/band_musicians"
-                    android:fontFamily="@font/boogaloo"
-                    android:inputType="text"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="15dp"
-                    android:spinnerMode="dialog"
-                    android:theme="@style/AppSpinner" />
-
-            </TableRow>
+            <Spinner
+                android:id="@+id/musicianSpinnerEditBandAdBand"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:autofillHints=""
+                android:background="@drawable/shadow_spinner"
+                android:entries="@array/band_musicians"
+                android:fontFamily="@font/boogaloo"
+                android:inputType="text"
+                android:paddingStart="5dp"
+                android:paddingEnd="15dp"
+                android:spinnerMode="dialog"
+                android:theme="@style/AppSpinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/musicianTagTextViewEditBandAdBand" />
 
             <TextView
-                android:id="@+id/descriptionTagTextViewEditPreferencesBand"
+                android:id="@+id/descriptionTagTextViewEditBandAdBand"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
@@ -171,24 +157,24 @@
                 android:shadowDx="2"
                 android:shadowDy="2"
                 android:shadowRadius="5"
-                android:text="Descrizione"
+                android:text="Descrizione (max 100 caratteri)"
                 android:textColor="@color/red_light"
-                android:textSize="35sp"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow2" />
+                app:layout_constraintTop_toBottomOf="@id/musicianSpinnerEditBandAdBand" />
 
             <EditText
-                android:id="@+id/descriptionEditTextEditPreferencesBand"
+                android:id="@+id/descriptionEditTextEditBandAdBand"
                 android:layout_width="fill_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:layout_weight="1"
                 android:autofillHints=""
                 android:background="@drawable/shadow_edit_text_grey_light"
                 android:fontFamily="@font/boogaloo"
                 android:gravity="clip_vertical"
-                android:hint="Descriviti brevemente... (i tuoi generi preferiti, che tipo di persone cerchi, da quanto tempo suoni ecc.)"
+                android:hint="Descriviti brevemente... (i tuoi generi preferiti, che tipo di band cerchi, da quanto tempo suoni ecc.)"
                 android:inputType="textLongMessage|textMultiLine|text"
                 android:paddingStart="20dp"
                 android:paddingTop="40dp"
@@ -203,14 +189,15 @@
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow2" />
+                app:layout_constraintTop_toTopOf="@+id/descriptionTagTextViewEditBandAdBand" />
 
             <Button
-                android:id="@+id/updateButtonEditPreferencesBand"
+                android:id="@+id/updateButtonEditBandAdBand"
                 style="@android:style/ButtonBar"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginStart="50dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/shadow_button_red_light"
@@ -219,14 +206,14 @@
                 android:shadowDx="2"
                 android:shadowDy="2"
                 android:shadowRadius="3"
-                android:text="@string/update_profile_button"
+                android:text="@string/edit_ad_text_view"
                 android:textAllCaps="false"
                 android:textColor="@color/grey_dark"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionEditTextEditPreferencesBand" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionEditTextEditBandAdBand" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

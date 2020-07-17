@@ -6,9 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -16,20 +13,19 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.riky.museek.R
-import com.riky.museek.classes.Ad
-import com.riky.museek.classes.AdItemMyAds
+import com.riky.museek.classes.AdInstrument
+import com.riky.museek.classes.AdItemMyAdsInstrument
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_my_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
-import kotlinx.android.synthetic.main.loading_popup_blue.view.*
 
 class MyAdsInstrumentFragment : Fragment() {
 
     private val adapter = GroupAdapter<ViewHolder>()
-    private val adsMap = HashMap<String, Ad>()
+    private val adsMap = HashMap<String, AdInstrument>()
     private var viewer: View? = null
     private val STOP_LOADING = 3
     private var alertDialog : AlertDialog? = null
@@ -65,7 +61,7 @@ class MyAdsInstrumentFragment : Fragment() {
         val stop = if (adsMap.size>=STOP_LOADING) STOP_LOADING else adsMap.size
         var i = 1
         adsMap.values.forEach {
-            adapter.add(AdItemMyAds(it, viewer!!, alertDialog!!, i == stop))
+            adapter.add(AdItemMyAdsInstrument(it, viewer!!, alertDialog!!, i == stop))
             i++
         }
     }
@@ -76,14 +72,14 @@ class MyAdsInstrumentFragment : Fragment() {
 
         val uid = FirebaseAuth.getInstance().uid
 
-        var ad: Ad
+        var ad: AdInstrument
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (ads in dataSnapshot.children) {
                         if (ads.child("uid").value == uid) {
-                            ad = Ad(
+                            ad = AdInstrument(
                                 ads.key as String,
                                 ads.child("brand").value as String,
                                 ads.child("model").value as String,

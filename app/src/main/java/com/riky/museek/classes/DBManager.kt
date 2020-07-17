@@ -5,15 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
-import androidx.fragment.app.Fragment
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -25,9 +20,7 @@ import com.riky.museek.R
 import com.riky.museek.activities.MainActivity
 import com.riky.museek.fragments.*
 import kotlinx.android.synthetic.main.fragment_edit_password.view.*
-import kotlinx.android.synthetic.main.fragment_sold_ad_details_instrument.*
 import kotlinx.android.synthetic.main.fragment_sold_ad_details_instrument.view.*
-import kotlinx.android.synthetic.main.loading_popup_blue.*
 import kotlinx.android.synthetic.main.password_popup_blue.*
 import java.time.LocalDateTime
 
@@ -103,35 +96,6 @@ class DBManager {
                         Toast.makeText(context, "E' necessario completare il profilo.", Toast.LENGTH_LONG).show()
                         val activity = context as AppCompatActivity
                         activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, EditAddressInstrumentFragment()).addToBackStack(null).commit()
-                    }
-                    ref.removeEventListener(this)
-                }
-                override fun onCancelled(databaseError: DatabaseError) {
-                    Log.d(DBManager::class.java.name, "ERROR on Database: ${databaseError.message}")
-                    alertDialog.dismiss()
-                    Toast.makeText(context, "Si è verificato un errore durante l'autenticazione. Riprova.", Toast.LENGTH_LONG).show()
-                    ref.removeEventListener(this)
-                }
-            })
-        }
-
-        fun verifyBandUser(context: Context, alertDialog: AlertDialog, aid: String?) {
-
-            val uid = FirebaseAuth.getInstance().uid ?: ""
-
-            val ref = database.getReference("/band_users/$uid")
-
-            ref.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        alertDialog.dismiss()
-                        //TODO: SE L'UTENTE HA MESSO I DATI NECESSARI
-                    }
-                    else {
-                        alertDialog.dismiss()
-                        Toast.makeText(context, "E' necessario completare il profilo.", Toast.LENGTH_LONG).show()
-                        val activity = context as AppCompatActivity
-                        activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, EditPreferencesBandFragment()).addToBackStack(null).commit()
                     }
                     ref.removeEventListener(this)
                 }
@@ -281,28 +245,6 @@ class DBManager {
             })
         }
 
-        fun updateUserPreferencesBand(user: UserBand, context: Context, alertDialog: AlertDialog) {
-
-            val uid = FirebaseAuth.getInstance().uid
-
-            if (uid == null) {
-                Toast.makeText(context, "Si è verificato un errore durant l'aggiornamento del profilo.", Toast.LENGTH_LONG).show()
-                return
-            }
-
-            val ref = database.getReference("/band_users/$uid")
-
-            ref.setValue(user)
-                .addOnSuccessListener {
-                    alertDialog.dismiss()
-                    Toast.makeText(context, "Profilo modificato con successo!.", Toast.LENGTH_LONG).show()
-                }
-                .addOnFailureListener {
-                    alertDialog.dismiss()
-                    Toast.makeText(context, "Si è verificato un errore: ${it.message}", Toast.LENGTH_LONG).show()
-                }
-        }
-
         /*----------------------- SAVE/DELETE -----------------------------*/
 
         fun saveUserOnDatabase(email: String, firstname: String, lastname: String) {
@@ -321,7 +263,7 @@ class DBManager {
                 }
         }
 
-        fun saveAdOnDatabase(ad: Ad, context: Context) {
+        fun saveAdOnDatabase(ad: AdInstrument, context: Context) {
 
             val ref = database.getReference("/instrument_ads/${ad.aid}")
 
@@ -353,8 +295,28 @@ class DBManager {
                 .addOnFailureListener{
                     Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
                 }
+        }
 
+        fun deleteMemberAdOnDatabase(aid: String) {
 
+            database.getReference("/band_member_ads/$aid").removeValue()
+                .addOnSuccessListener {
+                    Log.d(DBManager::class.java.name, "Ad successfully removed from DB")
+                }
+                .addOnFailureListener{
+                    Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
+                }
+        }
+
+        fun deleteBandAdOnDatabase(aid: String) {
+
+            database.getReference("/band_band_ads/$aid").removeValue()
+                .addOnSuccessListener {
+                    Log.d(DBManager::class.java.name, "Ad successfully removed from DB")
+                }
+                .addOnFailureListener{
+                    Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
+                }
         }
 
         /*----------------------- UPLOAD -----------------------------*/
@@ -393,7 +355,7 @@ class DBManager {
                     if (dataSnapshot.exists()) {
                         val selleruid = dataSnapshot.child("uid").value as String
                         if (selleruid != buyeruid) {
-                            val ad = PurchasedAd(
+                            val ad = PurchasedAdInstrument(
                                 aid,
                                 dataSnapshot.child("brand").value as String,
                                 dataSnapshot.child("model").value as String,
@@ -554,6 +516,22 @@ class DBManager {
                 18 -> return "Umbria"
                 19 -> return "Valle d\'Aosta"
                 20 -> return "Veneto"
+            }
+            return ""
+        }
+
+        fun getMusicianById(id: Int) : String {
+
+            when(id) {
+                1 -> return "Bassista"
+                2 -> return "Batterista"
+                3 -> return "Cantante"
+                4 -> return "Chitarrista"
+                5 -> return "Flautista"
+                6 -> return "Sassofonista"
+                7 -> return "Tastierista"
+                8 -> return "Trombettista"
+                9 -> return "Violinista"
             }
             return ""
         }

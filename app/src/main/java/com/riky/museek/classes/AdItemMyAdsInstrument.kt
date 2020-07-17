@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
@@ -15,16 +14,16 @@ import com.riky.museek.fragments.EditAdInstrumentFragment
 import com.riky.museek.fragments.MyAdsInstrumentFragment
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.ad_card_my_ads.view.*
+import kotlinx.android.synthetic.main.ad_card_my_ads_instrument.view.*
 import kotlinx.android.synthetic.main.confirm_delete_popup_blue.*
 import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
 import java.text.NumberFormat
 import java.util.*
 
-class AdItemMyAds(private val ad: Ad, val view: View, val alertDialog: AlertDialog, private val stopLoading: Boolean): Item<ViewHolder>() {
+class AdItemMyAdsInstrument(private val ad: AdInstrument, val view: View, val alertDialog: AlertDialog, private val stopLoading: Boolean): Item<ViewHolder>() {
 
     override fun getLayout(): Int {
-        return R.layout.ad_card_my_ads
+        return R.layout.ad_card_my_ads_instrument
     }
 
     override fun bind(viewHolder: ViewHolder, position: Int) {

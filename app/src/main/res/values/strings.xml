@@ -81,5 +81,6 @@
     <string name="review_edit_text">Numero da 0 a 5</string>
     <string name="submit_review_button">Invia Recensione</string>
     <string name="my_profile_band_text_view">Il Mio Villaggio</string>
+    <string name="band_name_edit_text">Nome Band</string>
 
 </resources>

@@ -3,11 +3,9 @@ package com.riky.museek.classes
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -15,25 +13,18 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
-import com.riky.museek.fragments.EditAdInstrumentFragment
-import com.riky.museek.fragments.MyAdsInstrumentFragment
-import com.riky.museek.fragments.PurchasedAdsInstrumentFragment
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.ad_card_my_ads.view.*
-import kotlinx.android.synthetic.main.ad_card_purchased_ads.view.*
-import kotlinx.android.synthetic.main.confirm_delete_popup_blue.*
-import kotlinx.android.synthetic.main.fragment_ad_details_instrument.*
-import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
+import kotlinx.android.synthetic.main.ad_card_purchased_ads_instrument.view.*
 import kotlinx.android.synthetic.main.fragment_purchased_ads_instrument.view.*
 import kotlinx.android.synthetic.main.review_popup_blue.*
 import java.text.NumberFormat
 import java.util.*
 
-class AdItemPurchasedAds (private val ad: PurchasedAd, val view: View, var alertDialog: AlertDialog, private val stopLoading: Boolean): Item<ViewHolder>() {
+class AdItemPurchasedAdsInstrument (private val ad: PurchasedAdInstrument, val view: View, var alertDialog: AlertDialog, private val stopLoading: Boolean): Item<ViewHolder>() {
 
     override fun getLayout(): Int {
-        return R.layout.ad_card_purchased_ads
+        return R.layout.ad_card_purchased_ads_instrument
     }
 
     override fun bind(viewHolder: ViewHolder, position: Int) {

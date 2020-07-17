@@ -1,7 +1,6 @@
 package com.riky.museek.fragments
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -11,22 +10,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
-import com.riky.museek.activities.MainActivity
-import com.riky.museek.classes.Ad
+import com.riky.museek.classes.AdInstrument
 import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.fragment_new_ad_instrument.*
 import kotlinx.android.synthetic.main.fragment_new_ad_instrument.view.*
-import kotlinx.android.synthetic.main.loading_popup_blue.view.*
-import java.text.DecimalFormat
 import java.time.LocalDateTime
 import java.util.*
 import kotlin.math.roundToInt
@@ -40,14 +33,7 @@ class NewAdInstrumentFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_new_ad_instrument, container, false)
 
-        val uid = FirebaseAuth.getInstance().uid
-
-        if (uid == null) {
-            FirebaseAuth.getInstance().signOut()
-            val intentMain = Intent(activity, MainActivity::class.java)
-            intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intentMain)
-        }
+        DBManager.verifyLoggedUser(context!!)
 
         view.homeButtonNewAdInstr.setOnClickListener {
             hideKeyboard(view)
@@ -160,7 +146,6 @@ class NewAdInstrumentFragment : Fragment() {
 
         val uid = FirebaseAuth.getInstance().uid
 
-
         photoId = "photo-" + UUID.randomUUID().toString()
 
         DBManager.uploadPickedPhotoOnStorage(pickedPhotoUri!!, "instrument_ads/$photoId", context!!)
@@ -169,7 +154,7 @@ class NewAdInstrumentFragment : Fragment() {
 
         val aid = "instr-ad-" + UUID.randomUUID()
 
-        val ad = Ad(aid, brand, model, priceDouble, category, condition, photoId!!, uid!!, date)
+        val ad = AdInstrument(aid, brand, model, priceDouble, category, condition, photoId!!, uid!!, date)
 
         DBManager.saveAdOnDatabase(ad, context!!)
 

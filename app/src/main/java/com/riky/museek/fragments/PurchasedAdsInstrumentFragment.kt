@@ -16,15 +16,13 @@ import com.riky.museek.R
 import com.riky.museek.classes.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_my_ads_instrument.*
-import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
 import kotlinx.android.synthetic.main.fragment_purchased_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_purchased_ads_instrument.view.*
 
 class PurchasedAdsInstrumentFragment : Fragment() {
 
     private val adapter = GroupAdapter<ViewHolder>()
-    private val adsMap = HashMap<String, PurchasedAd>()
+    private val adsMap = HashMap<String, PurchasedAdInstrument>()
     private var viewer: View? = null
     private val STOP_LOADING = 3
     private var alertDialog : AlertDialog? = null
@@ -54,7 +52,7 @@ class PurchasedAdsInstrumentFragment : Fragment() {
         val stop = if (adsMap.size>=STOP_LOADING) STOP_LOADING else adsMap.size
         var i = 1
         adsMap.values.forEach {
-            adapter.add(AdItemPurchasedAds(it, viewer!!, alertDialog!!, i == stop))
+            adapter.add(AdItemPurchasedAdsInstrument(it, viewer!!, alertDialog!!, i == stop))
             i++
         }
     }
@@ -67,14 +65,14 @@ class PurchasedAdsInstrumentFragment : Fragment() {
 
         val uid = FirebaseAuth.getInstance().uid ?: ""
 
-        var ad: PurchasedAd
+        var ad: PurchasedAdInstrument
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (ads in dataSnapshot.children) {
                         if (ads.child("buyeruid").value == uid) {
-                            ad = PurchasedAd(
+                            ad = PurchasedAdInstrument(
                                 ads.key as String,
                                 ads.child("brand").value as String,
                                 ads.child("model").value as String,

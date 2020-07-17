@@ -16,82 +16,73 @@ import com.riky.museek.R
 import com.riky.museek.classes.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_sold_ads_instrument.*
-import kotlinx.android.synthetic.main.fragment_sold_ads_instrument.view.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.android.synthetic.main.fragment_my_ads_instrument.*
+import kotlinx.android.synthetic.main.fragment_my_band_ads_band.view.*
+import kotlinx.android.synthetic.main.fragment_my_member_ads_band.view.*
 
-class SoldAdsInstrumentFragment : Fragment() {
+class MyBandAdsBandFragment : Fragment() {
 
     private val adapter = GroupAdapter<ViewHolder>()
-    private val adsMap = HashMap<String, PurchasedAdInstrument>()
+    private val adsMap = HashMap<String, AdBandBand>()
     private var viewer: View? = null
     private val STOP_LOADING = 3
     private var alertDialog : AlertDialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        viewer = inflater.inflate(R.layout.fragment_sold_ads_instrument, container, false)
+        viewer = inflater.inflate(R.layout.fragment_my_band_ads_band, container, false)
 
         if (context != null) DBManager.verifyLoggedUser(context!!)
 
         alertDialog = AlertDialogInflater.inflateLoadingDialog(context!!, AlertDialogInflater.BLUE)
+        alertDialog!!.dismiss()
 
-        viewer!!.recyclerViewSoldAdsInstr.adapter = adapter
-
-        fetchSoldAdsFromDatabase()
-
-        GlobalScope.launch {
-            delay(3000L)
-            alertDialog!!.dismiss()
+        if (!arguments!!.getBoolean("loaded", true)) {
+            alertDialog!!.show()
+            arguments!!.clear()
         }
 
-        return viewer!!
+        viewer!!.recyclerViewMyBandAdsBand.adapter = adapter
+
+        fetchMyAdsFromDatabase()
+
+        return viewer
     }
 
     private fun refreshRecyclerView(){
         adapter.clear()
-        if (adsMap.isEmpty()){
+        if (adsMap.isEmpty()) {
             alertDialog!!.dismiss()
-            noResultsTextViewSoldAdsInstr.visibility = View.VISIBLE
+            noResultsTextViewMyAdsInstr.visibility = View.VISIBLE
             return
         }
         val stop = if (adsMap.size>=STOP_LOADING) STOP_LOADING else adsMap.size
         var i = 1
         adsMap.values.forEach {
-            adapter.add(AdItemSoldAdsInstrument(it, viewer!!, alertDialog!!, i == stop))
+            adapter.add(AdItemMyBandAdsBand(it, viewer!!, alertDialog!!, i == stop))
             i++
         }
     }
 
-    private fun fetchSoldAdsFromDatabase() {
+    private fun fetchMyAdsFromDatabase() {
 
-        if (context != null) DBManager.verifyLoggedUser(context!!)
+        val ref = FirebaseDatabase.getInstance().getReference("/band_band_ads/")
 
-        val ref = FirebaseDatabase.getInstance().getReference("/instrument_purchased_ads/")
+        val uid = FirebaseAuth.getInstance().uid
 
-        val uid = FirebaseAuth.getInstance().uid ?: ""
-
-        var ad: PurchasedAdInstrument
+        var ad: AdBandBand
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                adapter.clear()
                 if (dataSnapshot.exists()) {
                     for (ads in dataSnapshot.children) {
-                        if (ads.child("selleruid").value == uid) {
-                            ad = PurchasedAdInstrument(
+                        if (ads.child("uid").value == uid) {
+                            ad = AdBandBand(
                                 ads.key as String,
-                                ads.child("brand").value as String,
-                                ads.child("model").value as String,
-                                ads.child("price").value.toString().toDouble(),
-                                ads.child("category").value.toString().toInt(),
-                                ads.child("condition").value.toString().toInt(),
-                                ads.child("photoId").value as String,
-                                ads.child("buyeruid").value as String,
-                                uid,
-                                ads.child("date").value as String)
+                                ads.child("region").value.toString().toInt(),
+                                ads.child("musician").value.toString().toInt(),
+                                ads.child("description").value as String,
+                                ads.child("uid").value as String)
                             adsMap[ads.value.toString()] = ad
                         }
                     }
@@ -100,7 +91,7 @@ class SoldAdsInstrumentFragment : Fragment() {
                 ref.removeEventListener(this)
             }
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.d(PurchasedAdsInstrumentFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
+                Log.d(MyAdsInstrumentFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
                 ref.removeEventListener(this)
             }
         })
