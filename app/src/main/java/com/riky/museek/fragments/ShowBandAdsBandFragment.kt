@@ -17,6 +17,7 @@ import com.riky.museek.R
 import com.riky.museek.classes.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.fragment_show_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_show_band_ads_band.*
 import kotlinx.android.synthetic.main.fragment_show_band_ads_band.view.*
 import kotlinx.android.synthetic.main.fragment_show_member_ads_band.*
@@ -108,8 +109,14 @@ class ShowBandAdsBandFragment : Fragment() {
                     refreshRecyclerView()
                     ref.removeEventListener(this)
                 }
+                else {
+                    alertDialog!!.dismiss()
+                    noResultsTextViewShowBandAdsBand.visibility = View.VISIBLE
+                }
             }
             override fun onCancelled(databaseError: DatabaseError) {
+                alertDialog!!.dismiss()
+                noResultsTextViewShowBandAdsBand.visibility = View.VISIBLE
                 Log.d(ShowBandAdsBandFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
                 ref.removeEventListener(this)
             }

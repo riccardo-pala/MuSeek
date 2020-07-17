@@ -20,6 +20,7 @@ import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.fragment_my_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_show_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_show_ads_instrument.view.*
 
@@ -131,10 +132,16 @@ class ShowAdsInstrumentFragment : Fragment() {
                         }
                     }
                     refreshRecyclerView()
-                    ref.removeEventListener(this)
                 }
+                else {
+                    alertDialog!!.dismiss()
+                    noResultsTextViewShowAdsInstr.visibility = View.VISIBLE
+                }
+                ref.removeEventListener(this)
             }
             override fun onCancelled(databaseError: DatabaseError) {
+                alertDialog!!.dismiss()
+                noResultsTextViewShowAdsInstr.visibility = View.VISIBLE
                 Log.d(ShowAdsInstrumentFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
                 ref.removeEventListener(this)
             }

@@ -83,9 +83,6 @@ class DBManager {
                         val activity = context as AppCompatActivity
                         if (aid != null) {
                             performInstrumentTransaction(aid, context)
-                            activity.supportFragmentManager.popBackStack()
-                            activity.supportFragmentManager.popBackStack()
-                            activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, InstrumentFragment()).addToBackStack(null).commit()
                         }
                         else {
                             activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, NewAdInstrumentFragment()).addToBackStack(null).commit()
@@ -403,20 +400,36 @@ class DBManager {
                                     Log.d(DBManager::class.java.name, "Error on Database: ${it.message}")
                                 }
                             Toast.makeText(context, "Acquisto Completato!", Toast.LENGTH_LONG).show()
+                            val activity = context as AppCompatActivity
+                            activity.supportFragmentManager.popBackStack()
+                            activity.supportFragmentManager.popBackStack()
+                            activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, InstrumentFragment()).addToBackStack(null).commit()
                         }
                         else {
                             Toast.makeText(context, "Qualcosa è andato storto, riprova!", Toast.LENGTH_LONG).show()
                             Log.d(DBManager::class.java.name, "Annuncio di proprietà dell'acquirente!")
+                            val activity = context as AppCompatActivity
+                            activity.supportFragmentManager.popBackStack()
+                            activity.supportFragmentManager.popBackStack()
+                            activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, InstrumentFragment()).addToBackStack(null).commit()
                         }
                     }
                     else {
                         Toast.makeText(context, "Qualcosa è andato storto, riprova!", Toast.LENGTH_LONG).show()
                         Log.d(DBManager::class.java.name, "Annuncio non esistente!")
+                        val activity = context as AppCompatActivity
+                        activity.supportFragmentManager.popBackStack()
+                        activity.supportFragmentManager.popBackStack()
+                        activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, InstrumentFragment()).addToBackStack(null).commit()
                     }
                     aidRef.removeEventListener(this)
                 }
                 override fun onCancelled(databaseError: DatabaseError) {
                     Log.d(ShowAdsInstrumentFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
+                    val activity = context as AppCompatActivity
+                    activity.supportFragmentManager.popBackStack()
+                    activity.supportFragmentManager.popBackStack()
+                    activity.supportFragmentManager.beginTransaction().replace(R.id.fragment, InstrumentFragment()).addToBackStack(null).commit()
                     aidRef.removeEventListener(this)
                 }
             })

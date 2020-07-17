@@ -94,9 +94,15 @@ class MyAdsInstrumentFragment : Fragment() {
                     }
                     refreshRecyclerView()
                 }
+                else {
+                    alertDialog!!.dismiss()
+                    noResultsTextViewMyAdsInstr.visibility = View.VISIBLE
+                }
                 ref.removeEventListener(this)
             }
             override fun onCancelled(databaseError: DatabaseError) {
+                alertDialog!!.dismiss()
+                noResultsTextViewMyAdsInstr.visibility = View.VISIBLE
                 Log.d(MyAdsInstrumentFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
                 ref.removeEventListener(this)
             }

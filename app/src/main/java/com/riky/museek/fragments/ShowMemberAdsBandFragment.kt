@@ -19,6 +19,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_show_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_show_ads_instrument.view.*
+import kotlinx.android.synthetic.main.fragment_show_band_ads_band.*
 import kotlinx.android.synthetic.main.fragment_show_member_ads_band.*
 import kotlinx.android.synthetic.main.fragment_show_member_ads_band.view.*
 
@@ -109,8 +110,14 @@ class ShowMemberAdsBandFragment : Fragment() {
                     refreshRecyclerView()
                     ref.removeEventListener(this)
                 }
+                else {
+                    alertDialog!!.dismiss()
+                    noResultsTextViewShowMemberAdsBand.visibility = View.VISIBLE
+                }
             }
             override fun onCancelled(databaseError: DatabaseError) {
+                alertDialog!!.dismiss()
+                noResultsTextViewShowMemberAdsBand.visibility = View.VISIBLE
                 Log.d(ShowMemberAdsBandFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
                 ref.removeEventListener(this)
             }
