@@ -3,16 +3,22 @@ package com.riky.museek.classes
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
+import com.riky.museek.fragments.ReviewInstrumentFragment
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.ad_card_purchased_ads_instrument.view.*
@@ -60,9 +66,30 @@ class AdItemPurchasedAdsInstrument (private val ad: PurchasedAdInstrument, val v
         val ref2 = DBManager.database.getReference("/users/${ad.selleruid}")
         ref2.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+
                 if (dataSnapshot.exists()) {
+
                     val name = "${dataSnapshot.child("firstname").value.toString()} ${dataSnapshot.child("lastname").value.toString()}"
-                    viewHolder.itemView.sellerTextViewPurchasedAdsInstr.text = name
+
+                    val spanName = SpannableString(name)
+                    spanName.setSpan(UnderlineSpan(), 0, spanName.length, 0)
+
+                    viewHolder.itemView.sellerTextViewPurchasedAdsInstr.text = spanName
+
+                    viewHolder.itemView.sellerTextViewPurchasedAdsInstr.setOnClickListener {
+
+                        val fragment = ReviewInstrumentFragment()
+                        val args = Bundle()
+                        args.putString("uid", ad.selleruid)
+                        fragment.arguments = args
+
+                        val context = viewHolder.itemView.context as AppCompatActivity
+                        context.supportFragmentManager.beginTransaction()
+                            .replace(R.id.fragment, fragment)
+                            .addToBackStack(this.javaClass.name)
+                            .commit()
+                    }
+
                     ref2.removeEventListener(this)
                 }
             }
@@ -109,7 +136,7 @@ class AdItemPurchasedAdsInstrument (private val ad: PurchasedAdInstrument, val v
         viewHolder.itemView.reviewButtonPurchasedAdsInstr.setOnClickListener {
             alertDialog = AlertDialogInflater.inflateReviewDialog(view.context, AlertDialogInflater.BLUE)
 
-            alertDialog.submitButtonReviewPopup.setOnClickListener {
+            alertDialog.submitButtonReviewPopup.setOnClickListener setListener@ {
 
                 alertDialog.reviewEditTextReviewPopup.setBackgroundResource(R.drawable.shadow_edit_text_grey_light)
 
@@ -118,7 +145,7 @@ class AdItemPurchasedAdsInstrument (private val ad: PurchasedAdInstrument, val v
                 if (reviewValue > 5.0 || reviewValue < 0.0) {
                     Toast.makeText(view.context, "Si prega di inserire un valore compreso tra 0 e 5", Toast.LENGTH_LONG).show()
                     alertDialog.reviewEditTextReviewPopup.setBackgroundResource(R.drawable.shadow_edit_text_grey_light_error)
-                    return@setOnClickListener
+                    return@setListener
                 }
 
                 alertDialog.dismiss()

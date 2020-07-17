@@ -33,11 +33,12 @@ class RegistrationFragment : Fragment() {
 
         val firstname = firstnameEditTextReg.text.toString().trim()
         val lastname = lastnameEditTextReg.text.toString().trim()
+        val phone = phoneEditTextReg.text.toString().trim()
         val email = emailEditTextReg.text.toString().trim()
         val password = passwordEditTextReg.text.toString().trim()
         val passwordconfirm = passwordconfirmEditTextReg.text.toString().trim()
 
-        if (firstname.isEmpty() || lastname.isEmpty() || email.isEmpty() || password.isEmpty() || passwordconfirm.isEmpty()) {
+        if (firstname.isEmpty() || lastname.isEmpty() || phone.isEmpty() || email.isEmpty() || password.isEmpty() || passwordconfirm.isEmpty()) {
             Toast.makeText(activity, "Per favore, compila tutti i campi del form!", Toast.LENGTH_LONG).show()
             return
         }
@@ -47,17 +48,11 @@ class RegistrationFragment : Fragment() {
             return
         }
 
-        Log.d(RegistrationFragment::class.java.name, "Firstname: $firstname")
-        Log.d(RegistrationFragment::class.java.name, "Lastname: $lastname")
-        Log.d(RegistrationFragment::class.java.name, "Email: $email")
-        Log.d(RegistrationFragment::class.java.name, "Password: $password")
-        Log.d(RegistrationFragment::class.java.name, "Password Confirm: $passwordconfirm")
-
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (!it.isSuccessful) return@addOnCompleteListener
                 Toast.makeText(activity, "Registrazione completata con successo!", Toast.LENGTH_LONG).show()
-                DBManager.saveUserOnDatabase(email, firstname, lastname)
+                DBManager.saveUserOnDatabase(email, firstname, lastname, phone)
                 fragmentManager!!.beginTransaction().replace(R.id.fragment, LoginFragment()).commit()
             }
             .addOnFailureListener {

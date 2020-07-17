@@ -77,6 +77,28 @@
             app:layout_constraintTop_toBottomOf="@+id/firstnameEditTextReg" />
 
         <EditText
+            android:id="@+id/phoneEditTextReg"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:background="@drawable/border_edit_text_blue_light"
+            android:ems="10"
+            android:fontFamily="@font/boogaloo"
+            android:hint="Numero di Telefono"
+            android:includeFontPadding="true"
+            android:inputType="phone"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/blue_dark"
+            android:textScaleX="1.1"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lastnameEditTextReg" />
+
+        <EditText
             android:id="@+id/emailEditTextReg"
             android:layout_width="350dp"
             android:layout_height="50dp"
@@ -95,7 +117,7 @@
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastnameEditTextReg" />
+            app:layout_constraintTop_toBottomOf="@+id/phoneEditTextReg" />
 
         <EditText
             android:id="@+id/passwordEditTextReg"

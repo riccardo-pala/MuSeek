@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -103,9 +106,26 @@ class AdDetailsInstrumentFragment : Fragment() {
                         val ref2 = DBManager.database.getReference("/users/$aduid")
                         ref2.addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
+
                                 if (dataSnapshot.exists()) {
+
                                     val name = "${dataSnapshot.child("firstname").value.toString()} ${dataSnapshot.child("lastname").value.toString()}"
-                                    userTextViewAdDetailsInstr.text = name
+
+                                    val spanName = SpannableString(name)
+                                    spanName.setSpan(UnderlineSpan(), 0, spanName.length, 0)
+
+                                    userTextViewAdDetailsInstr.text = spanName
+
+                                    userTextViewAdDetailsInstr.setOnClickListener {
+                                        val fragment = ReviewInstrumentFragment()
+                                        val args = Bundle()
+                                        args.putString("uid", aduid)
+                                        fragment.arguments = args
+                                        fragmentManager!!.beginTransaction()
+                                            .replace(R.id.fragment, fragment)
+                                            .addToBackStack(this.javaClass.name)
+                                            .commit()
+                                    }
                                 }
                                 ref2.removeEventListener(this)
                             }

@@ -71,7 +71,7 @@ class NewMemberAdBandFragment : Fragment() {
                 view.musicianSpinnerNewMemberAdBand.setBackgroundResource(R.drawable.shadow_spinner_error)
                 isEmptyFields = true
             }
-            if (description.isEmpty() || description.length > 80) {
+            if (description.isEmpty() || description.length > 150) {
                 view.descriptionEditTextNewMemberAdBand.setBackgroundResource(R.drawable.shadow_edit_text_grey_light_error)
                 isEmptyFields = true
             }
@@ -109,35 +109,6 @@ class NewMemberAdBandFragment : Fragment() {
                 Toast.makeText(context, "Si è verificato un errore: ${it.message}", Toast.LENGTH_LONG).show()
             }
     }
-
-    /*---------------------- DA USARE IN EDITMemberADBAND ------------------------
-
-    private fun fetchMyMemberAdFromDatabase(view: View) {
-
-        val uid = FirebaseAuth.getInstance().uid
-
-        val ref = FirebaseDatabase.getInstance().getReference("/band_users/$uid")
-
-        ref.addValueEventListener(object : ValueEventListener {
-
-            override fun onDataChange(user: DataSnapshot) {
-                if (user.exists()) {
-                    view.regionSpinnerEditBandAdBand.setSelection(user.child("region").value.toString().toInt())
-                    view.musicianSpinnerEditBandAdBandBand.setSelection(user.child("musician").value.toString().toInt())
-                    view.descriptionEditTextEditBandAdBandBand.setText(user.child("description").value.toString())
-                }
-                alertDialog!!.dismiss()
-                ref.removeEventListener(this)
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.d(EditBandAdBandBandFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
-                alertDialog!!.dismiss()
-                ref.removeEventListener(this)
-            }
-        })
-    }
-
-     */
 
     private fun hideKeyboard(view: View) {
         try {

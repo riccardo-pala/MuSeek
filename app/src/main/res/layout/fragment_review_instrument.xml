@@ -66,19 +66,122 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/photoImageViewReviewInstr"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/photo_description"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/transparent" />
+
+            <ImageView
+                android:id="@+id/photoFrameImageViewReviewInstr"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/frame_blue_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
-                android:id="@+id/adsNoTagTextViewReviewInstr"
+                android:id="@+id/nameTagTextViewReviewInstr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="Nome"
+                android:textColor="@color/blue_light"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/photoImageViewReviewInstr" />
+
+            <TextView
+                android:id="@+id/nameTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="name"
+                android:textColor="@android:color/white"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nameTagTextViewReviewInstr" />
+
+            <TextView
+                android:id="@+id/emailTagTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="Email"
+                android:textColor="@color/blue_light"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameTextViewReviewInstr" />
+
+            <TextView
+                android:id="@+id/emailTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="email"
+                android:textColor="@android:color/white"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailTagTextViewReviewInstr" />
+
+            <TextView
+                android:id="@+id/phoneTagTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="Numero di Telefono"
+                android:textColor="@color/blue_light"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailTextViewReviewInstr" />
+
+            <TextView
+                android:id="@+id/phoneTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/boogaloo"
+                android:gravity="center"
+                android:text="phone"
+                android:textColor="@android:color/white"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phoneTagTextViewReviewInstr" />
+
+            <TextView
+                android:id="@+id/soldAdsNoTagTextViewReviewInstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/boogaloo"
                 android:gravity="center"
                 android:text="Strumenti Venduti"
                 android:textColor="@color/blue_light"
-                android:textSize="50sp"
+                android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/phoneTextViewReviewInstr" />
 
             <TextView
                 android:id="@+id/soldAdsNoTextViewReviewInstr"
@@ -88,10 +191,10 @@
                 android:gravity="center"
                 android:text="soldAdsNo"
                 android:textColor="@android:color/white"
-                android:textSize="45sp"
+                android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/adsNoTagTextViewReviewInstr" />
+                app:layout_constraintTop_toBottomOf="@+id/soldAdsNoTagTextViewReviewInstr" />
 
             <TextView
                 android:id="@+id/reviewNoTagTextViewReviewInstr"
@@ -102,7 +205,7 @@
                 android:gravity="center"
                 android:text="Recensioni Ricevute"
                 android:textColor="@color/blue_light"
-                android:textSize="50sp"
+                android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/soldAdsNoTextViewReviewInstr" />
@@ -115,7 +218,7 @@
                 android:gravity="center"
                 android:text="reviewNo"
                 android:textColor="@android:color/white"
-                android:textSize="45sp"
+                android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reviewNoTagTextViewReviewInstr" />
@@ -129,7 +232,7 @@
                 android:gravity="center"
                 android:text="Media Recensioni"
                 android:textColor="@color/blue_light"
-                android:textSize="50sp"
+                android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/reviewNoTextViewReviewInstr" />
@@ -143,7 +246,7 @@
                 android:gravity="center"
                 android:text="reviewAverage"
                 android:textColor="@android:color/white"
-                android:textSize="45sp"
+                android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

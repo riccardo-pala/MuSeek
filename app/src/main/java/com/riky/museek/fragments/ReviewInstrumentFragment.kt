@@ -19,6 +19,7 @@ import com.riky.museek.R
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.fragment_ad_details_instrument.*
+import kotlinx.android.synthetic.main.fragment_edit_profile.view.*
 import kotlinx.android.synthetic.main.fragment_review_instrument.view.*
 import java.text.NumberFormat
 import java.util.*
@@ -77,12 +78,33 @@ class ReviewInstrumentFragment : Fragment() {
             override fun onDataChange(user: DataSnapshot) {
                 if (user.exists()) {
                     val name = user.child("firstname").value.toString() + " " + user.child("lastname").value.toString()
+                    val email = user.child("email").value.toString()
+                    val phone = user.child("phone").value.toString()
                     view.reviewTextViewReviewInstr.text = name
+                    view.nameTextViewReviewInstr.text = name
+                    view.emailTextViewReviewInstr.text = email
+                    view.phoneTextViewReviewInstr.text = phone
+
+                    var photoId = user.child("photoId").value.toString()
+
+                    if (photoId == "") {
+                        photoId = "default.jpg"
+                    }
+                    val ref = FirebaseStorage.getInstance().getReference("/images/users/")
+                    ref.child(photoId).getBytes(4 * 1024 * 1024)
+                        .addOnSuccessListener { bytes ->
+                            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                            view.photoImageViewReviewInstr.setImageBitmap(bitmap)
+                            alertDialog!!.dismiss()
+                        }
+                        .addOnFailureListener {
+                            alertDialog!!.dismiss()
+                        }
                 }
                 else {
                     Toast.makeText(activity, "Errore durante il caricamento del profilo. Riprova.", Toast.LENGTH_LONG).show()
+                    alertDialog!!.dismiss()
                 }
-                alertDialog!!.dismiss()
                 ref2.removeEventListener(this)
             }
 

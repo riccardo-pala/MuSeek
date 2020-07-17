@@ -247,11 +247,11 @@ class DBManager {
 
         /*----------------------- SAVE/DELETE -----------------------------*/
 
-        fun saveUserOnDatabase(email: String, firstname: String, lastname: String) {
+        fun saveUserOnDatabase(email: String, firstname: String, lastname: String, phone: String) {
 
             val uid = FirebaseAuth.getInstance().uid ?: ""
 
-            val user = User(uid, email, firstname, lastname, "", "")
+            val user = User(uid, email, firstname, lastname, "", phone)
             val ref = database.getReference("/users/$uid")
 
             ref.setValue(user)

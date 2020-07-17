@@ -89,7 +89,7 @@ class EditBandAdBandFragment : Fragment() {
             musicianSpinnerEditBandAdBand.setBackgroundResource(R.drawable.shadow_spinner_error)
             isEmptyFields = true
         }
-        if (description.isEmpty() || description.length > 100) {
+        if (description.isEmpty() || description.length > 150) {
             descriptionEditTextEditBandAdBand.setBackgroundResource(R.drawable.shadow_edit_text_grey_light_error)
             isEmptyFields = true
         }

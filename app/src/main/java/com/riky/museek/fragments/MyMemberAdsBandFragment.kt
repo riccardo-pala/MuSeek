@@ -16,8 +16,7 @@ import com.riky.museek.R
 import com.riky.museek.classes.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_my_ads_instrument.*
-import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
+import kotlinx.android.synthetic.main.fragment_my_member_ads_band.*
 import kotlinx.android.synthetic.main.fragment_my_member_ads_band.view.*
 
 class MyMemberAdsBandFragment : Fragment() {
@@ -53,7 +52,7 @@ class MyMemberAdsBandFragment : Fragment() {
         adapter.clear()
         if (adsMap.isEmpty()) {
             alertDialog!!.dismiss()
-            noResultsTextViewMyAdsInstr.visibility = View.VISIBLE
+            noResultsTextViewMyMemberAdsBand.visibility = View.VISIBLE
             return
         }
         val stop = if (adsMap.size>=STOP_LOADING) STOP_LOADING else adsMap.size
@@ -92,7 +91,7 @@ class MyMemberAdsBandFragment : Fragment() {
                 ref.removeEventListener(this)
             }
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.d(MyAdsInstrumentFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
+                Log.d(MyMemberAdsBandFragment::class.java.name, "ERROR on Database: ${databaseError.message}")
                 ref.removeEventListener(this)
             }
         })

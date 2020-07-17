@@ -65,8 +65,9 @@ class MuSeekNotificationService : Service() {
 
                     ref.child(snapshot.child("aid").value.toString()).child("soldNotified").setValue(true)
                     promptNotify(
-                        "TICKER", "Strumento Venduto!", "Il tuo annuncio contenente " +
-                                "${snapshot.child("brand").value.toString()} ${snapshot.child("model").value.toString()} è stato acquistato."
+                        "TICKER",
+                        "Strumento Venduto!",
+                        "Il tuo annuncio contenente ${snapshot.child("brand").value.toString()} ${snapshot.child("model").value.toString()} è stato acquistato."
                     )
                 }
             }
