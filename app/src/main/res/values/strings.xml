@@ -82,5 +82,7 @@
     <string name="submit_review_button">Invia Recensione</string>
     <string name="my_profile_band_text_view">Il Mio Villaggio</string>
     <string name="band_name_edit_text">Nome Band</string>
+    <string name="no_result_text_view_sold_ads">Non hai ancora venduto nessuno strumento.</string>
+    <string name="no_my_ads_band_text_view">Non hai ancora annunci.</string>
 
 </resources>

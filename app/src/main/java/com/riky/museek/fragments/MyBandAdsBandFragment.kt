@@ -17,6 +17,7 @@ import com.riky.museek.classes.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_my_ads_instrument.*
+import kotlinx.android.synthetic.main.fragment_my_band_ads_band.*
 import kotlinx.android.synthetic.main.fragment_my_band_ads_band.view.*
 import kotlinx.android.synthetic.main.fragment_my_member_ads_band.view.*
 import kotlinx.android.synthetic.main.fragment_show_member_ads_band.*
@@ -54,7 +55,7 @@ class MyBandAdsBandFragment : Fragment() {
         adapter.clear()
         if (adsMap.isEmpty()) {
             alertDialog!!.dismiss()
-            noResultsTextViewMyAdsInstr.visibility = View.VISIBLE
+            noResultsTextViewMyBandAdsBand.visibility = View.VISIBLE
             return
         }
         val stop = if (adsMap.size>=STOP_LOADING) STOP_LOADING else adsMap.size

@@ -59,12 +59,12 @@ class AdDetailsInstrumentFragment : Fragment() {
 
         aid = arguments!!.getString("aid", "")
 
-        fetchSingleAdFromDatabase()
+        fetchSingleAdFromDatabase(view)
 
         return view
     }
 
-    private fun fetchSingleAdFromDatabase() {
+    private fun fetchSingleAdFromDatabase(view: View) {
 
         val uid = FirebaseAuth.getInstance().uid
 
@@ -79,11 +79,11 @@ class AdDetailsInstrumentFragment : Fragment() {
                 if (dataSnapshot.exists()) {
                     val aduid = dataSnapshot.child("uid").value as String
                     if (aduid != uid) {
-                        brandTextViewAdDetailsInstr.text = dataSnapshot.child("brand").value as String
-                        modelTextViewAdDetailsInstr.text = dataSnapshot.child("model").value as String
-                        categoryTextViewAdDetailsInstr.text = DBManager.getCategoryById(dataSnapshot.child("category").value.toString().toInt())
-                        dateTextViewAdDetailsInstr.text = dataSnapshot.child("date").value.toString().substring(0, 10)
-                        priceTextViewAdDetailsInstr.text = formatter.format(dataSnapshot.child("price").value.toString().toDouble())
+                        view.brandTextViewAdDetailsInstr.text = dataSnapshot.child("brand").value as String
+                        view.modelTextViewAdDetailsInstr.text = dataSnapshot.child("model").value as String
+                        view.categoryTextViewAdDetailsInstr.text = DBManager.getCategoryById(dataSnapshot.child("category").value.toString().toInt())
+                        view.dateTextViewAdDetailsInstr.text = dataSnapshot.child("date").value.toString().substring(0, 10)
+                        view.priceTextViewAdDetailsInstr.text = formatter.format(dataSnapshot.child("price").value.toString().toDouble())
 
                         val photoId = dataSnapshot.child("photoId").value as String
                         if (photoId.isNotEmpty()) {
@@ -92,7 +92,7 @@ class AdDetailsInstrumentFragment : Fragment() {
                             ref1.child(photoId).getBytes(4 * 1024 * 1024)
                                 .addOnSuccessListener { bytes ->
                                     val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-                                    adPhotoAdDetailsInstr.setImageBitmap(bitmap)
+                                    view.adPhotoAdDetailsInstr.setImageBitmap(bitmap)
                                     alertDialog!!.dismiss()
                                 }
                                 .addOnFailureListener {
@@ -114,9 +114,9 @@ class AdDetailsInstrumentFragment : Fragment() {
                                     val spanName = SpannableString(name)
                                     spanName.setSpan(UnderlineSpan(), 0, spanName.length, 0)
 
-                                    userTextViewAdDetailsInstr.text = spanName
+                                    view.userTextViewAdDetailsInstr.text = spanName
 
-                                    userTextViewAdDetailsInstr.setOnClickListener {
+                                    view.userTextViewAdDetailsInstr.setOnClickListener {
                                         val fragment = ReviewInstrumentFragment()
                                         val args = Bundle()
                                         args.putString("uid", aduid)

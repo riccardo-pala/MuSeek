@@ -78,7 +78,7 @@
                 android:shadowDx="2"
                 android:shadowDy="2"
                 android:shadowRadius="10"
-                android:text="@string/no_my_ads_text_view"
+                android:text="@string/no_my_ads_band_text_view"
                 android:textAlignment="center"
                 android:textColor="@color/grey_light"
                 android:textSize="40sp"
