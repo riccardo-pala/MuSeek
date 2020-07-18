@@ -57,4 +57,30 @@
         <item>Violinista</item>
     </string-array>
 
+    <string-array name="search_band_musicians">
+        <item>Sono…</item>
+        <item>Bassista</item>
+        <item>Batterista</item>
+        <item>Cantante</item>
+        <item>Chitarrista</item>
+        <item>Flautista</item>
+        <item>Sassofonista</item>
+        <item>Tastierista</item>
+        <item>Trombettista</item>
+        <item>Violinista</item>
+    </string-array>
+
+    <string-array name="search_member_musicians">
+        <item>Cerco…</item>
+        <item>Bassista</item>
+        <item>Batterista</item>
+        <item>Cantante</item>
+        <item>Chitarrista</item>
+        <item>Flautista</item>
+        <item>Sassofonista</item>
+        <item>Tastierista</item>
+        <item>Trombettista</item>
+        <item>Violinista</item>
+    </string-array>
+
 </resources>

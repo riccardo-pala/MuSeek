@@ -130,17 +130,31 @@ class AlertDialogInflater {
             return mBuilder.show()
         }
 
-        fun inflateChooseDialog (context: Context, color: Int) : AlertDialog {
+        fun inflateSearchMemberDialog (context: Context, color: Int) : AlertDialog {
 
             val dialogView =
                 when (color) {
-                    //BLUE -> LayoutInflater.from(context).inflate(R.layout.choose_band_ad_notify_blue, null)
-                    //GREY -> LayoutInflater.from(context).inflate(R.layout.choose_band_ad_notify_grey, null)
-                    RED -> LayoutInflater.from(context).inflate(R.layout.choose_popup_red, null)
-                    else -> LayoutInflater.from(context).inflate(R.layout.choose_popup_red, null)
+                    //BLUE -> LayoutInflater.from(context).inflate(R.layout.search_member_popup_blue, null)
+                    //GREY -> LayoutInflater.from(context).inflate(R.layout.search_member_popup_grey, null)
+                    RED -> LayoutInflater.from(context).inflate(R.layout.search_member_popup_red, null)
+                    else -> LayoutInflater.from(context).inflate(R.layout.search_member_popup_red, null)
                 }
             val mBuilder = AlertDialog.Builder(context).setView(dialogView)
             return mBuilder.show()
         }
+
+        fun inflateSearchBandDialog (context: Context, color: Int) : AlertDialog {
+
+            val dialogView =
+                when (color) {
+                    //BLUE -> LayoutInflater.from(context).inflate(R.layout.search_band_popup_blue, null)
+                    //GREY -> LayoutInflater.from(context).inflate(R.layout.search_band_popup_grey, null)
+                    RED -> LayoutInflater.from(context).inflate(R.layout.search_band_popup_red, null)
+                    else -> LayoutInflater.from(context).inflate(R.layout.search_band_popup_red, null)
+                }
+            val mBuilder = AlertDialog.Builder(context).setView(dialogView)
+            return mBuilder.show()
+        }
+
     }
 }

@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/regionSpinnerChoosePopupBand"
+        android:id="@+id/regionSpinnerSearchBandPopupBand"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Spinner
-        android:id="@+id/musicianSpinnerChoosePopupBand"
+        android:id="@+id/musicianSpinnerSearchBandPopupBand"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -60,7 +60,7 @@
         android:layout_marginEnd="20dp"
         android:autofillHints=""
         android:background="@drawable/shadow_spinner"
-        android:entries="@array/band_musicians"
+        android:entries="@array/search_band_musicians"
         android:fontFamily="@font/boogaloo"
         android:inputType="text"
         android:paddingStart="5dp"
@@ -69,10 +69,10 @@
         android:theme="@style/AppSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regionSpinnerChoosePopupBand" />
+        app:layout_constraintTop_toBottomOf="@+id/regionSpinnerSearchBandPopupBand" />
 
     <Button
-        android:id="@+id/submitButtonChoosePopup"
+        android:id="@+id/submitButtonSearchBandPopup"
         style="@android:style/ButtonBar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/musicianSpinnerChoosePopupBand" />
+        app:layout_constraintTop_toBottomOf="@+id/musicianSpinnerSearchBandPopupBand" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
