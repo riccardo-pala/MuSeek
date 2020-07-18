@@ -1,6 +1,7 @@
 package com.riky.museek.fragments
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -16,13 +17,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.R
+import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
-import kotlinx.android.synthetic.main.fragment_ad_details_instrument.*
-import kotlinx.android.synthetic.main.fragment_edit_profile.view.*
 import kotlinx.android.synthetic.main.fragment_review_instrument.view.*
 import java.text.NumberFormat
-import java.util.*
 
 class ReviewInstrumentFragment : Fragment() {
 
@@ -34,6 +33,12 @@ class ReviewInstrumentFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_review_instrument, container, false)
 
         if (context != null) DBManager.verifyLoggedUser(context!!)
+
+        view.homeButtonReviewInstr.setOnClickListener {
+            val intentHomepage = Intent(activity, HomepageActivity::class.java)
+            intentHomepage.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intentHomepage)
+        }
 
         uid = arguments!!.getString("uid", FirebaseAuth.getInstance().uid)
 

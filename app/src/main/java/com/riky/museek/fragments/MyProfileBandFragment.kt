@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.classes.DBManager
-import kotlinx.android.synthetic.main.fragment_band.view.*
 import kotlinx.android.synthetic.main.fragment_my_profile_band.view.*
-import kotlinx.android.synthetic.main.fragment_my_profile_instrument.view.*
 
 class MyProfileBandFragment : Fragment() {
 

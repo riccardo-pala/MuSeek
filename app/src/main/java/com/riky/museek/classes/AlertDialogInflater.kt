@@ -13,9 +13,9 @@ class AlertDialogInflater {
 
     companion object {
 
-        val BLUE = 0
-        val RED = 1
-        val GREY = 2
+        const val BLUE = 0
+        const val RED = 1
+        const val GREY = 2
 
         fun inflateLoadingDialog (context: Context, color: Int) : AlertDialog {
 
@@ -54,9 +54,9 @@ class AlertDialogInflater {
             val dialogView =
                 when (color) {
                     //BLUE -> LayoutInflater.from(context!!).inflate(R.layout.password_popup_blue, null)
-                    GREY -> LayoutInflater.from(context!!).inflate(R.layout.password_popup_grey, null)
+                    GREY -> LayoutInflater.from(context).inflate(R.layout.password_popup_grey, null)
                     //RED -> LayoutInflater.from(context!!).inflate(R.layout.password_popup_red, null)
-                    else -> LayoutInflater.from(context!!).inflate(R.layout.password_popup_grey, null)
+                    else -> LayoutInflater.from(context).inflate(R.layout.password_popup_grey, null)
                 }
 
             val mBuilder = AlertDialog.Builder(context).setView(dialogView)
@@ -107,14 +107,13 @@ class AlertDialogInflater {
 
             val dialogView =
                 when (color) {
-                    BLUE -> LayoutInflater.from(context!!).inflate(R.layout.review_popup_blue, null)
+                    BLUE -> LayoutInflater.from(context).inflate(R.layout.review_popup_blue, null)
                     //GREY -> LayoutInflater.from(context!!).inflate(R.layout.review_popup_grey, null)
                     //RED -> LayoutInflater.from(context!!).inflate(R.layout.review_popup_red, null)
-                    else -> LayoutInflater.from(context!!).inflate(R.layout.review_popup_blue, null)
+                    else -> LayoutInflater.from(context).inflate(R.layout.review_popup_blue, null)
                 }
 
             val mBuilder = AlertDialog.Builder(context).setView(dialogView)
-
             return mBuilder.show()
         }
 

@@ -8,11 +8,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.riky.museek.R
 import com.riky.museek.fragments.ShowBandAdsBandFragment
-import com.riky.museek.fragments.ShowMemberAdsBandFragment
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.ad_card_show_band_ads_band.view.*
-import kotlinx.android.synthetic.main.ad_card_show_member_ads_band.view.*
 
 class AdItemShowBandAdsBand(private val ad: AdBandBand, val view: View, val alertDialog: AlertDialog, private val stopLoading: Boolean): Item<ViewHolder>() {
 

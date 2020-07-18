@@ -20,6 +20,12 @@ class MyProfileInstrumentFragment : Fragment() {
 
         DBManager.verifyLoggedUser(context!!)
 
+        view.homeButtonMyProfileInstr.setOnClickListener {
+            val intentHomepage = Intent(activity, HomepageActivity::class.java)
+            intentHomepage.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intentHomepage)
+        }
+
         view.editAddressButtonMyProfileInstr.setOnClickListener {
             fragmentManager!!.beginTransaction()
                 .replace(R.id.fragment, EditAddressInstrumentFragment())

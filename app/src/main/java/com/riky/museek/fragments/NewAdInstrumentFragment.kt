@@ -44,7 +44,7 @@ class NewAdInstrumentFragment : Fragment() {
 
         view.photoPickerButtonNewAdInstr.setOnClickListener {
             hideKeyboard(view)
-            val intentPicker = Intent(Intent.ACTION_PICK) //TODO: AGGIUNGERE PICK CON CAMERA
+            val intentPicker = Intent(Intent.ACTION_PICK)
             intentPicker.type = "image/*"
             startActivityForResult(intentPicker, 0)
         }

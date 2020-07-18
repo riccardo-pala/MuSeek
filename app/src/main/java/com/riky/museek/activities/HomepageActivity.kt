@@ -2,7 +2,6 @@ package com.riky.museek.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.riky.museek.R
 import com.riky.museek.fragments.HomepageFragment

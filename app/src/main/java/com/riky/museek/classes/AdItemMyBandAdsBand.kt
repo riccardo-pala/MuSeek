@@ -6,13 +6,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.riky.museek.R
 import com.riky.museek.fragments.EditBandAdBandFragment
-import com.riky.museek.fragments.EditMemberAdBandFragment
 import com.riky.museek.fragments.MyBandAdsBandFragment
-import com.riky.museek.fragments.MyMemberAdsBandFragment
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.ad_card_my_band_ads_band.view.*
-import kotlinx.android.synthetic.main.ad_card_my_member_ads_band.view.*
 import kotlinx.android.synthetic.main.confirm_delete_popup_blue.*
 
 class AdItemMyBandAdsBand (private val ad: AdBandBand, val view: View, val alertDialog: AlertDialog, private val stopLoading: Boolean): Item<ViewHolder>() {

@@ -1,6 +1,7 @@
 package com.riky.museek.fragments
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,14 +15,15 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.riky.museek.R
-import com.riky.museek.classes.*
+import com.riky.museek.activities.HomepageActivity
+import com.riky.museek.classes.AdBandBand
+import com.riky.museek.classes.AdItemShowBandAdsBand
+import com.riky.museek.classes.AlertDialogInflater
+import com.riky.museek.classes.DBManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_show_ads_instrument.*
 import kotlinx.android.synthetic.main.fragment_show_band_ads_band.*
 import kotlinx.android.synthetic.main.fragment_show_band_ads_band.view.*
-import kotlinx.android.synthetic.main.fragment_show_member_ads_band.*
-import kotlinx.android.synthetic.main.fragment_show_member_ads_band.view.*
 
 class ShowBandAdsBandFragment : Fragment() {
 
@@ -36,6 +38,12 @@ class ShowBandAdsBandFragment : Fragment() {
         viewer = inflater.inflate(R.layout.fragment_show_band_ads_band, container, false)
 
         if (context != null) DBManager.verifyLoggedUser(context!!)
+
+        viewer!!.homeButtonShowBandAdsBand.setOnClickListener {
+            val intentHomepage = Intent(activity, HomepageActivity::class.java)
+            intentHomepage.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intentHomepage)
+        }
 
         try {
             requireArguments()

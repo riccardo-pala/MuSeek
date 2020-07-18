@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,9 +20,6 @@ import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.confirm_notify_popup_blue.*
-import kotlinx.android.synthetic.main.confirm_purchase_popup_blue.*
-import kotlinx.android.synthetic.main.fragment_ad_details_instrument.*
-import kotlinx.android.synthetic.main.fragment_ad_details_instrument.view.*
 import kotlinx.android.synthetic.main.fragment_sold_ad_details_instrument.*
 import kotlinx.android.synthetic.main.fragment_sold_ad_details_instrument.view.*
 import java.text.NumberFormat

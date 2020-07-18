@@ -5,17 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.classes.AlertDialogInflater
-import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.choose_band_ad_popup_red.*
 import kotlinx.android.synthetic.main.choose_popup_red.*
 import kotlinx.android.synthetic.main.fragment_band.view.*
-import kotlinx.android.synthetic.main.fragment_edit_member_ad_band.*
 
 class BandFragment : Fragment() {
 
@@ -60,17 +57,21 @@ class BandFragment : Fragment() {
             val alertDialog = AlertDialogInflater.inflateChooseDialog(context!!, AlertDialogInflater.RED)
 
             alertDialog.submitButtonChoosePopup.setOnClickListener submitListener@ {
+
+                alertDialog.regionSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner)
+                alertDialog.musicianSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner)
+
                 val regionSearch = alertDialog.regionSpinnerChoosePopupBand.selectedItemPosition
                 val musicianSearch = alertDialog.musicianSpinnerChoosePopupBand.selectedItemPosition
 
                 var isEmptyFields = false
 
                 if (regionSearch == 0) {
-                    regionSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner_error)
+                    alertDialog.regionSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner_error)
                     isEmptyFields = true
                 }
                 if (musicianSearch == 0) {
-                    musicianSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner_error)
+                    alertDialog.musicianSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner_error)
                     isEmptyFields = true
                 }
                 if (isEmptyFields) {
@@ -93,17 +94,21 @@ class BandFragment : Fragment() {
             val alertDialog = AlertDialogInflater.inflateChooseDialog(context!!, AlertDialogInflater.RED)
 
             alertDialog.submitButtonChoosePopup.setOnClickListener submitListener@ {
+
+                alertDialog.regionSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner)
+                alertDialog.musicianSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner)
+
                 val regionSearch = alertDialog.regionSpinnerChoosePopupBand.selectedItemPosition
                 val musicianSearch = alertDialog.musicianSpinnerChoosePopupBand.selectedItemPosition
 
                 var isEmptyFields = false
 
                 if (regionSearch == 0) {
-                    regionSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner_error)
+                    alertDialog.regionSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner_error)
                     isEmptyFields = true
                 }
                 if (musicianSearch == 0) {
-                    musicianSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner_error)
+                    alertDialog.musicianSpinnerChoosePopupBand.setBackgroundResource(R.drawable.shadow_spinner_error)
                     isEmptyFields = true
                 }
                 if (isEmptyFields) {

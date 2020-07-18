@@ -1,11 +1,8 @@
 package com.riky.museek.fragments
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,20 +12,13 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
-import com.riky.museek.classes.AdInstrument
 import com.riky.museek.classes.AdMemberBand
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
-import kotlinx.android.synthetic.main.fragment_edit_ad_instrument.*
-import kotlinx.android.synthetic.main.fragment_edit_ad_instrument.view.*
 import kotlinx.android.synthetic.main.fragment_edit_member_ad_band.*
 import kotlinx.android.synthetic.main.fragment_edit_member_ad_band.view.*
-import java.time.LocalDateTime
-import java.util.*
-import kotlin.math.roundToInt
 
 class EditMemberAdBandFragment : Fragment() {
 

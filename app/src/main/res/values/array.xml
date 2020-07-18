@@ -21,7 +21,7 @@
     </string-array>
 
     <string-array name="band_regions">
-        <item>Seleziona una regione...</item>
+        <item>Seleziona una regione…</item>
         <item>Abruzzo</item>
         <item>Basilicata</item>
         <item>Calabria</item>
@@ -45,7 +45,7 @@
     </string-array>
 
     <string-array name="band_musicians">
-        <item>Seleziona strumento...</item>
+        <item>Seleziona strumento…</item>
         <item>Bassista</item>
         <item>Batterista</item>
         <item>Cantante</item>

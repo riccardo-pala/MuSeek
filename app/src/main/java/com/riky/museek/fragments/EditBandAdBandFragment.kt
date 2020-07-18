@@ -15,13 +15,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.classes.AdBandBand
-import com.riky.museek.classes.AdMemberBand
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.fragment_edit_band_ad_band.*
 import kotlinx.android.synthetic.main.fragment_edit_band_ad_band.view.*
-import kotlinx.android.synthetic.main.fragment_edit_member_ad_band.*
-import kotlinx.android.synthetic.main.fragment_edit_member_ad_band.view.*
 
 class EditBandAdBandFragment : Fragment() {
 

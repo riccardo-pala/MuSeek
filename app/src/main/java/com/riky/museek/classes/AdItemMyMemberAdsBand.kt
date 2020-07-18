@@ -1,27 +1,16 @@
 package com.riky.museek.classes
 
 import android.app.AlertDialog
-import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.google.firebase.storage.FirebaseStorage
 import com.riky.museek.R
-import com.riky.museek.activities.HomepageActivity
-import com.riky.museek.fragments.EditAdInstrumentFragment
 import com.riky.museek.fragments.EditMemberAdBandFragment
-import com.riky.museek.fragments.MyAdsInstrumentFragment
 import com.riky.museek.fragments.MyMemberAdsBandFragment
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.ad_card_my_ads_instrument.view.*
 import kotlinx.android.synthetic.main.ad_card_my_member_ads_band.view.*
 import kotlinx.android.synthetic.main.confirm_delete_popup_blue.*
-import kotlinx.android.synthetic.main.fragment_my_ads_instrument.view.*
-import java.text.NumberFormat
-import java.util.*
 
 class AdItemMyMemberAdsBand(private val ad: AdMemberBand, val view: View, val alertDialog: AlertDialog, private val stopLoading: Boolean): Item<ViewHolder>() {
 

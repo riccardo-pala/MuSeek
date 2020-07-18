@@ -10,11 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -26,11 +22,8 @@ import com.riky.museek.R
 import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
-import kotlinx.android.synthetic.main.confirm_delete_popup_blue.*
 import kotlinx.android.synthetic.main.confirm_purchase_popup_blue.*
-import kotlinx.android.synthetic.main.fragment_ad_details_instrument.*
 import kotlinx.android.synthetic.main.fragment_ad_details_instrument.view.*
-import kotlinx.android.synthetic.main.loading_popup_blue.view.*
 import java.text.NumberFormat
 import java.util.*
 

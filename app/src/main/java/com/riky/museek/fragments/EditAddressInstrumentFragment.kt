@@ -8,9 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -25,7 +22,6 @@ import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
 import com.riky.museek.classes.UserInstrument
 import kotlinx.android.synthetic.main.fragment_edit_address_instrument.view.*
-import kotlinx.android.synthetic.main.loading_popup_blue.*
 
 class EditAddressInstrumentFragment : Fragment() {
 

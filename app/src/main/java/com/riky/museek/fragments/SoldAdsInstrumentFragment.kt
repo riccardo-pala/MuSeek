@@ -1,6 +1,7 @@
 package com.riky.museek.fragments
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.riky.museek.R
+import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.classes.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -33,6 +35,12 @@ class SoldAdsInstrumentFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         viewer = inflater.inflate(R.layout.fragment_sold_ads_instrument, container, false)
+
+        viewer!!.homeButtonSoldAdsInstr.setOnClickListener {
+            val intentHomepage = Intent(activity, HomepageActivity::class.java)
+            intentHomepage.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intentHomepage)
+        }
 
         if (context != null) DBManager.verifyLoggedUser(context!!)
 

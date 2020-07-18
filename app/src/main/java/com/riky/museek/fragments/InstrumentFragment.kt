@@ -1,24 +1,18 @@
 package com.riky.museek.fragments
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.R
+import com.riky.museek.activities.HomepageActivity
 import com.riky.museek.classes.AlertDialogInflater
 import com.riky.museek.classes.DBManager
 import kotlinx.android.synthetic.main.fragment_instrument.view.*
-import kotlinx.android.synthetic.main.loading_popup_blue.*
-import kotlinx.android.synthetic.main.loading_popup_blue.view.*
 
 class InstrumentFragment : Fragment() {
 
@@ -35,7 +29,7 @@ class InstrumentFragment : Fragment() {
         view.newAdButtonInstr.setOnClickListener {
             val alertDialog = AlertDialogInflater.inflateLoadingDialog(context!!, AlertDialogInflater.BLUE)
 
-            DBManager.verifyInstrumentUser(context!!, alertDialog!!, null)
+            DBManager.verifyInstrumentUser(context!!, alertDialog, null)
         }
 
         view.myProfileButtonInstr.setOnClickListener {

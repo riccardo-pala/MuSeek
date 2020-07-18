@@ -1,10 +1,9 @@
 package com.riky.museek.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.riky.museek.R
 import com.riky.museek.fragments.BandFragment
-import com.riky.museek.fragments.InstrumentFragment
 
 class BandActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -242,7 +242,6 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="65dp"
         android:fontFamily="@font/boogaloo"
-        android:inputType="textMultiLine|text"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         android:shadowColor="@android:color/white"

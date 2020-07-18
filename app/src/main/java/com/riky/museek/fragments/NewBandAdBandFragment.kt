@@ -88,7 +88,7 @@ class NewBandAdBandFragment : Fragment() {
         return view
     }
 
-    fun performNewAd(ad: AdBandBand, context: Context, alertDialog: AlertDialog) {
+    private fun performNewAd(ad: AdBandBand, context: Context, alertDialog: AlertDialog) {
 
         val ref = DBManager.database.getReference("/band_band_ads/${ad.aid}")
 
