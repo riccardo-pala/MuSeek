@@ -5,6 +5,7 @@
 
 # Technical Specifications
 The application has been realize with Android Studio, programmed with Kotlin language.
+As a DB system Firebase Realtime Database was used.
 
 # Screenshots
 <img src="https://i.ibb.co/0nwJXgg/Index.jpg" alt="Index" border="0">
