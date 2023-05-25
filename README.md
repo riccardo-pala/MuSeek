@@ -3,6 +3,9 @@
 - **Music Marketplace**: to find and buy an instrument or sell one of yours
 - **Band Village**: to find members for your band, or join one
 
+# Technical Specifications
+The application has been realize with Android Studio, programmed with Kotlin language.
+
 # Screenshots
 <img src="https://i.ibb.co/0nwJXgg/Index.jpg" alt="Index" border="0">
 <img src="https://i.ibb.co/HnzsVc9/Homepage.jpg" alt="Homepage" border="0">
